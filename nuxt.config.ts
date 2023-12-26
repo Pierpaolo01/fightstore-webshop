@@ -1,7 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/apollo", "@nuxt/ui", "@nuxtjs/tailwindcss"],
+  modules: [
+    "@nuxtjs/apollo",
+    "@nuxt/ui",
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/google-fonts",
+  ],
   apollo: {
     clients: {
       default: {
@@ -15,6 +20,12 @@ export default defineNuxtConfig({
           },
         },
       },
+    },
+  },
+  googleFonts: {
+    families: {
+      Roboto: [400, 500, 600, 700, 800],
+      Raleway: [400, 500, 600, 700, 800],
     },
   },
 });
