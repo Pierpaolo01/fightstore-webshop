@@ -1,4 +1,5 @@
 <template>
+  <HomeHero />
   <HomeCollections />
 </template>
 

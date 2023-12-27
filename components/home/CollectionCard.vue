@@ -11,10 +11,11 @@
     <div
       class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center"
     >
-      <div class="text-center space-y-2">
-        <h3 class="text-white tablet:text-xl laptop:text-3xl">{{ title }}</h3>
-
-        <UButton color="black" variant="outline" label="Shop now" />
+      <div class="text-center space-y-6">
+        <h3 class="text-white tablet:text-xl laptop:text-3xl">
+          {{ title }}
+        </h3>
+        <Button variant="outlined" label="Shop now" />
       </div>
     </div>
   </div>
