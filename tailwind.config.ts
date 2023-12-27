@@ -14,6 +14,7 @@ export default {
       },
       colors: {
         "off-white": "#F7F7F7",
+        "darker-white": "#404040",
       },
     },
   },
