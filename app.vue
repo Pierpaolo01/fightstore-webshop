@@ -1,6 +1,6 @@
 <template>
   <HomeHero />
-  <HomeCollections />
+  <HomeFeaturedCollections />
 </template>
 
 <script setup></script>
@@ -36,5 +36,13 @@ h3 {
 
 h4 {
   @apply text-2xl font-medium;
+}
+
+.y-padding {
+  @apply py-8;
+
+  @screen tablet {
+    @apply py-12;
+  }
 }
 </style>

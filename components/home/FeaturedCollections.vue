@@ -1,21 +1,18 @@
 <template>
-  <UContainer v-if="!loading">
+  <UContainer class="y-padding" v-if="!loading">
     <UCard>
       <template #header>
-        <div class="flex space-x-4">
-          <div class="block min-h-full w-2 rounded bg-blue-500" />
-          <h2 class="text-black uppercase">uitgelichte categoriën</h2>
-        </div>
+        <SectionHeading label="uitgelichte categoriën" />
       </template>
       <div class="grid tablet:grid-cols-3 gap-4 mb-4">
-        <HomeCollectionCard
+        <HomeFeaturedCollectionsCard
           v-for="collection in firstRowCollections"
           :image="collection.image"
           :title="collection.title"
         />
       </div>
       <div class="grid tablet:grid-cols-2 gap-4">
-        <HomeCollectionCard
+        <HomeFeaturedCollectionsCard
           v-for="collection in secondRowCollections"
           :key="collection.id"
           :image="collection.image"
