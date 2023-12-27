@@ -1,7 +1,7 @@
 <template>
   <div class="flex space-x-4">
     <div class="block min-h-full w-2 rounded bg-blue-500" />
-    <h2 class="text-black uppercase">{{ label }}</h2>
+    <h2 class="uppercase">{{ label }}</h2>
   </div>
 </template>
 

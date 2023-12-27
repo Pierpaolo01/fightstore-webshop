@@ -1,13 +1,14 @@
 <template>
   <HomeHero />
   <HomeFeaturedCollections />
+  <HomeFeaturedProducts />
 </template>
 
 <script setup></script>
 
 <style>
 html {
-  @apply bg-white font-raleway;
+  @apply bg-white font-raleway text-black;
 }
 
 h1 {

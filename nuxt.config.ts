@@ -30,6 +30,6 @@ export default defineNuxtConfig({
     },
   },
   carousel: {
-    prefix: "Carousel",
+    prefix: "VC",
   },
 });

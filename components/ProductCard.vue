@@ -1,0 +1,88 @@
+<template>
+  <div
+    class="w-64 group cursor-pointer"
+    @mouseover="isHovering = true"
+    @mouseleave="isHovering = false"
+  >
+    <div class="w-full h-fit overflow-hidden">
+      <img
+        v-if="featuredImageUrl"
+        :src="featuredImageUrl"
+        alt="product image"
+        class="group-hover:scale-110 transition-all duration-300"
+      />
+    </div>
+    <div class="flex justify-between">
+      <div class="font-roboto">
+        <p class="font-bold">
+          {{ title }}
+        </p>
+        <span class="font-medium">
+          {{ minVariantPrice.amount }}
+          {{ minVariantPrice.currencyCode }}
+        </span>
+      </div>
+      <IconArrowRight
+        class="transition-all duration-300"
+        :class="{
+          'animate-slideOutRight': isHovering,
+          'animate-slideInLeft': !isHovering,
+        }"
+      />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+const isHovering = ref(false);
+
+defineProps({
+  featuredImageUrl: {
+    type: String,
+    required: false,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  minVariantPrice: {
+    type: Object as PropType<{
+      amount: number;
+      currencyCode: string;
+    }>,
+    required: true,
+  },
+});
+</script>
+
+<style scoped>
+.animate-slideOutRight {
+  animation: slideOutRight 0.3s forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.3s forwards;
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+</style>
