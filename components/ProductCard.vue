@@ -23,7 +23,7 @@
         </span>
       </div>
       <IconArrowRight
-        class="transition-all duration-300"
+        class="transition-all duration-300 h-6 w-6"
         :class="{
           'animate-slideOutRight': isHovering,
           'animate-slideInLeft': !isHovering,
