@@ -4,7 +4,7 @@
       <template #header>
         <SectionHeading label="uitgelichte producten" />
       </template>
-      <VCCarousel :itemsToShow="3.95" :itemsToScroll="2">
+      <VCCarousel :breakpoints="carouselBreakpoints" :wrapAround="true">
         <VCSlide v-for="product in products" :key="product.id">
           <ProductCard
             :title="product.title"
@@ -22,7 +22,20 @@
 </template>
 
 <script setup lang="ts">
-const isHovering = ref(false);
+const carouselBreakpoints = {
+  0: {
+    itemsToShow: 1,
+    itemsToScroll: 1,
+  },
+  767: {
+    itemsToShow: 3,
+    itemsToScroll: 2,
+  },
+  991: {
+    itemsToShow: 4,
+    itemsToScroll: 2,
+  },
+};
 
 const query = gql`
   {
