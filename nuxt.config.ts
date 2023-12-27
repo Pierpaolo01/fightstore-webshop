@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/google-fonts",
+    "vue3-carousel-nuxt",
   ],
   apollo: {
     clients: {
@@ -27,5 +28,8 @@ export default defineNuxtConfig({
       Roboto: [400, 500, 600, 700, 800],
       Raleway: [400, 500, 600, 700, 800],
     },
+  },
+  carousel: {
+    prefix: "Carousel",
   },
 });
