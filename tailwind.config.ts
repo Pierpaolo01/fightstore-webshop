@@ -12,6 +12,9 @@ export default {
         laptop: "991px",
         // desktop: "1199px",
       },
+      colors: {
+        "off-white": "#F7F7F7",
+      },
     },
   },
   plugins: [],

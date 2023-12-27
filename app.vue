@@ -2,6 +2,7 @@
   <Hero />
   <FeaturedCollections />
   <FeaturedProducts />
+  <SectionAboutUs />
 </template>
 
 <script setup></script>

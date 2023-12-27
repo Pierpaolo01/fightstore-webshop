@@ -5,7 +5,7 @@
         <SectionHeading label="uitgelichte producten" />
       </template>
       <VCCarousel :breakpoints="carouselBreakpoints" :wrapAround="true">
-        <VCSlide v-for="product in products" :key="product.id">
+        <VCSlide v-for="product in products" :key="product.id" class="px-4">
           <ProductCard
             :title="product.title"
             :featuredImageUrl="product.featuredImage?.url"
