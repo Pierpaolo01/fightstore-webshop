@@ -1,7 +1,7 @@
 <template>
-  <HomeHero />
-  <HomeFeaturedCollections />
-  <HomeFeaturedProducts />
+  <Hero />
+  <FeaturedCollections />
+  <FeaturedProducts />
 </template>
 
 <script setup></script>
