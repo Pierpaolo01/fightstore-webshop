@@ -12,12 +12,12 @@
         class="group-hover:scale-110 transition-all duration-300"
       />
     </div>
-    <div class="flex justify-between">
-      <div class="font-roboto">
+    <div class="flex justify-between space-x-2">
+      <div class="font-roboto text-left">
         <p class="font-bold">
           {{ title }}
         </p>
-        <span class="font-medium">
+        <span class="font-medium text-left">
           {{ minVariantPrice.amount }}
           {{ minVariantPrice.currencyCode }}
         </span>

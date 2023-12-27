@@ -3,6 +3,7 @@
   <FeaturedCollections />
   <FeaturedProducts />
   <SectionAboutUs />
+  <SectionFooter />
 </template>
 
 <script setup></script>
