@@ -7,6 +7,7 @@
       <VCCarousel :breakpoints="carouselBreakpoints" :wrapAround="true">
         <VCSlide v-for="product in products" :key="product.id" class="px-4">
           <ProductCard
+            :handle="product.handle"
             :title="product.title"
             :featuredImageUrl="product.featuredImage?.url"
             :minVariantPrice="product.priceRange.minVariantPrice"
@@ -43,6 +44,7 @@ const query = gql`
       edges {
         node {
           id
+          handle
           title
           priceRange {
             minVariantPrice {
@@ -61,6 +63,7 @@ const query = gql`
 
 type Product = {
   id: string;
+  handle: string;
   title: string;
   priceRange: {
     minVariantPrice: {

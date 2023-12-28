@@ -1,5 +1,6 @@
 <template>
-  <div
+  <NuxtLink
+    :to="'/products/' + handle"
     class="w-64 group cursor-pointer"
     @mouseover="isHovering = true"
     @mouseleave="isHovering = false"
@@ -30,13 +31,17 @@
         }"
       />
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
 const isHovering = ref(false);
 
 defineProps({
+  handle: {
+    type: String,
+    required: true,
+  },
   featuredImageUrl: {
     type: String,
     required: false,

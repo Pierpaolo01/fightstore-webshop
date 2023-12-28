@@ -43,6 +43,7 @@ const query = gql`
             edges {
               node {
                 id
+                handle
                 title
                 image {
                   url
@@ -61,6 +62,7 @@ const query = gql`
 
 type Article = {
   id: string;
+  handle: string;
   title: string;
   image?: {
     url: string;
