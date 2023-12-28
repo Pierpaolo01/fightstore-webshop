@@ -43,7 +43,7 @@ export default {
 
         // Variant and color classes
         this.variant === "outlined"
-          ? `border-${this.color} text-${this.color} hover:bg-${this.color} hover:bg-opacity-20 hover:text-white`
+          ? `border-${this.color} text-${this.color} hover:bg-${this.color} hover:bg-opacity-30`
           : `border-none bg-${this.color} text-${
               this.color === "white" ? "black" : "white"
             } hover:bg-opacity-70`,
