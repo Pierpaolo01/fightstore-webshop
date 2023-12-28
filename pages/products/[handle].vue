@@ -1,38 +1,43 @@
 <template>
-  <div class="bg-off-white">
-    <UContainer class="grid tablet:grid-cols-2 gap-8">
-      <VCCarousel :itemsToShow="1" snapAlign="center">
-        <VCSlide
-          v-for="image in product.images"
-          :key="image.url"
-          class="max-h-[500px] bg-white"
-        >
-          <img
-            :src="image.url"
-            alt="Product image"
-            class="h-full w-full object-contain"
-          />
-        </VCSlide>
+  <div>
+    <div class="bg-off-white">
+      <UContainer class="grid tablet:grid-cols-2 gap-8">
+        <VCCarousel :itemsToShow="1" snapAlign="center">
+          <VCSlide
+            v-for="image in product.images"
+            :key="image.url"
+            class="max-h-[500px] bg-white"
+          >
+            <img :src="image.url" alt="Product image" class="h-full" />
+          </VCSlide>
 
-        <template #addons="{ slidesCount }">
-          <VCPagination />
-          <VCNavigation v-if="slidesCount > 1" />
-        </template>
-      </VCCarousel>
-      <div class="space-y-8">
-        <h3>
-          {{ product.title }}
-        </h3>
-        <p>
-          {{ product.description }}
-        </p>
+          <template #addons="{ slidesCount }">
+            <VCPagination />
+            <VCNavigation v-if="slidesCount > 1" />
+          </template>
+        </VCCarousel>
+        <div class="space-y-8">
+          <h3>
+            {{ product.title }}
+          </h3>
+          <p>
+            {{ product.description }}
+          </p>
 
-        <div class="flex w-full space-x-4">
-          <QuantitySelector v-model="quantity" />
-          <AddToCartButton class="w-full" />
+          <div class="flex w-full space-x-4">
+            <QuantitySelector v-model="quantity" />
+            <AddToCartButton class="w-full" />
+          </div>
         </div>
-      </div>
-    </UContainer>
+      </UContainer>
+    </div>
+    <FeaturedProducts />
+
+    <div class="bg-off-white">
+      <UContainer>
+        <ContactForm />
+      </UContainer>
+    </div>
   </div>
 </template>
 

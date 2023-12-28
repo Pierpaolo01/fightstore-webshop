@@ -36,6 +36,11 @@ h4 {
   @apply text-2xl font-medium;
 }
 
+input,
+textarea {
+  @apply bg-white;
+}
+
 .y-padding {
   @apply py-8;
 
