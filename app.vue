@@ -1,13 +1,7 @@
 <template>
-  <Hero />
-  <FeaturedCollections />
-  <FeaturedProducts />
-  <SectionAboutUs />
-  <SectionBlog />
+  <NuxtPage />
   <SectionFooter />
 </template>
-
-<script setup></script>
 
 <style>
 html {

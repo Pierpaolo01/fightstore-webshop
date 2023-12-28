@@ -23,7 +23,7 @@
     <div class="space-y-1 mt-2">
       <h4>{{ title }}</h4>
       <NuxtLink
-        to="/home"
+        :to="'/blogs/' + handle"
         class="flex space-x-2 text-blue-700 uppercase italic text-xs"
       >
         <span
@@ -44,7 +44,7 @@
 
 <script setup lang="ts">
 defineProps({
-  id: {
+  handle: {
     type: String,
     required: true,
   },

@@ -10,7 +10,7 @@
         <BlogCard
           v-for="article in articles"
           :key="article.id"
-          :id="article.id"
+          :handle="article.handle"
           :title="article.title"
           :imageUrl="article.image?.url"
         />
