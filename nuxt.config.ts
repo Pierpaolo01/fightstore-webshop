@@ -42,12 +42,6 @@ export default defineNuxtConfig({
       }
       `)) as any;
 
-      console.log(
-        blogs.edges[0].node.articles.edges.map(
-          (edge: any) => `/blogs/${edge.node.handle}`
-        )
-      );
-
       nitroConfig.prerender?.routes?.push(
         "/",
         ...products.edges.map((edge: any) => `/products/${edge.node.handle}`),
