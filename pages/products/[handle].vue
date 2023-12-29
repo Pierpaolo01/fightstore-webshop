@@ -62,6 +62,7 @@
 <script setup lang="ts">
 const route = useRoute();
 
+const { product } = useProduct(route.params.handle);
 const quantity = ref(1);
 
 const selectedOptions = ref<Record<string, string>[]>([]);
@@ -96,89 +97,4 @@ const findVariantId = () => {
     });
   })?.id;
 };
-
-const query = gql`
-  query ($handle: String!) {
-    product(handle: $handle) {
-      id
-      handle
-      title
-      description
-      priceRange {
-        minVariantPrice {
-          amount
-          currencyCode
-        }
-      }
-      options {
-        id
-        name
-        values
-      }
-      variants(first: 250) {
-        edges {
-          node {
-            id
-            selectedOptions {
-              value
-              name
-            }
-          }
-        }
-      }
-      images(first: 10) {
-        edges {
-          node {
-            url
-          }
-        }
-      }
-    }
-  }
-`;
-
-type Product = {
-  id: string;
-  handle: string;
-  title: string;
-  description: string;
-  priceRange: {
-    minVariantPrice: {
-      amount: number;
-      currencyCode: string;
-    };
-  };
-  options: {
-    id: string;
-    name: string;
-    values: string[];
-  }[];
-  variants: {
-    id: string;
-    selectedOptions: {
-      value: string;
-      name: string;
-    }[];
-  }[];
-  images: {
-    url: string;
-  }[];
-};
-
-const { result } = useQuery(query, {
-  handle: route.params.handle,
-});
-
-const product = computed<Product>(() => {
-  if (!result.value) {
-    return [];
-  }
-
-  return {
-    ...result.value.product,
-    images: result.value.product.images?.edges?.map((edge) => edge.node) ?? [],
-    variants:
-      result.value.product.variants?.edges?.map((edge) => edge.node) ?? [],
-  };
-});
 </script>
