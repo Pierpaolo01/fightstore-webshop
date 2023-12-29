@@ -25,13 +25,24 @@
               {{ product.description }}
             </p>
           </div>
-          <OptionsSelector
-            type="size"
-            :options="product.options"
-            :selectedOptions="selectedOptions"
-            @update:option="addOrUpdateOption($event)"
-          />
-          <div class="flex w-full space-x-4">
+          <div class="flex items-center space-x-4 divide-x-2">
+            <OptionsSelector
+              type="size"
+              :options="product.options"
+              :selectedOptions="selectedOptions"
+              @update:option="addOrUpdateOption($event)"
+            />
+            <OptionsDropdown
+              class="pl-4"
+              type="color"
+              :options="product.options"
+              :selectedOptions="selectedOptions"
+              @update:option="addOrUpdateOption($event)"
+            />
+          </div>
+          <div
+            class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
+          >
             <QuantitySelector v-model="quantity" />
             <AddToCartButton class="w-full" />
           </div>
