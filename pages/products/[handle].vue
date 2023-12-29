@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-off-white">
+    <div class="bg-off-white y-padding">
       <UContainer class="grid tablet:grid-cols-2 gap-8">
         <VCCarousel :itemsToShow="1" snapAlign="center">
           <VCSlide
@@ -17,13 +17,20 @@
           </template>
         </VCCarousel>
         <div class="space-y-8">
-          <h3>
-            {{ product.title }}
-          </h3>
-          <p>
-            {{ product.description }}
-          </p>
-
+          <div>
+            <h3>
+              {{ product.title }}
+            </h3>
+            <p class="text-lg">
+              {{ product.description }}
+            </p>
+          </div>
+          <OptionsSelector
+            type="size"
+            :options="product.options"
+            :selectedOptions="selectedOptions"
+            @update:option="addOrUpdateOption($event)"
+          />
           <div class="flex w-full space-x-4">
             <QuantitySelector v-model="quantity" />
             <AddToCartButton class="w-full" />
@@ -46,6 +53,22 @@ const route = useRoute();
 
 const quantity = ref(1);
 
+const selectedOptions = ref<Record<string, string>[]>([]);
+
+function addOrUpdateOption(option: Record<string, string>) {
+  const optionKey = Object.keys(option)[0];
+
+  const existingOptionIndex = selectedOptions.value.findIndex(
+    (option) => Object.keys(option)[0] === optionKey
+  );
+
+  if (existingOptionIndex !== -1) {
+    selectedOptions.value[existingOptionIndex] = option;
+  } else {
+    selectedOptions.value.push(option);
+  }
+}
+
 const query = gql`
   query ($handle: String!) {
     product(handle: $handle) {
@@ -58,6 +81,11 @@ const query = gql`
           amount
           currencyCode
         }
+      }
+      options {
+        id
+        name
+        values
       }
       images(first: 10) {
         edges {
@@ -81,6 +109,11 @@ type Product = {
       currencyCode: string;
     };
   };
+  options: {
+    id: string;
+    name: string;
+    values: string[];
+  }[];
   images: {
     url: string;
   }[];
