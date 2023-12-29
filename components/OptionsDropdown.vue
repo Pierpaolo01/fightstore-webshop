@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <select
-      class="cursor-pointer bg-transparent text-md px-8 py-2 h-[42px] font-roboto rounded font-bold border border-black text-black hover:bg-black hover:bg-opacity-30"
+      class="cursor-pointer bg-transparent text-md px-4 py-2 h-[42px] font-roboto rounded font-bold border border-black text-black hover:bg-black hover:bg-opacity-30"
       v-model="selectedOption"
       @change="emitSelection"
     >
@@ -12,13 +12,12 @@
       >
         {{ option }}
       </option>
+      <option value="" selected hidden>Kies een kleur</option>
     </select>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, defineProps, defineEmits } from "vue";
-
 const props = defineProps({
   type: {
     type: String,
@@ -48,7 +47,7 @@ const filteredOptions = computed(() => {
   );
 });
 
-const selectedOption = ref(filteredOptions.value.values[0] || "");
+const selectedOption = ref("");
 
 const emit = defineEmits(["update:option"]);
 

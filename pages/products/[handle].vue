@@ -44,7 +44,7 @@
             class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
           >
             <QuantitySelector v-model="quantity" />
-            <AddToCartButton class="w-full" />
+            <AddToCartButton class="w-full" @click="findVariantId()" />
           </div>
         </div>
       </UContainer>
@@ -80,6 +80,23 @@ function addOrUpdateOption(option: Record<string, string>) {
   }
 }
 
+const findVariantId = () => {
+  const userSelectedOptions = selectedOptions.value.reduce((acc, option) => {
+    const key = Object.keys(option)[0];
+    acc[key] = option[key];
+    return acc;
+  }, {});
+
+  return product.value.variants.find((variant) => {
+    return variant.selectedOptions.every((selectedOption) => {
+      return (
+        userSelectedOptions[selectedOption.name.toLowerCase()] ===
+        selectedOption.value
+      );
+    });
+  })?.id;
+};
+
 const query = gql`
   query ($handle: String!) {
     product(handle: $handle) {
@@ -97,6 +114,17 @@ const query = gql`
         id
         name
         values
+      }
+      variants(first: 250) {
+        edges {
+          node {
+            id
+            selectedOptions {
+              value
+              name
+            }
+          }
+        }
       }
       images(first: 10) {
         edges {
@@ -125,6 +153,13 @@ type Product = {
     name: string;
     values: string[];
   }[];
+  variants: {
+    id: string;
+    selectedOptions: {
+      value: string;
+      name: string;
+    }[];
+  }[];
   images: {
     url: string;
   }[];
@@ -142,6 +177,8 @@ const product = computed<Product>(() => {
   return {
     ...result.value.product,
     images: result.value.product.images?.edges?.map((edge) => edge.node) ?? [],
+    variants:
+      result.value.product.variants?.edges?.map((edge) => edge.node) ?? [],
   };
 });
 </script>
