@@ -1,27 +1,71 @@
-import { CreateCartMutation } from "~/graphql/queries";
+import { CreateCartMutation, AddToCartMutation } from "~/graphql/queries";
 
-export const useAddOrUpdateCart = async (
-  productId: string,
-  quantity: number
-) => {
-  const storedCart = localStorage.getItem("fight-store-cart-id");
+export const useAddOrUpdateCart = () => {
+  const storedCartId = ref<string | null>(null);
+  const isClient = process.client;
 
-  if (!storedCart) {
-    const { mutate, onDone } = useMutation(CreateCartMutation);
+  onMounted(() => {
+    if (isClient) {
+      storedCartId.value = localStorage.getItem("fight-store-cart-id");
+    }
+  });
 
-    await mutate({
-      input: {
+  const {
+    mutate: createCart,
+    onDone: onCartCreated,
+    loading: loadingCreate,
+  } = useMutation(CreateCartMutation);
+
+  const {
+    mutate: updateCart,
+    onDone: onCartUpdated,
+    loading: loadingAdd,
+  } = useMutation(AddToCartMutation);
+
+  const isAddingToCart = computed(
+    () => loadingAdd.value || loadingCreate.value
+  );
+
+  const addToCart = async (productId: string, quantity: number) => {
+    if (!isClient) return;
+
+    if (!storedCartId.value) {
+      createCart({
+        input: {
+          lines: [
+            {
+              quantity,
+              merchandiseId: productId,
+            },
+          ],
+        },
+      });
+
+      onCartCreated((data) => {
+        const cartId = data.data?.cartCreate?.cart?.id;
+
+        if (cartId) {
+          localStorage.setItem("fight-store-cart-id", cartId);
+        }
+      });
+    }
+
+    if (storedCartId.value) {
+      updateCart({
+        cartId: storedCartId.value,
         lines: [
           {
-            quantity,
             merchandiseId: productId,
+            quantity,
           },
         ],
-      },
-    });
+      });
 
-    onDone((data) => {
-      console.log(data);
-    });
-  }
+      onCartUpdated(() => {
+        console.log("stored to existing cart");
+      });
+    }
+  };
+
+  return { addToCart, isAddingToCart };
 };

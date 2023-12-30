@@ -44,7 +44,11 @@
             class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
           >
             <QuantitySelector v-model="quantity" />
-            <AddToCartButton class="w-full" @click="addProductToCart()" />
+            <AddToCartButton
+              class="w-full"
+              @click="addProductToCart()"
+              :isAddingToCart="isAddingToCart"
+            />
           </div>
         </div>
       </UContainer>
@@ -63,6 +67,8 @@
 const route = useRoute();
 
 const { product } = useProduct(route.params.handle);
+const { isAddingToCart, addToCart } = useAddOrUpdateCart();
+
 const quantity = ref(1);
 
 const selectedOptions = ref<Record<string, string>[]>([]);
@@ -105,6 +111,6 @@ const addProductToCart = async () => {
     return; //TODO show error
   }
 
-  useAddOrUpdateCart(variantId, quantity.value);
+  await addToCart(variantId, quantity.value);
 };
 </script>
