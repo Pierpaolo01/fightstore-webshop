@@ -81,7 +81,21 @@ export const AddToCartMutation = gql`
     cartLinesAdd(cartId: $cartId, lines: $lines) {
       cart {
         id
+        totalQuantity
       }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+export const GetCartQuery = gql`
+  query ($id: ID!) {
+    cart(id: $id) {
+      totalQuantity
+      checkoutUrl
     }
   }
 `;

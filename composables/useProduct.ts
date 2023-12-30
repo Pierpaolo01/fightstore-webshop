@@ -1,7 +1,7 @@
 import { GetProductQuery } from "~/graphql/queries";
 
 export const useProduct = (handle) => {
-  const { result } = useQuery(GetProductQuery, { handle });
+  const { result, refetch } = useQuery(GetProductQuery, { handle });
 
   const product = computed(() => {
     if (!result.value) {
@@ -17,5 +17,5 @@ export const useProduct = (handle) => {
     };
   });
 
-  return { product };
+  return { product, refetch };
 };

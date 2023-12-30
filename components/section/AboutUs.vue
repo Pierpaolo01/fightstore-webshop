@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full bg-off-white y-padding">
+  <div class="w-full bg-off-white y-padding" id="about-us">
     <UContainer>
       <UCard>
         <template #header>

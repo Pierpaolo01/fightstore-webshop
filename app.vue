@@ -1,4 +1,5 @@
 <template>
+  <Navigation />
   <NuxtPage />
   <SectionFooter />
 </template>
@@ -6,6 +7,7 @@
 <style>
 html {
   @apply bg-white font-raleway text-black;
+  scroll-behavior: smooth;
 }
 
 h1 {

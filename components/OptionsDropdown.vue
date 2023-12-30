@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex" v-if="filteredOptions?.values.length">
     <select
       class="cursor-pointer bg-transparent text-md px-4 py-2 h-[42px] font-roboto rounded font-bold border border-black text-black hover:bg-black hover:bg-opacity-30"
       v-model="selectedOption"

@@ -63,7 +63,7 @@ export const useAddOrUpdateCart = () => {
       });
 
       onCartUpdated(() => {
-        console.log("stored to existing cart");
+        // TODO trigger cart refetch
       });
     }
 

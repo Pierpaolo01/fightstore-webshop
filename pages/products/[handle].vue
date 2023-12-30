@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-off-white y-padding">
+    <div class="bg-off-white y-padding" v-if="product">
       <UContainer class="grid tablet:grid-cols-2 gap-8">
         <VCCarousel :itemsToShow="1" snapAlign="center">
           <VCSlide
@@ -66,7 +66,7 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const { product } = useProduct(route.params.handle);
+const { product, refetch } = useProduct(route.params.handle);
 const { isAddingToCart, addToCart } = useAddOrUpdateCart();
 
 const quantity = ref(1);
@@ -112,8 +112,5 @@ const addProductToCart = async () => {
   }
 
   await addToCart(variantId, quantity.value);
-};
-const handleCartUpdate = () => {
-  console.log("cart updated");
 };
 </script>
