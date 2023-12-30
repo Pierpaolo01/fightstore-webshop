@@ -1,4 +1,4 @@
-export const useCartTriggerStore = defineStore("cartTrigger", () => {
+export const useCartStore = defineStore("cartTrigger", () => {
   const triggerRefetch = ref(0);
 
   function triggerCartRefetch() {

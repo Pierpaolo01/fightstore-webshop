@@ -1,10 +1,12 @@
 import { CreateCartMutation, AddToCartMutation } from "~/graphql/queries";
-import { useCartTriggerStore } from "~/store/cart";
+import { useCartStore } from "~/store/useCartStore";
 
 export const useAddOrUpdateCart = () => {
   const storedCartId = ref<string | null>(null);
   const isClient = process.client;
-  const { triggerCartRefetch } = useCartTriggerStore();
+
+  const { triggerCartRefetch } = useCartStore();
+
   onMounted(() => {
     if (isClient) {
       storedCartId.value = localStorage.getItem("fight-store-cart-id");
@@ -48,6 +50,8 @@ export const useAddOrUpdateCart = () => {
         if (cartId) {
           localStorage.setItem("fight-store-cart-id", cartId);
         }
+
+        triggerCartRefetch();
       });
     }
 
@@ -63,11 +67,9 @@ export const useAddOrUpdateCart = () => {
       });
 
       onCartUpdated(() => {
-        // TODO trigger cart refetch
+        triggerCartRefetch();
       });
     }
-
-    triggerCartRefetch();
   };
 
   return { addToCart, isAddingToCart };
