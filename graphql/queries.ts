@@ -65,3 +65,13 @@ export type Product = {
     url: string;
   }[];
 };
+
+export const CreateCartMutation = gql`
+  mutation cartCreate($input: CartInput!) {
+    cartCreate(input: $input) {
+      cart {
+        id
+      }
+    }
+  }
+`;

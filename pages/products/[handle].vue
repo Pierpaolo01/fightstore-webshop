@@ -44,7 +44,7 @@
             class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
           >
             <QuantitySelector v-model="quantity" />
-            <AddToCartButton class="w-full" @click="findVariantId()" />
+            <AddToCartButton class="w-full" @click="addProductToCart()" />
           </div>
         </div>
       </UContainer>
@@ -96,5 +96,15 @@ const findVariantId = () => {
       );
     });
   })?.id;
+};
+
+const addProductToCart = async () => {
+  const variantId = findVariantId();
+
+  if (!variantId) {
+    return; //TODO show error
+  }
+
+  useAddOrUpdateCart(variantId, quantity.value);
 };
 </script>

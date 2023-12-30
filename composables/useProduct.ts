@@ -1,6 +1,6 @@
 import { GetProductQuery } from "~/graphql/queries";
 
-export function useProduct(handle) {
+export const useProduct = (handle) => {
   const { result } = useQuery(GetProductQuery, { handle });
 
   const product = computed(() => {
@@ -18,4 +18,4 @@ export function useProduct(handle) {
   });
 
   return { product };
-}
+};
