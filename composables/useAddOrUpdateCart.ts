@@ -1,9 +1,10 @@
 import { CreateCartMutation, AddToCartMutation } from "~/graphql/queries";
+import { useCartTriggerStore } from "~/store/cart";
 
 export const useAddOrUpdateCart = () => {
   const storedCartId = ref<string | null>(null);
   const isClient = process.client;
-
+  const { triggerCartRefetch } = useCartTriggerStore();
   onMounted(() => {
     if (isClient) {
       storedCartId.value = localStorage.getItem("fight-store-cart-id");
@@ -65,6 +66,8 @@ export const useAddOrUpdateCart = () => {
         console.log("stored to existing cart");
       });
     }
+
+    triggerCartRefetch();
   };
 
   return { addToCart, isAddingToCart };

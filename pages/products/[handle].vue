@@ -113,4 +113,7 @@ const addProductToCart = async () => {
 
   await addToCart(variantId, quantity.value);
 };
+const handleCartUpdate = () => {
+  console.log("cart updated");
+};
 </script>

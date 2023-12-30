@@ -57,6 +57,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxtjs/google-fonts",
     "vue3-carousel-nuxt",
+    "@pinia/nuxt",
   ],
   apollo: {
     clients: {
