@@ -12,13 +12,17 @@
       >
         {{ option }}
       </option>
-      <option value="" selected hidden>Kies een kleur</option>
+      <option value="" selected>{{ label }}</option>
     </select>
   </div>
 </template>
 
 <script setup lang="ts">
 const props = defineProps({
+  label: {
+    type: String,
+    required: true,
+  },
   type: {
     type: String,
     required: true,

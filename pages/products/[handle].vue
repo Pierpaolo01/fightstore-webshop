@@ -25,7 +25,7 @@
               {{ product.description }}
             </p>
           </div>
-          <div class="flex items-center space-x-4 divide-x-2">
+          <div class="flex items-center space-x-4">
             <OptionsSelector
               type="size"
               :options="product.options"
@@ -33,8 +33,15 @@
               @update:option="addOrUpdateOption($event)"
             />
             <OptionsDropdown
-              class="pl-4"
+              label="Kies een smaak"
               type="color"
+              :options="product.options"
+              :selectedOptions="selectedOptions"
+              @update:option="addOrUpdateOption($event)"
+            />
+            <OptionsDropdown
+              label="Kies een smaak"
+              type="flavour"
               :options="product.options"
               :selectedOptions="selectedOptions"
               @update:option="addOrUpdateOption($event)"

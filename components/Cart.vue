@@ -21,37 +21,41 @@
     >
       <div class="h-full w-full flex items-center justify-center p-4">
         <IconLoading class="animate-spin" v-if="!cartDetail" />
-        <div v-else class="w-full">
-          <div
-            class="flex justify-between"
-            v-for="product in cartDetail.lines"
-            :key="product.id"
-          >
-            <div class="flex">
-              <img
-                :src="product.merchandise.image?.url"
-                alt="product"
-                class="h-16 w-16 object-contain"
-              />
-              <div>
-                <p class="font-bold">
-                  {{ product.merchandise.product.title }}
-                </p>
-                <p class="text-sm font-semibold text-black/70">
-                  <span class="font-bold text-black">Variant: </span>
-                  {{ product.merchandise.title }}
-                </p>
-                <p class="text-sm font-semibold text-black/70">
-                  <span class="font-bold text-black">Aantal: </span>
-                  {{ product.quantity }}
-                </p>
+        <div v-else class="h-full w-full space-y-12">
+          <h2>Jouw winkelwagen</h2>
+          <div class="space-y-6">
+            <div
+              class="flex justify-between"
+              v-for="product in cartDetail.lines"
+              :key="product.id"
+            >
+              <div class="flex">
+                <img
+                  :src="product.merchandise.image?.url"
+                  alt="product"
+                  class="h-16 w-16 object-contain"
+                />
+                <div>
+                  <p class="font-bold">
+                    {{ product.merchandise.product.title }}
+                  </p>
+                  <p class="text-sm font-semibold text-black/70">
+                    <span class="font-bold text-black">Variant: </span>
+                    {{ product.merchandise.title }}
+                  </p>
+                  <p class="text-sm font-semibold text-black/70">
+                    <span class="font-bold text-black">Aantal: </span>
+                    {{ product.quantity }}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div>
-              <p>
-                {{ product.merchandise.price.amount }}
-                {{ product.merchandise.price.currencyCode }}
-              </p>
+              <div class="text-right space-y-2">
+                <p>
+                  {{ product.merchandise.price.amount }}
+                  {{ product.merchandise.price.currencyCode }}
+                </p>
+                <QuantitySelector />
+              </div>
             </div>
           </div>
         </div>
