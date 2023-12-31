@@ -1,12 +1,12 @@
 <template>
   <Navigation />
-  <NuxtPage />
+  <NuxtPage class="mt-[80px]" />
   <SectionFooter />
 </template>
 
 <style>
 html {
-  @apply bg-white font-raleway text-black;
+  @apply bg-white font-raleway text-black relative;
   scroll-behavior: smooth;
 }
 

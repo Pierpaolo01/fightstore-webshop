@@ -66,7 +66,7 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const { product, refetch } = useProduct(route.params.handle);
+const { product } = useProduct(route.params.handle);
 const { isAddingToCart, addToCart } = useAddOrUpdateCart();
 
 const quantity = ref(1);

@@ -91,11 +91,95 @@ export const AddToCartMutation = gql`
   }
 `;
 
-export const GetCartQuery = gql`
+export const GetCartTotalQuery = gql`
   query ($id: ID!) {
     cart(id: $id) {
       totalQuantity
-      checkoutUrl
     }
   }
 `;
+
+export const GetCartDetailQuery = gql`
+  query ($id: ID!) {
+    cart(id: $id) {
+      checkoutUrl
+      cost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+      }
+      lines(first: 250) {
+        edges {
+          node {
+            id
+            quantity
+            merchandise {
+              ... on ProductVariant {
+                id
+                title
+                image {
+                  url
+                }
+                selectedOptions {
+                  value
+                }
+                product {
+                  title
+                }
+                price {
+                  amount
+                  currencyCode
+                }
+              }
+            }
+            attributes {
+              key
+              value
+            }
+          }
+        }
+      }
+      totalQuantity
+    }
+  }
+`;
+
+export type CartDetail = {
+  checkoutUrl: string;
+  cost: {
+    totalAmount: number;
+    totalTaxAmount: number;
+  };
+  lines: Array<{
+    id: string;
+    quantity: number;
+
+    merchandise: {
+      id: string;
+      title: string;
+      image?: {
+        url: string;
+      };
+      selectedOptions: Array<{
+        value: string;
+      }>;
+      product: {
+        title: string;
+      };
+      price: {
+        amount: number;
+        currencyCode: string;
+      };
+    };
+    attributes: {
+      key: string;
+      value: string;
+    };
+  }>;
+  totalQuantity: number;
+};

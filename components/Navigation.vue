@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fixed top-0 w-full bg-white z-20">
     <UContainer>
       <div class="flex justify-between items-center py-4">
         <div class="h-12">
@@ -7,7 +7,7 @@
         </div>
         <div class="space-x-6 flex items-center">
           <div
-            class="font-roboto font-semibold text-lg text-black/70 space-x-6 flex items-center"
+            class="font-roboto font-semibold text-lg text-black/70 space-x-6 laptop:flex items-center hidden"
           >
             <NuxtLink to="/#about-us" class="nav-item"
               ><span>Over ons</span></NuxtLink
@@ -31,9 +31,7 @@
               />
             </NuxtLink>
           </div>
-          <ClientOnly>
-            <Cart :cartId="cartId" />
-          </ClientOnly>
+          <Cart />
         </div>
       </div>
     </UContainer>
@@ -42,15 +40,6 @@
 
 <script setup lang="ts">
 const showFightgearMenu = ref(false);
-
-const cartId = ref<string | null>();
-
-onMounted(async () => {
-  const storedCartId = localStorage.getItem("fight-store-cart-id");
-  if (storedCartId) {
-    cartId.value = storedCartId;
-  }
-});
 </script>
 
 <style scoped>
