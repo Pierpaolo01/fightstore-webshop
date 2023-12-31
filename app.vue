@@ -1,6 +1,8 @@
 <template>
   <Navigation />
-  <NuxtPage class="mt-[80px]" />
+  <div class="pt-[80px]">
+    <NuxtPage />
+  </div>
   <SectionFooter />
 </template>
 

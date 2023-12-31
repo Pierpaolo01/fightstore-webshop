@@ -1,7 +1,9 @@
 <template>
   <div
     class="rounded-lg bg-green-300 p-2 cursor-pointer relative"
-    @click="slideoverIsOpen = !slideoverIsOpen"
+    @click="
+      cart && cart.totalQuantity ? (slideoverIsOpen = !slideoverIsOpen) : null
+    "
   >
     <IconCart />
     <div
@@ -29,7 +31,7 @@
               v-for="product in cartDetail.lines"
               :key="product.id"
             >
-              <div class="flex">
+              <div class="flex space-x-2">
                 <img
                   :src="product.merchandise.image?.url"
                   alt="product"
@@ -49,12 +51,20 @@
                   </p>
                 </div>
               </div>
-              <div class="text-right space-y-2">
-                <p>
-                  {{ product.merchandise.price.amount }}
-                  {{ product.merchandise.price.currencyCode }}
-                </p>
-                <QuantitySelector />
+              <div class="text-right space-y-2 flex items-end space-x-2">
+                <div class="h-full flex flex-col justify-between">
+                  <p>
+                    {{ product.merchandise.price.amount }}
+                    {{ product.merchandise.price.currencyCode }}
+                  </p>
+
+                  <QuantitySelector />
+                </div>
+                <button
+                  class="p-2 rounded-md hover:bg-red-500 hover:text-white"
+                >
+                  <IconTrash class="h-4 w-4" />
+                </button>
               </div>
             </div>
           </div>

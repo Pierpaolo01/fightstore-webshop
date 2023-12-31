@@ -2,9 +2,9 @@
   <div class="fixed top-0 w-full bg-white z-20">
     <UContainer>
       <div class="flex justify-between items-center py-4">
-        <div class="h-12">
+        <NuxtLink to="/" class="h-12">
           <img src="/logo.png" alt="store logo" class="h-12" />
-        </div>
+        </NuxtLink>
         <div class="space-x-6 flex items-center">
           <div
             class="font-roboto font-semibold text-lg text-black/70 space-x-6 laptop:flex items-center hidden"
