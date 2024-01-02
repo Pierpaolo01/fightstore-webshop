@@ -4,6 +4,7 @@ export default {
     fontFamily: {
       roboto: "Roboto",
       raleway: "Raleway",
+      currency: "Lato",
     },
     extend: {
       screens: {

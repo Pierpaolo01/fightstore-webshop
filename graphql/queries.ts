@@ -162,8 +162,14 @@ export const GetCartDetailQuery = gql`
 export type CartDetail = {
   checkoutUrl: string;
   cost: {
-    totalAmount: number;
-    totalTaxAmount: number;
+    totalAmount: {
+      amount: number;
+      currencyCode: string;
+    };
+    totalTaxAmount: {
+      amount: number;
+      currencyCode: string;
+    };
   };
   lines: Array<{
     id: string;

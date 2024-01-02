@@ -79,6 +79,7 @@ export default defineNuxtConfig({
     families: {
       Roboto: [400, 500, 600, 700, 800],
       Raleway: [400, 500, 600, 700, 800],
+      Lato: [400, 500, 600, 700, 800],
     },
   },
   carousel: {

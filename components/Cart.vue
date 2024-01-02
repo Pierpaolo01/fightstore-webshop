@@ -46,16 +46,18 @@
                     {{ line.merchandise.title }}
                   </p>
                   <p class="text-sm font-semibold text-black/70">
-                    <span class="font-bold text-black">prijs: </span>
+                    <span class="font-bold text-black font-currency"
+                      >prijs:
+                    </span>
                     {{ line.merchandise.price.amount }}
                     {{ line.merchandise.price.currencyCode }}
                   </p>
                 </div>
               </div>
               <div class="text-right space-y-2 flex items-end space-x-2">
-                <div class="h-full flex flex-col justify-between">
+                <div class="h-full flex flex-col justify-between font-currency">
                   <p>
-                    {{ line.cost.subtotalAmount.amount * line.quantity }}
+                    {{ line.cost.subtotalAmount.amount }}
                     {{ line.cost.subtotalAmount.currencyCode }}
                   </p>
                   <QuantitySelector
@@ -86,6 +88,26 @@
             >
               <IconLoading class="animate-spin" />
             </div>
+            <div v-if="cartDetail" class="border-t w-full p-4 space-y-4">
+              <div class="flex justify-between font-currency">
+                <span> Winkelwagen subtotaal </span>
+                <span>
+                  {{ cartDetail.cost.totalAmount.amount }}
+                  {{ cartDetail.cost.totalAmount.currencyCode }}
+                </span>
+              </div>
+              <NuxtLink
+                :to="cartDetail.checkoutUrl"
+                target="_blank"
+                class="block"
+              >
+                <button
+                  class="w-full flex justify-center space-x-4 items-center px-2 py-3 border font-roboto font-medium text-lg text-black border-green-500 bg-green-500 rounded hover:bg-green-600"
+                >
+                  Naar de checkout
+                </button>
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>
@@ -98,8 +120,8 @@ import {
   GetCartTotalQuery,
   GetCartDetailQuery,
   UpdateCartLineMutation,
-  type CartDetail,
   RemoveCartLineMutation,
+  type CartDetail,
 } from "~/graphql/queries";
 import { useCartStore } from "~/store/useCartStore";
 

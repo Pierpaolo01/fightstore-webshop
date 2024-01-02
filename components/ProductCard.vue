@@ -18,7 +18,7 @@
         <p class="font-bold">
           {{ title }}
         </p>
-        <span class="font-medium text-left">
+        <span class="font-medium text-left font-currency">
           {{ minVariantPrice.amount }}
           {{ minVariantPrice.currencyCode }}
         </span>
