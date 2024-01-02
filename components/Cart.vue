@@ -221,6 +221,13 @@ watch(detailCartResult, (result) => {
 });
 
 watch(triggerRefetch, () => {
+  const storedCartId = localStorage.getItem("fight-store-cart-id");
+  if (storedCartId) {
+    variables.id = storedCartId;
+    cartLineUpdate.cartId = storedCartId;
+    cartLineRemove.cartId = storedCartId;
+  }
+
   refetchCartTotal();
   refetchCartDetail();
 });

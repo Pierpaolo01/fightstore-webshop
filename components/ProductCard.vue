@@ -1,11 +1,11 @@
 <template>
   <NuxtLink
     :to="disabled ? '' : `/products/${handle}`"
-    class="w-64 group cursor-pointer"
+    class="w-64 group cursor-pointer h-full flex flex-col justify-between"
     @mouseover="isHovering = true"
     @mouseleave="isHovering = false"
   >
-    <div class="w-full h-fit overflow-hidden">
+    <div class="w-full h-fit overflow-hidden self-center">
       <img
         v-if="featuredImageUrl"
         :src="featuredImageUrl"
