@@ -8,7 +8,7 @@
     <IconCart />
     <div
       class="absolute -top-2 -right-2 rounded-full bg-red-500 text-white text-sm w-5 h-5 flex justify-center items-center font-roboto font-semibold"
-      v-if="cart"
+      v-if="cart.totalQuantity"
     >
       {{ cart.totalQuantity }}
     </div>
@@ -23,49 +23,68 @@
     >
       <div class="h-full w-full flex items-center justify-center p-4">
         <IconLoading class="animate-spin" v-if="!cartDetail" />
-        <div v-else class="h-full w-full space-y-12">
+        <div v-else class="h-full w-full space-y-12 relative">
           <h2>Jouw winkelwagen</h2>
-          <div class="space-y-6">
+          <div class="space-y-6 relative">
             <div
               class="flex justify-between"
-              v-for="product in cartDetail.lines"
-              :key="product.id"
+              v-for="line in cartDetail.lines"
+              :key="line.id"
             >
               <div class="flex space-x-2">
                 <img
-                  :src="product.merchandise.image?.url"
-                  alt="product"
+                  :src="line.merchandise.image?.url"
+                  alt="line"
                   class="h-16 w-16 object-contain"
                 />
                 <div>
                   <p class="font-bold">
-                    {{ product.merchandise.product.title }}
+                    {{ line.merchandise.product.title }}
                   </p>
                   <p class="text-sm font-semibold text-black/70">
                     <span class="font-bold text-black">Variant: </span>
-                    {{ product.merchandise.title }}
+                    {{ line.merchandise.title }}
                   </p>
                   <p class="text-sm font-semibold text-black/70">
-                    <span class="font-bold text-black">Aantal: </span>
-                    {{ product.quantity }}
+                    <span class="font-bold text-black">prijs: </span>
+                    {{ line.merchandise.price.amount }}
+                    {{ line.merchandise.price.currencyCode }}
                   </p>
                 </div>
               </div>
               <div class="text-right space-y-2 flex items-end space-x-2">
                 <div class="h-full flex flex-col justify-between">
                   <p>
-                    {{ product.merchandise.price.amount }}
-                    {{ product.merchandise.price.currencyCode }}
+                    {{ line.cost.subtotalAmount.amount }}
+                    {{ line.cost.subtotalAmount.currencyCode }}
                   </p>
-
-                  <QuantitySelector />
+                  <QuantitySelector
+                    v-model="line.quantity"
+                    @update:model-value="
+                      updateCartLineQuantity(
+                        line.id,
+                        line.merchandise.id,
+                        $event
+                      )
+                    "
+                  />
                 </div>
                 <button
-                  class="p-2 rounded-md hover:bg-red-500 hover:text-white"
+                  class="p-2 rounded-md hover:bg-red-500 hover:text-white transition-all duration-200"
+                  @click="removeCartLineItem(line.id)"
                 >
                   <IconTrash class="h-4 w-4" />
                 </button>
               </div>
+            </div>
+            <div v-if="!cartDetail.lines.length">
+              <p>Je hebt nog geen producten in je winkelwagen</p>
+            </div>
+            <div
+              v-if="cartUpdating || cartRemoving"
+              class="absolute -top-6 h-full w-full flex justify-center items-center bg-black/10"
+            >
+              <IconLoading class="animate-spin" />
             </div>
           </div>
         </div>
@@ -78,7 +97,9 @@
 import {
   GetCartTotalQuery,
   GetCartDetailQuery,
+  UpdateCartLineMutation,
   type CartDetail,
+  RemoveCartLineMutation,
 } from "~/graphql/queries";
 import { useCartStore } from "~/store/useCartStore";
 
@@ -102,28 +123,78 @@ const {
   load: loadCartDetail,
   refetch: refetchCartDetail,
   result: detailCartResult,
-  loading: detailCartLoading,
 } = useLazyQuery(GetCartDetailQuery, variables);
+
+const cartLineUpdate = reactive({
+  cartId: "",
+  lines: [
+    {
+      id: "",
+      merchandiseId: "",
+      quantity: 1,
+    },
+  ],
+});
+
+const cartLineRemove = reactive({
+  cartId: "",
+  lineIds: [""],
+});
+
+const { mutate: updateCartLine, loading: cartUpdating } = useMutation(
+  UpdateCartLineMutation
+);
+
+const { mutate: removeCartLine, loading: cartRemoving } = useMutation(
+  RemoveCartLineMutation
+);
 
 onMounted(() => {
   const storedCartId = localStorage.getItem("fight-store-cart-id");
   if (storedCartId) {
     variables.id = storedCartId;
+    cartLineUpdate.cartId = storedCartId;
+    cartLineRemove.cartId = storedCartId;
     loadCartTotal();
   }
 });
 
+const updateCartLineQuantity = useDebounce(
+  (lineId: string, merchandiseId: string, newQuantity: string) => {
+    cartLineUpdate.lines[0] = {
+      id: lineId,
+      merchandiseId,
+      quantity: parseInt(newQuantity),
+    };
+
+    updateCartLine(cartLineUpdate);
+  },
+  200
+);
+
+const removeCartLineItem = async (lineId: string) => {
+  cartLineRemove.lineIds[0] = lineId;
+
+  await removeCartLine(cartLineRemove);
+
+  await refetchCartDetail();
+};
+
 const cart = computed(() => cartTotalResult.value?.cart);
 
-const cartDetail = computed<CartDetail>(() => {
-  if (!detailCartResult.value) {
-    return null;
-  }
-  console.log(detailCartResult.value?.cart);
-  return {
-    ...detailCartResult.value?.cart,
-    lines: detailCartResult.value?.cart.lines.edges.map((line) => line.node),
-  };
+const cartDetail = ref<CartDetail>();
+
+watch(detailCartResult, (result) => {
+  if (result)
+    cartDetail.value = {
+      ...result.cart,
+      lines: result.cart.lines.edges.map((line) => {
+        return {
+          ...line.node,
+          quantity: ref(line.node.quantity),
+        };
+      }),
+    };
 });
 
 watch(triggerRefetch, () => {

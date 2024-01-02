@@ -58,6 +58,7 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "vue3-carousel-nuxt",
     "@pinia/nuxt",
+    "nuxt-lodash",
   ],
   apollo: {
     clients: {

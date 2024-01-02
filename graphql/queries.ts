@@ -118,6 +118,12 @@ export const GetCartDetailQuery = gql`
           node {
             id
             quantity
+            cost {
+              subtotalAmount {
+                amount
+                currencyCode
+              }
+            }
             merchandise {
               ... on ProductVariant {
                 id
@@ -158,7 +164,12 @@ export type CartDetail = {
   lines: Array<{
     id: string;
     quantity: number;
-
+    cost: {
+      subtotalAmount: {
+        amount: number;
+        currencyCode: string;
+      };
+    };
     merchandise: {
       id: string;
       title: string;
@@ -183,3 +194,23 @@ export type CartDetail = {
   }>;
   totalQuantity: number;
 };
+
+export const UpdateCartLineMutation = gql`
+  mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+    cartLinesUpdate(cartId: $cartId, lines: $lines) {
+      cart {
+        id
+      }
+    }
+  }
+`;
+
+export const RemoveCartLineMutation = gql`
+  mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+    cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+      cart {
+        id
+      }
+    }
+  }
+`;
