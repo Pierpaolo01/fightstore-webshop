@@ -1,9 +1,9 @@
-import { GetProductQuery } from "~/graphql/queries";
+import { GetProductQuery, type Product } from "~/graphql/queries";
 
 export const useProduct = (handle) => {
   const { result, refetch } = useQuery(GetProductQuery, { handle });
 
-  const product = computed(() => {
+  const product = computed<Product>(() => {
     if (!result.value) {
       return null;
     }

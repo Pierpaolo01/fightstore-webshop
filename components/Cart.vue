@@ -8,7 +8,7 @@
     <IconCart />
     <div
       class="absolute -top-2 -right-2 rounded-full bg-red-500 text-white text-sm w-5 h-5 flex justify-center items-center font-roboto font-semibold"
-      v-if="cart.totalQuantity"
+      v-if="cart && cart.totalQuantity"
     >
       {{ cart.totalQuantity }}
     </div>
@@ -55,7 +55,7 @@
               <div class="text-right space-y-2 flex items-end space-x-2">
                 <div class="h-full flex flex-col justify-between">
                   <p>
-                    {{ line.cost.subtotalAmount.amount }}
+                    {{ line.cost.subtotalAmount.amount * line.quantity }}
                     {{ line.cost.subtotalAmount.currencyCode }}
                   </p>
                   <QuantitySelector
@@ -81,7 +81,7 @@
               <p>Je hebt nog geen producten in je winkelwagen</p>
             </div>
             <div
-              v-if="cartUpdating || cartRemoving"
+              v-if="cartUpdating || cartRemoving || cartLoading"
               class="absolute -top-6 h-full w-full flex justify-center items-center bg-black/10"
             >
               <IconLoading class="animate-spin" />
@@ -123,6 +123,7 @@ const {
   load: loadCartDetail,
   refetch: refetchCartDetail,
   result: detailCartResult,
+  loading: cartLoading,
 } = useLazyQuery(GetCartDetailQuery, variables);
 
 const cartLineUpdate = reactive({

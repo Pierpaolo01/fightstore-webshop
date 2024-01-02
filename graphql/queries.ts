@@ -20,6 +20,8 @@ export const GetProductQuery = gql`
         edges {
           node {
             id
+            quantityAvailable
+            availableForSale
             selectedOptions {
               value
               name
@@ -54,13 +56,15 @@ export type Product = {
     name: string;
     values: string[];
   }[];
-  variants: {
+  variants: Array<{
     id: string;
+    quantityAvailable: number;
+    availableForSale: boolean;
     selectedOptions: {
       value: string;
       name: string;
     }[];
-  }[];
+  }>;
   images: {
     url: string;
   }[];

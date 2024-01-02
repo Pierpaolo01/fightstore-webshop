@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-0 w-full bg-white z-20">
+  <div class="fixed top-0 w-full bg-white z-50">
     <UContainer>
       <div class="flex justify-between items-center py-4">
         <NuxtLink to="/" class="h-12">

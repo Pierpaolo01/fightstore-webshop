@@ -23,7 +23,7 @@
     <UFormGroup label="Description" name="description" required>
       <textarea
         type="email"
-        placeholder="Jouw email"
+        placeholder="Toelichting"
         class="border border-gray-300 rounded px-2 py-1 focus:outline-none w-full"
       />
     </UFormGroup>

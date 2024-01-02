@@ -47,14 +47,26 @@
               @update:option="addOrUpdateOption($event)"
             />
           </div>
+          <UAlert
+            v-if="
+              variantId &&
+              !product.variants.find((variant) => variant.id === variantId)
+                ?.availableForSale
+            "
+            icon="i-heroicons-exclamation-circle"
+            color="red"
+            variant="soft"
+            title="Helaas is deze article momenteel niet op voorraad"
+          />
           <div
             class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
           >
             <QuantitySelector v-model="quantity" />
             <AddToCartButton
               class="w-full"
-              @click="addProductToCart()"
+              :disabled="!Boolean(variantId)"
               :isAddingToCart="isAddingToCart"
+              @click="addProductToCart()"
             />
           </div>
         </div>
@@ -79,6 +91,7 @@ const { isAddingToCart, addToCart } = useAddOrUpdateCart();
 const quantity = ref(1);
 
 const selectedOptions = ref<Record<string, string>[]>([]);
+const variantId = ref<string>();
 
 function addOrUpdateOption(option: Record<string, string>) {
   const optionKey = Object.keys(option)[0];
@@ -94,7 +107,16 @@ function addOrUpdateOption(option: Record<string, string>) {
   }
 }
 
+const addProductToCart = async () => {
+  if (!variantId.value) return;
+
+  await addToCart(variantId.value, quantity.value);
+};
+
 const findVariantId = () => {
+  if (product.value.variants[0]?.selectedOptions[0]?.value === "Default Title")
+    variantId.value = product.value.variants[0].id;
+
   const userSelectedOptions = selectedOptions.value.reduce((acc, option) => {
     const key = Object.keys(option)[0];
     acc[key] = option[key];
@@ -111,13 +133,22 @@ const findVariantId = () => {
   })?.id;
 };
 
-const addProductToCart = async () => {
-  const variantId = findVariantId();
+watch(
+  selectedOptions.value,
+  () => {
+    variantId.value = findVariantId();
+  },
+  { deep: true }
+);
 
-  if (!variantId) {
-    return; //TODO show error
-  }
+watch(
+  product,
+  (value) => {
+    if (!value) return;
 
-  await addToCart(variantId, quantity.value);
-};
+    if (value.variants[0]?.selectedOptions[0]?.value === "Default Title")
+      variantId.value = value.variants[0].id;
+  },
+  { deep: true, immediate: true }
+);
 </script>

@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :to="'/products/' + handle"
+    :to="disabled ? '' : `/products/${handle}`"
     class="w-64 group cursor-pointer"
     @mouseover="isHovering = true"
     @mouseleave="isHovering = false"
@@ -56,6 +56,11 @@ defineProps({
       currencyCode: string;
     }>,
     required: true,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 </script>

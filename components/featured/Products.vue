@@ -4,9 +4,15 @@
       <template #header>
         <SectionHeading label="uitgelichte producten" />
       </template>
-      <VCCarousel :breakpoints="carouselBreakpoints" :wrapAround="true">
+      <VCCarousel
+        :breakpoints="carouselBreakpoints"
+        :wrapAround="true"
+        @slideStart="isSliding = true"
+        @slideEnd="isSliding = false"
+      >
         <VCSlide v-for="product in products" :key="product.id" class="px-4">
           <ProductCard
+            :disabled="isSliding"
             :handle="product.handle"
             :title="product.title"
             :featuredImageUrl="product.featuredImage?.url"
@@ -37,6 +43,8 @@ const carouselBreakpoints = {
     itemsToScroll: 2,
   },
 };
+
+const isSliding = ref(false);
 
 const query = gql`
   {
