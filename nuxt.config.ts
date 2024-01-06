@@ -17,7 +17,7 @@ export default defineNuxtConfig({
         }
       );
 
-      const { products, blogs } = (await graphQLClient.request(`
+      const { products, blogs, collections } = (await graphQLClient.request(`
       {
         products(first: 250) {
           edges {
@@ -39,6 +39,13 @@ export default defineNuxtConfig({
             }
           }
         }
+        collections(first: 250) {
+          edges {
+            node {
+              handle
+            }
+          }
+        }
       }
       `)) as any;
 
@@ -47,6 +54,9 @@ export default defineNuxtConfig({
         ...products.edges.map((edge: any) => `/products/${edge.node.handle}`),
         ...blogs.edges[0].node.articles.edges.map(
           (edge: any) => `/blogs/${edge.node.handle}`
+        ),
+        ...collections.edges.map(
+          (edge: any) => `/collections/${edge.node.handle}`
         )
       );
     },

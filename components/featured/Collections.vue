@@ -9,6 +9,7 @@
           v-for="collection in firstRowCollections"
           :image="collection.image"
           :title="collection.title"
+          :handle="collection.handle"
         />
       </div>
       <div class="grid tablet:grid-cols-2 gap-4">
@@ -17,6 +18,7 @@
           :key="collection.id"
           :image="collection.image"
           :title="collection.title"
+          :handle="collection.handle"
         />
       </div>
     </UCard>
@@ -30,6 +32,7 @@ const query = gql`
       edges {
         node {
           id
+          handle
           title
           image {
             url
@@ -44,6 +47,7 @@ const { result, loading } = useQuery(query);
 
 type Collection = {
   id: string;
+  handle: string;
   title: string;
   image?: {
     url: string;

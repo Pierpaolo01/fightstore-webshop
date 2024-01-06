@@ -1,5 +1,6 @@
 <template>
-  <div
+  <NuxtLink
+    :to="`/collections/${handle}`"
     class="relative rounded-xl overflow-hidden hover:shadow-xl hover:scale-95 duration-200 cursor-pointer"
   >
     <img
@@ -18,7 +19,7 @@
         <Button variant="outlined" label="Shop now" />
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
@@ -35,6 +36,10 @@ defineProps({
     required: true,
   },
   title: {
+    type: String,
+    required: true,
+  },
+  handle: {
     type: String,
     required: true,
   },

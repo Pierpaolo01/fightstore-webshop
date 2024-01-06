@@ -10,7 +10,7 @@
         v-if="featuredImageUrl"
         :src="featuredImageUrl"
         alt="product image"
-        class="group-hover:scale-110 transition-all duration-300"
+        class="group-hover:scale-110 transition-all duration-300 h-full w-full"
       />
     </div>
     <div class="flex justify-between space-x-2">
