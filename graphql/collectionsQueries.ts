@@ -12,6 +12,9 @@ export const CollectionQuery = gql`
             handle
             title
             description
+            featuredImage {
+              url
+            }
             priceRange {
               minVariantPrice {
                 amount
