@@ -17,7 +17,7 @@
           </template>
         </VCCarousel>
         <div class="space-y-8">
-          <div>
+          <div class="space-y-5">
             <h3>
               {{ product.title }}
             </h3>

@@ -13,7 +13,7 @@
         class="group-hover:scale-110 transition-all duration-300 h-full w-full"
       />
     </div>
-    <div class="flex justify-between space-x-2">
+    <div class="flex justify-between space-x-2 overflow-hidden">
       <div class="font-roboto text-left">
         <p class="font-bold">
           {{ title }}
@@ -24,7 +24,7 @@
         </span>
       </div>
       <IconArrowRight
-        class="transition-all duration-300 h-6 w-6"
+        class="transition-all duration-300 h-5 w-5 flex-shrink-0 flex-1"
         :class="{
           'animate-slideOutRight': isHovering,
           'animate-slideInLeft': !isHovering,

@@ -7,7 +7,9 @@
       </p>
     </div>
     <div class="grid laptop:grid-cols-12">
-      <div class="laptop:col-span-3">filters</div>
+      <div class="laptop:col-span-3 p-8">
+        <FilterPrice />
+      </div>
       <div class="laptop:col-span-9 space-y-6">
         <SearchBar
           v-model="productSearch"
@@ -44,7 +46,7 @@ import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 
 const productSearch = ref("");
-const productColumns = ref(2);
+const productColumns = ref(3);
 
 const route = useRoute();
 
