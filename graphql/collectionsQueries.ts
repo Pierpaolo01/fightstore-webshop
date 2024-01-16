@@ -7,6 +7,7 @@ export const CollectionQuery = gql`
       description
       products(first: 250, filters: $filters) {
         filters {
+          id
           type
           values {
             count
@@ -67,6 +68,7 @@ export type Collection = {
   description: string;
   products: {
     filters: Array<{
+      id: string;
       type: string;
       values: Array<{
         count: number;

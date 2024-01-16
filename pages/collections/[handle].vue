@@ -8,12 +8,22 @@
     </div>
     <!-- TODO implemnent proper page load -->
     <div class="grid laptop:grid-cols-12" v-if="filters">
-      <div class="laptop:col-span-3 px-8 divide-y">
+      <div class="laptop:col-span-3 px-8 divide-y space-y-4">
         <FilterPrice
           v-model:activeFilters="activeFilters"
           :filters="filters"
           @addFilter="addActiveFilter($event)"
         />
+        <div class="pt-4">
+          <FilterSize
+            :filters="filters"
+            :activeFilters="activeFilters"
+            @addFilter="activeFilters.push($event)"
+            @remove-filter="
+              activeFilters.splice(activeFilters.indexOf($event), 1)
+            "
+          />
+        </div>
       </div>
       <div class="laptop:col-span-9 space-y-6">
         <SearchBar
