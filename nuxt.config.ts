@@ -17,28 +17,8 @@ export default defineNuxtConfig({
         }
       );
 
-      const { products, blogs, collections } = (await graphQLClient.request(`
+      const { collections } = (await graphQLClient.request(`
       {
-        products(first: 250) {
-          edges {
-            node {
-              handle
-            }
-          }
-        }
-        blogs(first: 1, query: "news") {
-          edges {
-            node {
-              articles(first: 250) {
-                edges {
-                  node {
-                    handle
-                  }
-                }
-              }
-            }
-          }
-        }
         collections(first: 250) {
           edges {
             node {
@@ -49,12 +29,12 @@ export default defineNuxtConfig({
       }
       `)) as any;
 
+      const products = await fetchAllProducts(graphQLClient);
+      const blogs = await fetchAllBlogArticles(graphQLClient);
       nitroConfig.prerender?.routes?.push(
         "/",
-        ...products.edges.map((edge: any) => `/products/${edge.node.handle}`),
-        ...blogs.edges[0].node.articles.edges.map(
-          (edge: any) => `/blogs/${edge.node.handle}`
-        ),
+        ...products.map((product: any) => `/products/${product.handle}`),
+        ...blogs.map((blog: any) => `/blogs/${blog.handle}`),
         ...collections.edges.map(
           (edge: any) => `/collections/${edge.node.handle}`
         )
@@ -96,3 +76,82 @@ export default defineNuxtConfig({
     prefix: "VC",
   },
 });
+
+async function fetchAllProducts(graphQLClient) {
+  let allProducts = [];
+  let lastCursor = null;
+  let hasNextPage = true;
+
+  while (hasNextPage) {
+    const response = await graphQLClient.request(`
+      {
+        products(first: 250, after: ${lastCursor ? `"${lastCursor}"` : null}) {
+          edges {
+            cursor
+            node {
+              handle
+            }
+          }
+          pageInfo {
+            hasNextPage
+          }
+        }
+      }
+    `);
+
+    const products = response.products.edges.map((edge) => edge.node);
+    allProducts = allProducts.concat(products);
+
+    if (response.products.edges.length > 0) {
+      lastCursor =
+        response.products.edges[response.products.edges.length - 1].cursor;
+    }
+    hasNextPage = response.products.pageInfo.hasNextPage;
+  }
+
+  return allProducts as any;
+}
+
+async function fetchAllBlogArticles(graphQLClient) {
+  let allArticles = [];
+  let lastCursor = null;
+  let hasNextPage = true;
+
+  while (hasNextPage) {
+    const response = await graphQLClient.request(`
+    {
+      blogs(first: 1, query: "news") {
+        edges {
+          node {
+            articles(first: 250) {
+              edges {
+                node {
+                  handle
+                }
+              }
+              pageInfo {
+                hasNextPage
+                endCursor
+              }
+            }
+          }
+        }
+      }
+    }
+    `);
+
+    const articles = response.blogs.edges[0].node.articles.edges.map(
+      (edge) => edge.node
+    );
+
+    allArticles = allArticles.concat(articles);
+    const pageInfo = response.blogs.edges[0].node.articles.pageInfo;
+
+    hasNextPage = pageInfo.hasNextPage;
+    lastCursor = pageInfo.endCursor;
+  }
+
+  return allArticles;
+}
+
+//TODO Fetch all collections

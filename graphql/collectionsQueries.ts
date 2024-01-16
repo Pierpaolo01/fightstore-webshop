@@ -1,11 +1,18 @@
 export const CollectionQuery = gql`
-  query ($handle: String!) {
+  query ($handle: String!, $filters: [ProductFilter!]) {
     collection(handle: $handle) {
       id
       handle
       title
       description
-      products(first: 250) {
+      products(first: 250, filters: $filters) {
+        filters {
+          type
+          values {
+            count
+            input
+          }
+        }
         edges {
           node {
             id
@@ -58,33 +65,42 @@ export type Collection = {
   handle: string;
   title: string;
   description: string;
-  products: Array<{
-    id: string;
-    handle: string;
-    title: string;
-    description: string;
-    priceRange: {
-      minVariantPrice: {
-        amount: number;
-        currencyCode: string;
-      };
-    };
-    options: {
-      id: string;
-      name: string;
-      values: string[];
-    }[];
-    variants: Array<{
-      id: string;
-      quantityAvailable: number;
-      availableForSale: boolean;
-      selectedOptions: Array<{
-        value: string;
-        name: string;
+  products: {
+    filters: Array<{
+      type: string;
+      values: Array<{
+        count: number;
+        input: string;
       }>;
     }>;
-    images: Array<{
-      url: string;
+    edges: Array<{
+      id: string;
+      handle: string;
+      title: string;
+      description: string;
+      priceRange: {
+        minVariantPrice: {
+          amount: number;
+          currencyCode: string;
+        };
+      };
+      options: {
+        id: string;
+        name: string;
+        values: string[];
+      }[];
+      variants: Array<{
+        id: string;
+        quantityAvailable: number;
+        availableForSale: boolean;
+        selectedOptions: Array<{
+          value: string;
+          name: string;
+        }>;
+      }>;
+      images: Array<{
+        url: string;
+      }>;
     }>;
-  }>;
+  };
 };

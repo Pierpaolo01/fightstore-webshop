@@ -6,9 +6,14 @@
         {{ collection.description }}
       </p>
     </div>
-    <div class="grid laptop:grid-cols-12">
-      <div class="laptop:col-span-3 p-8">
-        <FilterPrice />
+    <!-- TODO implemnent proper page load -->
+    <div class="grid laptop:grid-cols-12" v-if="filters">
+      <div class="laptop:col-span-3 px-8 divide-y">
+        <FilterPrice
+          v-model:activeFilters="activeFilters"
+          :filters="filters"
+          @addFilter="addActiveFilter($event)"
+        />
       </div>
       <div class="laptop:col-span-9 space-y-6">
         <SearchBar
@@ -41,17 +46,19 @@
 
 <script setup lang="ts">
 import { useQuery } from "@vue/apollo-composable";
-import { CollectionQuery } from "~/graphql/collectionsQueries";
+import { CollectionQuery, type Collection } from "~/graphql/collectionsQueries";
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 
 const productSearch = ref("");
 const productColumns = ref(3);
+const activeFilters = ref<any[]>([]);
 
 const route = useRoute();
 
-const { result, loading } = useQuery(CollectionQuery, {
+const { result, loading, refetch } = useQuery(CollectionQuery, {
   handle: route.params.handle,
+  filters: [] as any[],
 });
 
 const collection = computed(() => {
@@ -62,4 +69,38 @@ const collection = computed(() => {
     products: result.value.collection.products.edges.map((edge) => edge.node),
   };
 });
+
+const filters = ref();
+
+watch(
+  result,
+  (value) => {
+    if (!value) return;
+
+    filters.value = value.collection.products.filters;
+  },
+  { deep: true, immediate: true }
+);
+
+const addActiveFilter = (filter) => {
+  activeFilters.value.push(filter);
+};
+
+const debounceRefetch = useDebounce(() => {
+  refetch({
+    handle: route.params.handle,
+    filters: activeFilters.value.map((filter) => {
+      delete filter.id;
+      return filter;
+    }),
+  });
+}, 1000);
+
+watch(
+  activeFilters,
+  () => {
+    debounceRefetch();
+  },
+  { deep: true }
+);
 </script>
