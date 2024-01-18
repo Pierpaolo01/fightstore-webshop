@@ -16,11 +16,51 @@
         />
         <div class="pt-4">
           <FilterSize
+            v-if="
+              filters.find((filter) => filter.id === 'filter.v.option.maat')
+            "
             :filters="filters"
             :activeFilters="activeFilters"
             @addFilter="activeFilters.push($event)"
             @remove-filter="
-              activeFilters.splice(activeFilters.indexOf($event), 1)
+              activeFilters.splice(
+                activeFilters.findIndex(
+                  (filter) => JSON.stringify(filter) === JSON.stringify($event)
+                ),
+                1
+              )
+            "
+          />
+          <FilterSize
+            v-if="
+              filters.find((filter) => filter.id === 'filter.v.option.grootte')
+            "
+            :filters="filters"
+            :activeFilters="activeFilters"
+            @addFilter="activeFilters.push($event)"
+            @remove-filter="
+              activeFilters.splice(
+                activeFilters.findIndex(
+                  (filter) => JSON.stringify(filter) === JSON.stringify($event)
+                ),
+                1
+              )
+            "
+          />
+          <FilterColor
+            v-if="
+              filters.find((filter) => filter.id === 'filter.v.option.kleur')
+            "
+            :filters="filters"
+            :activeFilters="activeFilters"
+            @addFilter="activeFilters.push($event)"
+            @remove-filter="
+              activeFilters.splice(
+                activeFilters.findIndex(
+                  (filter) => JSON.stringify(filter) === JSON.stringify($event)
+                ),
+                1
+              )
             "
           />
         </div>

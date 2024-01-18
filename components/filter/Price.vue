@@ -31,7 +31,8 @@
     </div>
   </div>
 </template>
-
+<!-- TODO Add validation to price input so that value cannot be "" empty -->
+<!-- While at it also make a warning indication if min price is higher then max price or vise versa -->
 <script setup lang="ts">
 import type { Collection } from "~/graphql/collectionsQueries";
 
