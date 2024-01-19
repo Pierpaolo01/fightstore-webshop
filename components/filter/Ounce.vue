@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gray-50 flex items-center justify-center pt-4">
     <div class="flex flex-col items-center w-full">
-      <FilterButton v-model="isOpen" title="Maat" />
+      <FilterButton v-model="isOpen" title="Ounce" />
       <div
         class="flex items-center justify-between w-full font-currency"
         :class="{ hidden: !isOpen }"
@@ -41,14 +41,14 @@ const props = defineProps({
 });
 
 onBeforeMount(() => {
-  props.filters.find((filter) => filter.id === "filter.v.option.maat");
+  props.filters.find((filter) => filter.id === "filter.v.option.grootte");
 });
 
 const emit = defineEmits(["addFilter", "removeFilter"]);
 
 const sizeOptions = computed(() => {
   return props.filters
-    .find((filter) => filter.id === "filter.v.option.maat")
+    .find((filter) => filter.id === "filter.v.option.grootte")
     ?.values.map((value) => {
       const parsedInput = JSON.parse(value.input);
       return {

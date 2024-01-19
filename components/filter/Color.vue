@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-50 flex items-center justify-center">
+  <div class="bg-gray-50 flex items-center justify-center pt-4">
     <div class="flex flex-col items-center w-full">
       <FilterButton v-model="isOpen" title="Kleur" />
       <div
