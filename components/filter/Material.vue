@@ -1,24 +1,26 @@
 <template>
   <div class="bg-gray-50 flex items-center justify-center pt-4">
     <div class="flex flex-col items-center w-full">
-      <FilterButton v-model="isOpen" title="Maat" />
+      <FilterButton v-model="isOpen" title="materiaal" />
       <div
         class="flex items-center justify-between w-full font-currency"
         :class="{ hidden: !isOpen }"
       >
         <ul class="space-y-2 w-full">
           <li
-            v-for="size in sizeOptions"
-            :key="size.value"
+            v-for="material in filterOptions"
+            :key="material.value"
             class="flex items-center justify-between w-full"
           >
             <div class="flex items-center space-x-2">
               <input
                 type="checkbox"
                 class="form-checkbox h-5 w-5 border-gray-800 rounded focus:ring-0 text-black"
-                @click="toggleSizeFilter(size.input)"
+                @click="toggleSizeFilter(material.input)"
               />
-              <span class="font-roboto font-semibold">{{ size.value }}</span>
+              <span class="font-roboto font-semibold">{{
+                material.value
+              }}</span>
             </div>
             <span class="font-light justify-self-end">{{ size.count }}</span>
           </li>
@@ -44,14 +46,14 @@ const props = defineProps({
 });
 
 onBeforeMount(() => {
-  props.filters.find((filter) => filter.id === "filter.v.option.maat");
+  props.filters.find((filter) => filter.id === "filter.v.option.materiaal");
 });
 
 const emit = defineEmits(["addFilter", "removeFilter"]);
 
-const sizeOptions = computed(() => {
+const filterOptions = computed(() => {
   return props.filters
-    .find((filter) => filter.id === "filter.v.option.maat")
+    .find((filter) => filter.id === "filter.v.option.materiaal")
     ?.values.map((value) => {
       const parsedInput = JSON.parse(value.input);
       return {

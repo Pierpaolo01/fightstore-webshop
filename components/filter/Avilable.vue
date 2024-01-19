@@ -18,10 +18,13 @@
                 class="form-checkbox h-5 w-5 border-gray-800 rounded focus:ring-0 text-black"
                 @click="toggleSizeFilter(availablity.value)"
               />
-              <span class="font-roboto font-semibold uppercase ml-2">
-                {{ availablity.value.available ? "ja" : "nee" }}
+              <span class="font-roboto font-semibold ml-2">
+                {{ availablity.value.available ? "Ja" : "Nee" }}
               </span>
             </div>
+            <span class="font-light justify-self-end">{{
+              availablity.count
+            }}</span>
           </li>
         </ul>
       </div>

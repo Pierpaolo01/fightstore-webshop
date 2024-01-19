@@ -6,18 +6,21 @@
         class="flex items-center justify-between w-full font-currency"
         :class="{ hidden: !isOpen }"
       >
-        <ul class="space-y-2">
+        <ul class="space-y-2 w-full">
           <li
             v-for="size in sizeOptions"
             :key="size.value"
-            class="flex items-center space-x-2"
+            class="flex items-center justify-between w-full"
           >
-            <input
-              type="checkbox"
-              class="form-checkbox h-5 w-5 border-gray-800 rounded focus:ring-0 text-black"
-              @click="toggleSizeFilter(size.input)"
-            />
-            <span class="font-roboto font-semibold">{{ size.value }}</span>
+            <div class="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                class="form-checkbox h-5 w-5 border-gray-800 rounded focus:ring-0 text-black"
+                @click="toggleSizeFilter(size.input)"
+              />
+              <span class="font-roboto font-semibold">{{ size.value }}</span>
+            </div>
+            <span class="font-light justify-self-end">{{ size.count }}</span>
           </li>
         </ul>
       </div>
@@ -54,6 +57,7 @@ const sizeOptions = computed(() => {
       return {
         value: parsedInput.variantOption.value,
         input: parsedInput,
+        count: value.count,
       };
     });
 });
