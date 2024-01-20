@@ -1,6 +1,6 @@
 <template>
   <button
-    class="mb-4 text-gray-800 uppercase text-lg flex items-center justify-between font-roboto text-left w-full font-semibold"
+    class="text-gray-800 uppercase text-lg flex items-center justify-between font-roboto text-left w-full font-semibold"
     @click="isOpen = !isOpen"
   >
     {{ title }}

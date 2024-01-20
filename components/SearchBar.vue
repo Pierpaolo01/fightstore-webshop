@@ -9,7 +9,9 @@
       class="laptop:hidden cursor-pointer"
       @click="displayFilters = !displayFilters"
     >
-      <div class="flex justify-between w-full p-2 bg-gray-200 items-center">
+      <div
+        class="flex justify-between w-full p-2 bg-off-white items-center rounded-md"
+      >
         <div class="flex items-center space-x-2">
           <IconFilters />
           <span class="font-roboto font-semibold"> Filters </span>
@@ -30,7 +32,10 @@
         <button @click="emit('update:modelColumns', 3)">
           <IconThreeColumns :isActive="modelColumns === 3" />
         </button>
-        <button @click="emit('update:modelColumns', 4)">
+        <button
+          @click="emit('update:modelColumns', 4)"
+          class="hidden tablet:block"
+        >
           <IconFourColumns :isActive="modelColumns === 4" />
         </button>
       </div>
