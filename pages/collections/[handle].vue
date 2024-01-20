@@ -8,7 +8,7 @@
     </div>
     <!-- TODO implemnent proper page load -->
     <div class="grid laptop:grid-cols-12" v-if="filters">
-      <div class="laptop:col-span-3 px-8 divide-y space-y-4">
+      <div class="col-span-3 px-8 divide-y space-y-4 hidden laptop::block">
         <FilterPrice
           v-model:activeFilters="activeFilters"
           :filters="filters"
@@ -89,12 +89,109 @@
           "
         />
       </div>
-      <div class="laptop:col-span-9 space-y-6">
+      <div class="space-y-6">
         <SearchBar
           v-model="productSearch"
           v-model:modelColumns="productColumns"
           :productCount="collection.products.length"
-        />
+        >
+          <div class="divide-y space-y-4 px-3">
+            <FilterPrice
+              v-model:activeFilters="activeFilters"
+              :filters="filters"
+              @addFilter="addActiveFilter($event)"
+            />
+            <FilterSize
+              v-if="
+                filters.find((filter) => filter.id === 'filter.v.option.maat')
+              "
+              :filters="filters"
+              :activeFilters="activeFilters"
+              @addFilter="activeFilters.push($event)"
+              @remove-filter="
+                activeFilters.splice(
+                  activeFilters.findIndex(
+                    (filter) =>
+                      JSON.stringify(filter) === JSON.stringify($event)
+                  ),
+                  1
+                )
+              "
+            />
+            <FilterColor
+              v-if="
+                filters.find((filter) => filter.id === 'filter.v.option.kleur')
+              "
+              :filters="filters"
+              :activeFilters="activeFilters"
+              @addFilter="activeFilters.push($event)"
+              @remove-filter="
+                activeFilters.splice(
+                  activeFilters.findIndex(
+                    (filter) =>
+                      JSON.stringify(filter) === JSON.stringify($event)
+                  ),
+                  1
+                )
+              "
+            />
+            <FilterOunce
+              v-if="
+                filters.find(
+                  (filter) => filter.id === 'filter.v.option.grootte'
+                )
+              "
+              :filters="filters"
+              :activeFilters="activeFilters"
+              @addFilter="activeFilters.push($event)"
+              @remove-filter="
+                activeFilters.splice(
+                  activeFilters.findIndex(
+                    (filter) =>
+                      JSON.stringify(filter) === JSON.stringify($event)
+                  ),
+                  1
+                )
+              "
+            />
+            <FilterMaterial
+              v-if="
+                filters.find(
+                  (filter) => filter.id === 'filter.v.option.materiaal'
+                )
+              "
+              :filters="filters"
+              :activeFilters="activeFilters"
+              @addFilter="activeFilters.push($event)"
+              @remove-filter="
+                activeFilters.splice(
+                  activeFilters.findIndex(
+                    (filter) =>
+                      JSON.stringify(filter) === JSON.stringify($event)
+                  ),
+                  1
+                )
+              "
+            />
+            <FilterAvilable
+              v-if="
+                filters.find((filter) => filter.id === 'filter.v.availability')
+              "
+              :filters="filters"
+              :activeFilters="activeFilters"
+              @addFilter="activeFilters.push($event)"
+              @remove-filter="
+                activeFilters.splice(
+                  activeFilters.findIndex(
+                    (filter) =>
+                      JSON.stringify(filter) === JSON.stringify($event)
+                  ),
+                  1
+                )
+              "
+            />
+          </div>
+        </SearchBar>
         <div
           class="grid gap-4 place-items-center"
           :class="{

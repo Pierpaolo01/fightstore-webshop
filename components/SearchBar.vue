@@ -5,9 +5,25 @@
       icon="i-heroicons-magnifying-glass-20-solid"
       placeholder="Zoek producten"
     />
+    <div
+      class="laptop:hidden cursor-pointer"
+      @click="displayFilters = !displayFilters"
+    >
+      <div class="flex justify-between w-full p-2 bg-gray-200 items-center">
+        <div class="flex items-center space-x-2">
+          <IconFilters />
+          <span class="font-roboto font-semibold"> Filters </span>
+        </div>
+        <IconChevron
+          class="w-5 transition-all duration-200"
+          :class="{ '-rotate-90': !displayFilters }"
+        />
+      </div>
+    </div>
+    <slot v-if="displayFilters"></slot>
     <div class="flex justify-between items-center">
       <div class="flex space-x-2">
-        <span>Weergave</span>
+        <span class="hidden tablet:inline-block">Weergave</span>
         <button @click="emit('update:modelColumns', 2)">
           <IconTwoColumns :isActive="modelColumns === 2" />
         </button>
@@ -48,4 +64,6 @@ const gsModelValue = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
+
+const displayFilters = ref(false);
 </script>
