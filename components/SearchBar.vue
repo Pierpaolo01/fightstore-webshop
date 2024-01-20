@@ -22,7 +22,9 @@
         />
       </div>
     </div>
-    <slot v-if="displayFilters"></slot>
+    <div v-if="displayFilters" class="laptop:hidden">
+      <slot></slot>
+    </div>
     <div class="flex justify-between items-center">
       <div class="flex space-x-2">
         <span class="hidden tablet:inline-block">Weergave</span>
