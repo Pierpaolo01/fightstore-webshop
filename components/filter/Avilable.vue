@@ -60,7 +60,7 @@ const filterOptions = computed(() => {
       const parsedInput = JSON.parse(value.input);
       return {
         value: parsedInput,
-        count: value.count,
+        count: value.count ?? "-",
       };
     });
 });

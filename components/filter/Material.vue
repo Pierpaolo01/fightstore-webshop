@@ -22,7 +22,9 @@
                 material.value
               }}</span>
             </div>
-            <span class="font-light justify-self-end">{{ size.count }}</span>
+            <span class="font-light justify-self-end">
+              {{ material.count }}
+            </span>
           </li>
         </ul>
       </div>
@@ -59,7 +61,7 @@ const filterOptions = computed(() => {
       return {
         value: parsedInput.variantOption.value,
         input: parsedInput,
-        count: value.count,
+        count: value.count ?? "-",
       };
     });
 });

@@ -57,7 +57,7 @@ const sizeOptions = computed(() => {
       return {
         value: parsedInput.variantOption.value,
         input: parsedInput,
-        count: value.count,
+        count: value.count ?? "-",
       };
     });
 });
