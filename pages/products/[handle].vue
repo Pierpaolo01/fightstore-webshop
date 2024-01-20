@@ -25,23 +25,36 @@
               {{ product.description }}
             </p>
           </div>
-          <div class="flex items-center space-x-4">
+          <div class="flex flex-wrap items-center gap-4">
             <OptionsSelector
-              type="size"
+              type="grootte"
+              :options="product.options"
+              :selectedOptions="selectedOptions"
+              @update:option="addOrUpdateOption($event)"
+            />
+            <OptionsSelector
+              type="maat"
+              :options="product.options"
+              :selectedOptions="selectedOptions"
+              @update:option="addOrUpdateOption($event)"
+            />
+            <OptionsDropdown
+              label="Kies een materiaal"
+              type="materiaal"
               :options="product.options"
               :selectedOptions="selectedOptions"
               @update:option="addOrUpdateOption($event)"
             />
             <OptionsDropdown
               label="Kies een smaak"
-              type="color"
+              type="kleur"
               :options="product.options"
               :selectedOptions="selectedOptions"
               @update:option="addOrUpdateOption($event)"
             />
             <OptionsDropdown
               label="Kies een smaak"
-              type="flavour"
+              type="smaak"
               :options="product.options"
               :selectedOptions="selectedOptions"
               @update:option="addOrUpdateOption($event)"
@@ -64,7 +77,11 @@
             <QuantitySelector v-model="quantity" />
             <AddToCartButton
               class="w-full"
-              :disabled="!Boolean(variantId)"
+              :disabled="
+                !Boolean(variantId) ||
+                !product.variants.find((variant) => variant.id === variantId)
+                  ?.availableForSale
+              "
               :isAddingToCart="isAddingToCart"
               @click="addProductToCart()"
             />

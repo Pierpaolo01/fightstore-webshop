@@ -1,15 +1,24 @@
 import { CreateCartMutation, AddToCartMutation } from "~/graphql/queries";
 import { useCartStore } from "~/store/useCartStore";
+import { is10DaysOrMoreAgo } from "~/utils/utils";
 
 export const useAddOrUpdateCart = () => {
-  const storedCartId = ref<string | null>(null);
+  const storedCartId = ref<string>();
   const isClient = process.client;
 
   const { triggerCartRefetch } = useCartStore();
 
   onMounted(() => {
     if (isClient) {
-      storedCartId.value = localStorage.getItem("fight-store-cart-id");
+      const storedCart = JSON.parse(
+        localStorage.getItem("fight-store-cart-id") ?? "{}"
+      );
+
+      if (is10DaysOrMoreAgo(storedCart?.createdAt)) {
+        localStorage.removeItem("fight-store-cart-id");
+      }
+
+      storedCartId.value = storedCart?.id ?? undefined;
     }
   });
 
@@ -48,7 +57,13 @@ export const useAddOrUpdateCart = () => {
         const cartId = data.data?.cartCreate?.cart?.id;
 
         if (cartId) {
-          localStorage.setItem("fight-store-cart-id", cartId);
+          localStorage.setItem(
+            "fight-store-cart-id",
+            JSON.stringify({
+              id: cartId,
+              createdAt: new Date().toISOString(),
+            })
+          );
         }
 
         triggerCartRefetch();

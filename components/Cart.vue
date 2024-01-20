@@ -173,11 +173,14 @@ const { mutate: removeCartLine, loading: cartRemoving } = useMutation(
 );
 
 onMounted(() => {
-  const storedCartId = localStorage.getItem("fight-store-cart-id");
-  if (storedCartId) {
-    variables.id = storedCartId;
-    cartLineUpdate.cartId = storedCartId;
-    cartLineRemove.cartId = storedCartId;
+  const storedCart = JSON.parse(
+    localStorage.getItem("fight-store-cart-id") ?? "{}"
+  );
+
+  if (storedCart && storedCart.id) {
+    variables.id = storedCart.id;
+    cartLineUpdate.cartId = storedCart.id;
+    cartLineRemove.cartId = storedCart.id;
     loadCartTotal();
   }
 });
@@ -221,11 +224,14 @@ watch(detailCartResult, (result) => {
 });
 
 watch(triggerRefetch, () => {
-  const storedCartId = localStorage.getItem("fight-store-cart-id");
-  if (storedCartId) {
-    variables.id = storedCartId;
-    cartLineUpdate.cartId = storedCartId;
-    cartLineRemove.cartId = storedCartId;
+  const storedCart = JSON.parse(
+    localStorage.getItem("fight-store-cart-id") ?? "{}"
+  );
+
+  if (storedCart && storedCart.id) {
+    variables.id = storedCart.id;
+    cartLineUpdate.cartId = storedCart.id;
+    cartLineRemove.cartId = storedCart.id;
   }
 
   refetchCartTotal();
