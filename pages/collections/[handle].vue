@@ -8,7 +8,7 @@
     </div>
     <!-- TODO implemnent proper page load -->
     <div class="grid laptop:grid-cols-12" v-if="filters">
-      <div class="col-span-3 px-8 divide-y space-y-4 hidden laptop::block">
+      <div class="col-span-3 px-8 divide-y space-y-4 hidden laptop:block">
         <FilterPrice
           v-model:activeFilters="activeFilters"
           :filters="filters"
@@ -89,7 +89,7 @@
           "
         />
       </div>
-      <div class="space-y-6">
+      <div class="laptop:col-span-9 space-y-6">
         <SearchBar
           v-model="productSearch"
           v-model:modelColumns="productColumns"
