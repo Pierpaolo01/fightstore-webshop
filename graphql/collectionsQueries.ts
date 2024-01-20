@@ -1,11 +1,30 @@
 export const CollectionQuery = gql`
-  query ($handle: String!, $filters: [ProductFilter!]) {
+  query (
+    $handle: String!
+    $filters: [ProductFilter!]
+    $before: String
+    $after: String
+    $first: Int
+    $last: Int
+  ) {
     collection(handle: $handle) {
       id
       handle
       title
       description
-      products(first: 250, filters: $filters) {
+      products(
+        first: $first
+        last: $last
+        filters: $filters
+        before: $before
+        after: $after
+      ) {
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          endCursor
+          startCursor
+        }
         filters {
           id
           type
@@ -67,6 +86,12 @@ export type Collection = {
   title: string;
   description: string;
   products: {
+    pageInfo: {
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+      endCursor: string;
+      startCursor: string;
+    };
     filters: Array<{
       id: string;
       type: string;

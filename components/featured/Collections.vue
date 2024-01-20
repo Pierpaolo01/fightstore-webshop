@@ -64,7 +64,7 @@ watch(
       collections.value = newValue.collections.edges.map((edge) => edge.node);
     }
   },
-  { immediate: true }
+  { immediate: true, deep: true }
 );
 
 const firstRowCollections = collections.value.slice(0, 3);

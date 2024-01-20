@@ -210,6 +210,11 @@
             :minVariantPrice="product.priceRange.minVariantPrice"
           />
         </div>
+        <Pagination
+          :pageInfo="pageInfo"
+          @navigateNext="paginateNext($event)"
+          @navigatePrevious="paginatePrev($event)"
+        />
       </div>
     </div>
   </UContainer>
@@ -220,6 +225,7 @@ import { useQuery } from "@vue/apollo-composable";
 import { CollectionQuery, type Collection } from "~/graphql/collectionsQueries";
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
+import { _cursor } from "#tailwind-config/theme";
 
 const productSearch = ref("");
 const productColumns = ref(3);
@@ -227,9 +233,13 @@ const activeFilters = ref<any[]>([]);
 
 const route = useRoute();
 
-const { result, loading, refetch } = useQuery(CollectionQuery, {
+const { result, refetch } = useQuery(CollectionQuery, {
   handle: route.params.handle,
   filters: [] as any[],
+  before: undefined as string | undefined,
+  after: undefined as string | undefined,
+  first: 30 as number | undefined,
+  last: undefined as number | undefined,
 });
 
 const collection = computed(() => {
@@ -242,6 +252,9 @@ const collection = computed(() => {
 });
 
 const filters = ref();
+const pageInfo = ref();
+const beforeCursor = ref<string>();
+const afterCursor = ref<string>();
 
 watch(
   result,
@@ -249,6 +262,7 @@ watch(
     if (!value) return;
 
     filters.value = value.collection.products.filters;
+    pageInfo.value = value.collection.products.pageInfo;
   },
   { deep: true, immediate: true }
 );
@@ -264,6 +278,10 @@ const debounceRefetch = useDebounce(() => {
       delete filter.id;
       return filter;
     }),
+    before: beforeCursor.value,
+    after: afterCursor.value,
+    first: 30,
+    last: undefined,
   });
 }, 1000);
 
@@ -274,4 +292,38 @@ watch(
   },
   { deep: true }
 );
+
+const paginatePrev = (cursor?: string) => {
+  afterCursor.value = undefined;
+  beforeCursor.value = cursor;
+
+  refetch({
+    handle: route.params.handle,
+    filters: activeFilters.value.map((filter) => {
+      delete filter.id;
+      return filter;
+    }),
+    before: beforeCursor.value,
+    after: afterCursor.value,
+    first: undefined,
+    last: 30,
+  });
+};
+
+const paginateNext = (cursor?: string) => {
+  beforeCursor.value = undefined;
+  afterCursor.value = cursor;
+
+  refetch({
+    handle: route.params.handle,
+    filters: activeFilters.value.map((filter) => {
+      delete filter.id;
+      return filter;
+    }),
+    before: beforeCursor.value,
+    after: afterCursor.value,
+    first: 30,
+    last: undefined,
+  });
+};
 </script>

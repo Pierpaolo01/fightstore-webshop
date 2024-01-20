@@ -41,10 +41,11 @@
           <IconFourColumns :isActive="modelColumns === 4" />
         </button>
       </div>
-      <div>
+      <!-- TODO total products count -->
+      <!-- <div>
         <span class="font-bold font-currency">{{ productCount ?? 0 }}</span>
         <span class=""> Producten</span>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
