@@ -21,9 +21,13 @@
         overlay: { background: 'bg-black' },
       }"
     >
-      <div class="h-full w-full flex items-center justify-center p-4">
+      <div class="h-full w-full flex items-center justify-center p-4 relative">
+        <IconClose
+          class="absolute top-6 right-4 cursor-pointer z-50"
+          @click="slideoverIsOpen = false"
+        />
         <IconLoading class="animate-spin" v-if="!cartDetail" />
-        <div v-else class="h-full w-full space-y-12 relative">
+        <div v-if="cartDetail" class="h-full w-full space-y-12 relative">
           <h2>Jouw winkelwagen</h2>
           <div class="space-y-6 relative">
             <div
@@ -104,7 +108,7 @@
                 <button
                   class="w-full flex justify-center space-x-4 items-center px-2 py-3 border font-roboto font-medium text-lg text-black border-green-500 bg-green-500 rounded hover:bg-green-600"
                 >
-                  Naar de checkout
+                  Naar checkout
                 </button>
               </NuxtLink>
             </div>
@@ -181,19 +185,22 @@ onMounted(() => {
     variables.id = storedCart.id;
     cartLineUpdate.cartId = storedCart.id;
     cartLineRemove.cartId = storedCart.id;
+
     loadCartTotal();
   }
 });
 
 const updateCartLineQuantity = useDebounce(
-  (lineId: string, merchandiseId: string, newQuantity: string) => {
+  async (lineId: string, merchandiseId: string, newQuantity: string) => {
     cartLineUpdate.lines[0] = {
       id: lineId,
       merchandiseId,
       quantity: parseInt(newQuantity),
     };
 
-    updateCartLine(cartLineUpdate);
+    await updateCartLine(cartLineUpdate);
+    await refetchCartTotal();
+    await refetchCartDetail();
   },
   200
 );
@@ -203,6 +210,7 @@ const removeCartLineItem = async (lineId: string) => {
 
   await removeCartLine(cartLineRemove);
 
+  await refetchCartTotal();
   await refetchCartDetail();
 };
 
