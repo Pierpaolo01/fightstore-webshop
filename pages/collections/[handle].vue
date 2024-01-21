@@ -74,6 +74,20 @@
             )
           "
         />
+        <FilterFlavor
+          v-if="filters.find((filter) => filter.id === 'filter.v.option.smaak')"
+          :filters="filters"
+          :activeFilters="activeFilters"
+          @addFilter="activeFilters.push($event)"
+          @remove-filter="
+            activeFilters.splice(
+              activeFilters.findIndex(
+                (filter) => JSON.stringify(filter) === JSON.stringify($event)
+              ),
+              1
+            )
+          "
+        />
         <FilterAvilable
           v-if="filters.find((filter) => filter.id === 'filter.v.availability')"
           :filters="filters"

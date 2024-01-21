@@ -1,5 +1,5 @@
 <template>
-  <div class="flex space-x-2">
+  <div class="flex space-x-2" v-if="filteredOptions.values.length">
     <Button
       v-for="option in filteredOptions.values"
       :key="option"
