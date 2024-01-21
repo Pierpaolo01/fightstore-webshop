@@ -132,6 +132,8 @@ export const GetCartDetailQuery = gql`
               ... on ProductVariant {
                 id
                 title
+                availableForSale
+                quantityAvailable
                 image {
                   url
                 }
@@ -174,6 +176,8 @@ export type CartDetail = {
   lines: Array<{
     id: string;
     quantity: number;
+    availableForSale: boolean;
+    quantityAvailable?: number;
     cost: {
       subtotalAmount: {
         amount: number;

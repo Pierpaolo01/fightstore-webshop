@@ -50,8 +50,8 @@
                     {{ line.merchandise.title }}
                   </p>
                   <p class="text-sm font-semibold text-black/70">
-                    <span class="font-bold text-black font-currency"
-                      >prijs:
+                    <span class="font-bold text-black font-currency">
+                      prijs:
                     </span>
                     {{ line.merchandise.price.amount }}
                     {{ line.merchandise.price.currencyCode }}
@@ -83,6 +83,15 @@
                 </button>
               </div>
             </div>
+            <UAlert
+              v-if="showWarning"
+              icon="i-heroicons-exclamation-circle"
+              color="red"
+              variant="soft"
+              :title="warningTitle"
+              :description="warningDescription"
+            />
+            <!-- Empty state / Loading -->
             <div v-if="!cartDetail.lines.length">
               <p>Je hebt nog geen producten in je winkelwagen</p>
             </div>
@@ -92,6 +101,7 @@
             >
               <IconLoading class="animate-spin" />
             </div>
+            <!-- Checkout  -->
             <div v-if="cartDetail" class="border-t w-full p-4 space-y-4">
               <div class="flex justify-between font-currency">
                 <span> Winkelwagen subtotaal </span>
@@ -133,6 +143,9 @@ const slideoverIsOpen = ref(false);
 const store = useCartStore();
 
 const { triggerRefetch } = storeToRefs(store);
+
+const { showWarning, setWarning, warningDescription, warningTitle } =
+  useWarning();
 
 const variables = reactive({
   id: "",
@@ -191,7 +204,17 @@ onMounted(() => {
 });
 
 const updateCartLineQuantity = useDebounce(
+  // TODO Check if new quantity is not higher than stock
   async (lineId: string, merchandiseId: string, newQuantity: string) => {
+    const line = cartDetail.value?.lines.find((line) => line.id === lineId);
+
+    if (Number(newQuantity) > (line?.quantityAvailable ?? 0)) {
+      setWarning(
+        "Niet genoeg voorraad",
+        "Er is niet genoeg voorraad van dit product"
+      );
+    }
+
     cartLineUpdate.lines[0] = {
       id: lineId,
       merchandiseId,
