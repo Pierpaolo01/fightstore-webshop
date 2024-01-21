@@ -55,17 +55,15 @@ type Collection = {
   };
 };
 
-const collections = ref<Collection[]>([]);
+// const collections = ref<Collection[]>([]);
 
-watch(
-  () => result.value,
-  (newValue) => {
-    if (newValue && newValue.collections) {
-      collections.value = newValue.collections.edges.map((edge) => edge.node);
-    }
-  },
-  { immediate: true, deep: true }
-);
+const collections = computed<Collection[]>(() => {
+  if (!result.value) {
+    return [];
+  }
+
+  return result.value.collections.edges.map((edge) => edge.node);
+});
 
 const firstRowCollections = collections.value.slice(0, 3);
 const secondRowCollections = collections.value.slice(3, 5);
