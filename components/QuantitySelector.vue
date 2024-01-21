@@ -1,7 +1,8 @@
 <template>
-  <div class="flex items-cente">
+  <div class="flex" :class="{ 'opacity-50': disabled }">
     <button
       class="px-2 py-1 border border-gray-300 rounded-l hover:bg-gray-100"
+      :class="{ 'cursor-not-allowed': disabled }"
       @click="decrement"
     >
       -
@@ -9,11 +10,14 @@
     <input
       type="number"
       class="w-12 text-center border-t border-b border-gray-300 bg-white focus:outline-none font-medium text-base font-roboto"
+      :disabled="disabled"
+      :class="{ 'cursor-not-allowed': disabled }"
       v-model="innerValue"
       @input="emitUpdate"
     />
     <button
       class="px-2 py-1 border border-gray-300 rounded-r hover:bg-gray-100"
+      :class="{ 'cursor-not-allowed': disabled }"
       @click="increment"
     >
       +
@@ -29,6 +33,10 @@ const props = defineProps({
     type: Number,
     default: 1,
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(["update:modelValue"]);
@@ -43,11 +51,14 @@ watch(
 );
 
 const increment = () => {
+  if (props.disabled) return;
   innerValue.value++;
   emitUpdate();
 };
 
 const decrement = () => {
+  if (props.disabled) return;
+
   if (innerValue.value > 1) {
     innerValue.value--;
     emitUpdate();

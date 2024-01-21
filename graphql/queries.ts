@@ -176,8 +176,6 @@ export type CartDetail = {
   lines: Array<{
     id: string;
     quantity: number;
-    availableForSale: boolean;
-    quantityAvailable?: number;
     cost: {
       subtotalAmount: {
         amount: number;
@@ -187,6 +185,8 @@ export type CartDetail = {
     merchandise: {
       id: string;
       title: string;
+      availableForSale: boolean;
+      quantityAvailable?: number;
       image?: {
         url: string;
       };

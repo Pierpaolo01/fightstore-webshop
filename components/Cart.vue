@@ -30,58 +30,68 @@
         <div v-if="cartDetail" class="h-full w-full space-y-12 relative">
           <h2>Jouw winkelwagen</h2>
           <div class="space-y-6 relative">
-            <div
-              class="flex justify-between"
-              v-for="line in cartDetail.lines"
-              :key="line.id"
-            >
-              <div class="flex space-x-2">
-                <img
-                  :src="line.merchandise.image?.url"
-                  alt="line"
-                  class="h-16 w-16 object-contain"
-                />
-                <div>
-                  <p class="font-bold">
-                    {{ line.merchandise.product.title }}
-                  </p>
-                  <p class="text-sm font-semibold text-black/70">
-                    <span class="font-bold text-black">Variant: </span>
-                    {{ line.merchandise.title }}
-                  </p>
-                  <p class="text-sm font-semibold text-black/70">
-                    <span class="font-bold text-black font-currency">
-                      prijs:
-                    </span>
-                    {{ line.merchandise.price.amount }}
-                    {{ line.merchandise.price.currencyCode }}
-                  </p>
-                </div>
-              </div>
-              <div class="text-right space-y-2 flex items-end space-x-2">
-                <div class="h-full flex flex-col justify-between font-currency">
-                  <p>
-                    {{ line.cost.subtotalAmount.amount }}
-                    {{ line.cost.subtotalAmount.currencyCode }}
-                  </p>
-                  <QuantitySelector
-                    v-model="line.quantity"
-                    @update:model-value="
-                      updateCartLineQuantity(
-                        line.id,
-                        line.merchandise.id,
-                        $event
-                      )
-                    "
+            <!-- CartLine Merchandise listing -->
+            <div v-for="line in cartDetail.lines" :key="line.id">
+              <div class="flex justify-between">
+                <div class="flex space-x-2" :disabled="true">
+                  <img
+                    :src="line.merchandise.image?.url"
+                    alt="line"
+                    class="h-16 w-16 object-contain"
                   />
+                  <div>
+                    <p class="font-bold">
+                      {{ line.merchandise.product.title }}
+                    </p>
+                    <p class="text-sm font-semibold text-black/70">
+                      <span class="font-bold text-black">Variant: </span>
+                      {{ line.merchandise.title }}
+                    </p>
+                    <p class="text-sm font-semibold text-black/70">
+                      <span class="font-bold text-black font-currency">
+                        prijs:
+                      </span>
+                      {{ line.merchandise.price.amount }}
+                      {{ line.merchandise.price.currencyCode }}
+                    </p>
+                  </div>
                 </div>
-                <button
-                  class="p-2 rounded-md hover:bg-red-500 hover:text-white transition-all duration-200"
-                  @click="removeCartLineItem(line.id)"
-                >
-                  <IconTrash class="h-4 w-4" />
-                </button>
+                <div class="text-right space-y-2 flex items-end space-x-2">
+                  <div
+                    class="h-full flex flex-col justify-between font-currency"
+                  >
+                    <p>
+                      {{ line.cost.subtotalAmount.amount }}
+                      {{ line.cost.subtotalAmount.currencyCode }}
+                    </p>
+                    <QuantitySelector
+                      v-model="line.quantity"
+                      :disabled="!line.merchandise.availableForSale"
+                      @update:model-value="
+                        updateCartLineQuantity(
+                          line.id,
+                          line.merchandise.id,
+                          $event
+                        )
+                      "
+                    />
+                  </div>
+                  <button
+                    class="p-2 rounded-md hover:bg-red-500 hover:text-white transition-all duration-200"
+                    @click="removeCartLineItem(line.id)"
+                  >
+                    <IconTrash class="h-4 w-4" />
+                  </button>
+                </div>
               </div>
+              <UAlert
+                v-if="!line.merchandise.availableForSale"
+                class="mt-2"
+                icon="i-heroicons-exclamation-circle"
+                color="red"
+                variant="soft"
+                title="Dit product is niet meer op voorraad"
+              />
             </div>
             <UAlert
               v-if="showWarning"
@@ -208,7 +218,7 @@ const updateCartLineQuantity = useDebounce(
   async (lineId: string, merchandiseId: string, newQuantity: string) => {
     const line = cartDetail.value?.lines.find((line) => line.id === lineId);
 
-    if (Number(newQuantity) > (line?.quantityAvailable ?? 0)) {
+    if (Number(newQuantity) > (line?.merchandise.quantityAvailable ?? 0)) {
       setWarning(
         "Niet genoeg voorraad",
         "Er is niet genoeg voorraad van dit product"

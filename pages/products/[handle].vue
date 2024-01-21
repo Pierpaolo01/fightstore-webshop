@@ -69,7 +69,7 @@
             icon="i-heroicons-exclamation-circle"
             color="red"
             variant="soft"
-            title="Helaas is deze article momenteel niet op voorraad"
+            title="Helaas is deze article/variant momenteel niet op voorraad"
           />
           <div
             class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
