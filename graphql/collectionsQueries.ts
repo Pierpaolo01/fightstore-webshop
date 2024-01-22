@@ -6,6 +6,8 @@ export const CollectionQuery = gql`
     $after: String
     $first: Int
     $last: Int
+    $sortKey: ProductCollectionSortKeys
+    $reverse: Boolean
   ) {
     collection(handle: $handle) {
       id
@@ -18,6 +20,8 @@ export const CollectionQuery = gql`
         filters: $filters
         before: $before
         after: $after
+        sortKey: $sortKey
+        reverse: $reverse
       ) {
         pageInfo {
           hasNextPage

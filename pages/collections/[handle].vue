@@ -108,6 +108,7 @@
           v-model="productSearch"
           v-model:modelColumns="productColumns"
           :productCount="collection.products.length"
+          @update:sorting="productSorting = $event"
         >
           <div class="divide-y space-y-4 px-3">
             <FilterPrice
@@ -254,6 +255,8 @@ const { result, refetch } = useQuery(CollectionQuery, {
   after: undefined as string | undefined,
   first: 30 as number | undefined,
   last: undefined as number | undefined,
+  sortKey: undefined as string | undefined,
+  reversed: false,
 });
 
 const collection = computed(() => {
@@ -269,6 +272,26 @@ const filters = ref();
 const pageInfo = ref();
 const beforeCursor = ref<string>();
 const afterCursor = ref<string>();
+const productSorting = ref({ sortKey: undefined, reversed: false });
+
+watch(
+  productSorting,
+  () => {
+    refetch({
+      handle: route.params.handle,
+      filters: activeFilters.value.map((filter) => {
+        delete filter.id;
+        return filter;
+      }),
+      before: beforeCursor.value,
+      after: afterCursor.value,
+      first: 30,
+      last: undefined,
+      ...productSorting.value,
+    });
+  },
+  { deep: true }
+);
 
 watch(
   result,
@@ -296,6 +319,7 @@ const debounceRefetch = useDebounce(() => {
     after: afterCursor.value,
     first: 30,
     last: undefined,
+    ...productSorting.value,
   });
 }, 1000);
 
@@ -321,6 +345,7 @@ const paginatePrev = (cursor?: string) => {
     after: afterCursor.value,
     first: undefined,
     last: 30,
+    ...productSorting.value,
   });
 };
 
@@ -338,6 +363,7 @@ const paginateNext = (cursor?: string) => {
     after: afterCursor.value,
     first: 30,
     last: undefined,
+    ...productSorting.value,
   });
 };
 </script>

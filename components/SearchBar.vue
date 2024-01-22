@@ -41,6 +41,7 @@
           <IconFourColumns :isActive="modelColumns === 4" />
         </button>
       </div>
+      <SortDropdown @update:sort="updateSorting($event)" />
       <!-- TODO total products count -->
       <!-- <div>
         <span class="font-bold font-currency">{{ productCount ?? 0 }}</span>
@@ -66,12 +67,20 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:modelValue", "update:modelColumns"]);
+const emit = defineEmits([
+  "update:modelValue",
+  "update:modelColumns",
+  "update:sorting",
+]);
 
 const gsModelValue = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
+
+const updateSorting = (value) => {
+  emit("update:sorting", value);
+};
 
 const displayFilters = ref(false);
 </script>
