@@ -55,8 +55,6 @@ type Collection = {
   };
 };
 
-// const collections = ref<Collection[]>([]);
-
 const collections = computed<Collection[]>(() => {
   if (!result.value) {
     return [];

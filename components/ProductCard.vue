@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="disabled ? '' : `/products/${handle}`"
-    class="w-64 group cursor-pointer h-full flex flex-col justify-between"
+    class="w-64 group cursor-pointer flex flex-col justify-between h-96"
     @mouseover="isHovering = true"
     @mouseleave="isHovering = false"
   >
@@ -10,7 +10,7 @@
         v-if="featuredImageUrl"
         :src="featuredImageUrl"
         alt="product image"
-        class="group-hover:scale-110 transition-all duration-300 h-full w-full"
+        class="group-hover:scale-110 transition-all duration-300 h-full w-full object-contain"
       />
     </div>
     <div class="flex justify-between space-x-2 overflow-hidden">
