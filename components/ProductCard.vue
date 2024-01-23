@@ -19,8 +19,8 @@
           {{ title }}
         </p>
         <span class="font-medium text-left font-currency">
-          {{ minVariantPrice.amount }}
-          {{ minVariantPrice.currencyCode }}
+          {{ minVariantPrice?.amount }}
+          {{ minVariantPrice?.currencyCode }}
         </span>
       </div>
       <IconArrowRight

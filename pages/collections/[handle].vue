@@ -222,7 +222,7 @@
             :handle="product.handle"
             :title="product.title"
             :featuredImageUrl="product.featuredImage?.url"
-            :minVariantPrice="product.priceRange.minVariantPrice"
+            :minVariantPrice="product.priceRange?.minVariantPrice"
           />
         </div>
         <Pagination
@@ -262,6 +262,19 @@ const { result, refetch } = useQuery(CollectionQuery, {
 const collection = computed(() => {
   if (!result.value) return;
 
+  if (productSearch.value) {
+    return {
+      ...result.value.collection,
+      products: result.value.collection.products.edges
+        .filter((edge) => {
+          return edge.node.title
+            .toLowerCase()
+            .includes(productSearch.value.toLocaleLowerCase());
+        })
+        .map((edge) => edge.node),
+    };
+  }
+
   return {
     ...result.value.collection,
     products: result.value.collection.products.edges.map((edge) => edge.node),
@@ -273,6 +286,39 @@ const pageInfo = ref();
 const beforeCursor = ref<string>();
 const afterCursor = ref<string>();
 const productSorting = ref({ sortKey: undefined, reversed: false });
+
+const searchDebounce = useDebounce(() => {
+  if (productSearch.value) {
+    refetch({
+      handle: route.params.handle,
+      filters: activeFilters.value.map((filter) => {
+        delete filter.id;
+        return filter;
+      }),
+      before: undefined,
+      after: undefined,
+      first: 250,
+      last: undefined,
+      sortKey: undefined,
+      reversed: false,
+    });
+    return;
+  }
+
+  refetch({
+    handle: route.params.handle,
+    filters: activeFilters.value.map((filter) => {
+      delete filter.id;
+      return filter;
+    }),
+    before: undefined,
+    after: undefined,
+    first: 30,
+    last: undefined,
+    sortKey: undefined,
+    reversed: false,
+  });
+}, 500);
 
 watch(
   productSorting,

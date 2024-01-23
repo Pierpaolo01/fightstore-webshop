@@ -2,7 +2,7 @@
   <div class="relative">
     <button
       @click="isOpen = !isOpen"
-      class="flex items-center justify-between px-4 py-2 bg-white border-2 border-slate-900 rounded-md font-roboto font-semibold text-sm hover:bg-slate-100"
+      class="flex items-center justify-between px-3 py-1 bg-white border-2 border-slate-900 rounded-md font-roboto font-semibold text-sm hover:bg-slate-100"
     >
       <span>
         {{ selectedOption.label }}
@@ -48,7 +48,7 @@ const optionsMap = [
     reversed: false,
   },
   { label: "Meest relevant", sortKey: "RELEVANCE", reversed: false },
-  { label: "Geen", sortKey: undefined, reversed: false },
+  { label: "Geen", sortKey: undefined, reversed: undefined },
 ];
 
 const emit = defineEmits(["update:sort"]);
