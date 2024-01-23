@@ -10,14 +10,12 @@
           <li
             v-for="size in sizeOptions"
             :key="size.value"
-            class="flex items-center justify-between w-full hover:cursor-pointer"
-            @click="toggleSizeFilter(size.input)"
+            class="flex items-center justify-between w-full"
           >
             <div class="flex items-center space-x-2">
               <input
                 type="checkbox"
                 class="form-checkbox h-5 w-5 border-gray-800 rounded focus:ring-0 text-black"
-                :value="isActive(size.input)"
                 @click="toggleSizeFilter(size.input)"
               />
               <span class="font-roboto font-semibold">{{ size.value }}</span>
@@ -46,7 +44,7 @@ const props = defineProps({
 });
 
 onBeforeMount(() => {
-  props.filters.find((filter) => filter.id === "filter.v.option.maat");
+  props.filters.find((filter) => filter.id === "filter.v.option.kleur");
 });
 
 const emit = defineEmits(["addFilter", "removeFilter"]);
