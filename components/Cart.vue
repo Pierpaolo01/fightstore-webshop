@@ -148,7 +148,7 @@ import {
   type CartDetail,
 } from "~/graphql/queries";
 import { useCartStore } from "~/store/useCartStore";
-
+import { is10DaysOrMoreAgo } from "~/utils/utils";
 const slideoverIsOpen = ref(false);
 const store = useCartStore();
 
@@ -204,7 +204,7 @@ onMounted(() => {
     localStorage.getItem("fight-store-cart-id") ?? "{}"
   );
 
-  if (storedCart && storedCart.id) {
+  if (storedCart && storedCart.id && !is10DaysOrMoreAgo(storedCart.createdAt)) {
     variables.id = storedCart.id;
     cartLineUpdate.cartId = storedCart.id;
     cartLineRemove.cartId = storedCart.id;
@@ -273,15 +273,22 @@ watch(triggerRefetch, () => {
     variables.id = storedCart.id;
     cartLineUpdate.cartId = storedCart.id;
     cartLineRemove.cartId = storedCart.id;
+
+    if (!cartTotalResult.value) {
+      loadCartTotal();
+    } else {
+      refetchCartTotal();
+    }
   }
 
-  refetchCartTotal();
   refetchCartDetail();
 });
 
 watch(slideoverIsOpen, (newValue) => {
-  if (newValue) {
+  if (newValue && !cartDetail.value) {
     loadCartDetail();
+  } else if (newValue) {
+    refetchCartDetail();
   }
 });
 </script>

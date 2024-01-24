@@ -48,20 +48,22 @@ const isSliding = ref(false);
 
 const query = gql`
   {
-    products(first: 26) {
-      edges {
-        node {
-          id
-          handle
-          title
-          priceRange {
-            minVariantPrice {
-              amount
-              currencyCode
+    collection(handle: "uitgelichte-producten") {
+      products(first: 250) {
+        edges {
+          node {
+            id
+            handle
+            title
+            priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
             }
-          }
-          featuredImage {
-            url
+            featuredImage {
+              url
+            }
           }
         }
       }
@@ -91,6 +93,6 @@ const products = computed<Product[]>(() => {
     return [];
   }
 
-  return result.value.products.edges.map((edge) => edge.node);
+  return result.value.collection.products.edges.map((edge) => edge.node);
 });
 </script>

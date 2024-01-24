@@ -10,15 +10,15 @@ export const useAddOrUpdateCart = () => {
 
   onMounted(() => {
     if (isClient) {
-      const storedCart = JSON.parse(
+      let storedCart = JSON.parse(
         localStorage.getItem("fight-store-cart-id") ?? "{}"
       );
 
       if (is10DaysOrMoreAgo(storedCart?.createdAt)) {
         localStorage.removeItem("fight-store-cart-id");
+        storedCart = undefined;
       }
-
-      storedCartId.value = storedCart?.id ?? undefined;
+      storedCartId.value = storedCart?.id;
     }
   });
 
@@ -55,8 +55,8 @@ export const useAddOrUpdateCart = () => {
 
       onCartCreated((data) => {
         const cartId = data.data?.cartCreate?.cart?.id;
-
         if (cartId) {
+          storedCartId.value = cartId;
           localStorage.setItem(
             "fight-store-cart-id",
             JSON.stringify({
