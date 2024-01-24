@@ -17,26 +17,15 @@ export default defineNuxtConfig({
         }
       );
 
-      const { collections } = (await graphQLClient.request(`
-      {
-        collections(first: 250) {
-          edges {
-            node {
-              handle
-            }
-          }
-        }
-      }
-      `)) as any;
-
       const products = await fetchAllProducts(graphQLClient);
       const blogs = await fetchAllBlogArticles(graphQLClient);
+      const collections = await fetchAllCollections(graphQLClient);
       nitroConfig.prerender?.routes?.push(
         "/",
         ...products.map((product: any) => `/products/${product.handle}`),
         ...blogs.map((blog: any) => `/blogs/${blog.handle}`),
-        ...collections.edges.map(
-          (edge: any) => `/collections/${edge.node.handle}`
+        ...collections.map(
+          (collection: any) => `/collections/${collection.handle}`
         )
       );
     },
@@ -155,3 +144,40 @@ async function fetchAllBlogArticles(graphQLClient) {
 }
 
 //TODO Fetch all collections
+async function fetchAllCollections(graphQLClient) {
+  let allCollections = [];
+  let lastCursor = null;
+  let hasNextPage = true;
+
+  while (hasNextPage) {
+    const response = await graphQLClient.request(`
+      {
+        collections(first: 250, after: ${
+          lastCursor ? `"${lastCursor}"` : null
+        }) {
+          edges {
+            cursor
+            node {
+              handle
+            }
+          }
+          pageInfo {
+            hasNextPage
+          }
+        }
+      }
+    `);
+
+    const collections = response.collections.edges.map((edge) => edge.node);
+    allCollections = allCollections.concat(collections);
+
+    if (response.collections.edges.length > 0) {
+      lastCursor =
+        response.collections.edges[response.collections.edges.length - 1]
+          .cursor;
+    }
+    hasNextPage = response.collections.pageInfo.hasNextPage;
+  }
+
+  return allCollections as any;
+}
