@@ -240,7 +240,6 @@ import { useQuery } from "@vue/apollo-composable";
 import { CollectionQuery, type Collection } from "~/graphql/collectionsQueries";
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
-import { _cursor } from "#tailwind-config/theme";
 
 const productSearch = ref("");
 const productColumns = ref(3);

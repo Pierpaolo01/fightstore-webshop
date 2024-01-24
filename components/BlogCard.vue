@@ -1,5 +1,6 @@
 <template>
-  <div
+  <NuxtLink
+    :to="'/blogs/' + handle"
     class="rounded-md overflow-hidden group relative cursor-pointer flex flex-col justify-between"
     @mouseover="isHovering = true"
     @mouseleave="isHovering = false"
@@ -22,10 +23,7 @@
     </div>
     <div class="space-y-1 mt-2">
       <h4>{{ title }}</h4>
-      <NuxtLink
-        :to="'/blogs/' + handle"
-        class="flex space-x-2 text-blue-700 uppercase italic text-xs"
-      >
+      <span class="flex space-x-2 text-blue-700 uppercase italic text-xs">
         <span
           class="group-hover:pl-1 group-hover:scale-110 transition-all duration-200"
           >Lees meer</span
@@ -37,9 +35,9 @@
             'animate-slideInLeft': !isHovering,
           }"
         />
-      </NuxtLink>
+      </span>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
