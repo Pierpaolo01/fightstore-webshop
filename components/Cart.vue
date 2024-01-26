@@ -214,7 +214,6 @@ onMounted(() => {
 });
 
 const updateCartLineQuantity = useDebounce(
-  // TODO Check if new quantity is not higher than stock
   async (lineId: string, merchandiseId: string, newQuantity: string) => {
     const line = cartDetail.value?.lines.find((line) => line.id === lineId);
 

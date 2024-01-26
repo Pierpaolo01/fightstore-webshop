@@ -1,16 +1,16 @@
 <template>
   <NuxtLink
     :to="disabled ? '' : `/products/${handle}`"
-    class="w-64 group cursor-pointer flex flex-col justify-between h-96"
+    class="w-64 group cursor-pointer flex flex-col justify-between"
     @mouseover="isHovering = true"
     @mouseleave="isHovering = false"
   >
-    <div class="w-full h-fit overflow-hidden self-center">
+    <div class="w-full max-h-96 overflow-hidden self-center">
       <img
         v-if="featuredImageUrl"
         :src="featuredImageUrl"
         alt="product image"
-        class="group-hover:scale-110 transition-all duration-300 h-full w-full object-contain"
+        class="group-hover:scale-110 transition-all duration-300 h-full w-full object-fit"
       />
     </div>
     <div class="flex justify-between space-x-2 overflow-hidden">
