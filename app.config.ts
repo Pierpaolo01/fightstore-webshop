@@ -4,7 +4,7 @@ export default defineAppConfig({
     gray: "white",
     slideover: {
       overlay: {
-        background: "opacity-50 dark:bg-black",
+        background: "opacity-50 dark:bg-black bg-black",
       },
       background: "bg-white dark:bg-white",
       width: "w-screen max-w-2xl",

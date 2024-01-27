@@ -14,13 +14,7 @@
     </div>
   </div>
   <Teleport to="body">
-    <USlideover
-      v-model="slideoverIsOpen"
-      :ui="{
-        background: 'yellow',
-        overlay: { background: 'bg-black' },
-      }"
-    >
+    <USlideover v-model="slideoverIsOpen">
       <div class="h-full w-full flex items-center justify-center p-4 relative">
         <IconClose
           class="absolute top-6 right-4 cursor-pointer z-50"

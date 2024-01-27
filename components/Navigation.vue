@@ -2,7 +2,10 @@
   <div class="fixed top-0 w-full bg-white z-50">
     <UContainer @mouseleave="currentNavItem = undefined">
       <div class="flex justify-between items-center py-4">
-        <div class="laptop:hidden cursor-pointer p-2 pl-0">
+        <div
+          class="laptop:hidden cursor-pointer p-2 pl-0"
+          @click="showMobileMenu = !showMobileMenu"
+        >
           <IconMenu />
         </div>
         <NuxtLink to="/" class="">
@@ -56,239 +59,17 @@
       </Transition>
     </UContainer>
   </div>
+
+  <MobileMenu v-model="showMobileMenu" />
 </template>
 
 <script setup lang="ts">
-const currentNavItem = ref();
+import navItems from "~/data/navigation.json";
 
-const navigationData = ref([
-  {
-    title: "Fightgear",
-    sections: [
-      {
-        title: "Handschoenen",
-        items: [
-          {
-            title: "(Kick)bokshandschoenen",
-            handle: "TODO",
-          },
-          {
-            title: "MMA handschoenen",
-            handle: "TODO",
-          },
-          {
-            title: "Bandages",
-            handle: "TODO",
-          },
-          {
-            title: "Handschoen accessoires",
-            handle: "TODO",
-          },
-        ],
-      },
-      {
-        title: "Bescherming",
-        items: [
-          {
-            title: "Scheenbeschermers",
-            handle: "TODO",
-          },
-          {
-            title: "Kniebeschermers",
-            handle: "TODO",
-          },
-          {
-            title: "Hoofdbeschermers",
-            handle: "TODO",
-          },
-          {
-            title: "Bitjes",
-            handle: "TODO",
-          },
-          {
-            title: "Binnenhandschoenen",
-            handle: "TODO",
-          },
-          {
-            title: "Tok / Kruisbeschermers",
-            handle: "TODO",
-          },
-        ],
-      },
-      {
-        title: "Fightshorts",
-        items: [
-          {
-            title: "Kickboks broekjes",
-            handle: "TODO",
-          },
-          {
-            title: "MMA Broekjes",
-            handle: "TODO",
-          },
-          {
-            title: "Boks broekjes",
-            handle: "TODO",
-          },
-          {
-            title: "Trainingsbroeken",
-            handle: "TODO",
-          },
-          {
-            title: "Trainings T-Shirts",
-            handle: "TODO",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "kids",
-    sections: [
-      {
-        title: "Handschoenen",
-        items: [
-          {
-            title: "(Kick)bokshandschoenen",
-            handle: "TODO",
-          },
-          {
-            title: "MMA handschoenen",
-            handle: "TODO",
-          },
-          {
-            title: "Bandages",
-            handle: "TODO",
-          },
-          {
-            title: "Handschoen accessoires",
-            handle: "TODO",
-          },
-        ],
-      },
-      {
-        title: "Bescherming",
-        items: [
-          {
-            title: "Scheenbeschermers",
-            handle: "TODO",
-          },
-          {
-            title: "Kniebeschermers",
-            handle: "TODO",
-          },
-          {
-            title: "Hoofdbeschermers",
-            handle: "TODO",
-          },
-          {
-            title: "Bitjes",
-            handle: "TODO",
-          },
-          {
-            title: "Binnenhandschoenen",
-            handle: "TODO",
-          },
-          {
-            title: "Tok / Kruisbeschermers",
-            handle: "TODO",
-          },
-        ],
-      },
-      {
-        title: "Broekjes",
-        items: [
-          {
-            title: "Kickboks broekjes",
-            handle: "TODO",
-          },
-          {
-            title: "MMA Broekjes",
-            handle: "TODO",
-          },
-          {
-            title: "Boks broekjes",
-            handle: "TODO",
-          },
-          {
-            title: "Trainingsbroeken",
-            handle: "TODO",
-          },
-          {
-            title: "Trainings T-Shirts",
-            handle: "TODO",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Kleding",
-    sections: [
-      {
-        title: "Broekjes",
-        items: [
-          { title: "Kickboks broekjes", handle: "TODO" },
-          { title: "MMA Broekjes", handle: "TODO" },
-          { title: "Boks broekjes", handle: "TODO" },
-          { title: "Trainingsbroeken", handle: "TODO" },
-          { title: "Trainings T-Shirts", handle: "TODO" },
-        ],
-      },
-      {
-        title: "Tops",
-        items: [
-          { title: "T-Shirts", handle: "TODO" },
-          { title: "Compressie T-Shirts", handle: "TODO" },
-          { title: "Trainings T-Shirts", handle: "TODO" },
-          { title: "Trainingspakken", handle: "TODO" },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Voeding",
-    sections: [
-      {
-        title: "Eiwitten",
-        items: [
-          { title: "Whey Protein", handle: "TODO" },
-          { title: "Nacht Protein", handle: "TODO" },
-          { title: "Vegan Protein", handle: "TODO" },
-          { title: "Lactose Vrije Protein", handle: "TODO" },
-        ],
-      },
-      {
-        title: "Creatine",
-        items: [{ title: "Bekijk assortiment", handle: "TODO" }],
-      },
-      {
-        title: "Amino’s",
-        items: [{ title: "Bekijk assortiment", handle: "TODO" }],
-      },
-      {
-        title: "Pre-workouts",
-        items: [
-          { title: "Zacht", handle: "TODO" },
-          { title: "Medium", handle: "TODO" },
-          { title: "Extreem", handle: "TODO" },
-        ],
-      },
-      {
-        title: "Mass gainers",
-        items: [{ title: "Bekijk assortiment", handle: "TODO" }],
-      },
-      {
-        title: "Vitamines & gezondheid",
-        items: [
-          { title: "Testosterone boosters", handle: "TODO" },
-          { title: "Vitamines", handle: "TODO" },
-          { title: "Fat Burners", handle: "TODO" },
-        ],
-      },
-    ],
-  },
-]);
+const currentNavItem = ref();
+const navigationData = navItems;
+
+const showMobileMenu = ref(false);
 </script>
 
 <style scoped>
