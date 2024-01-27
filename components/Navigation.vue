@@ -2,8 +2,11 @@
   <div class="fixed top-0 w-full bg-white z-50">
     <UContainer @mouseleave="currentNavItem = undefined">
       <div class="flex justify-between items-center py-4">
-        <NuxtLink to="/" class="h-12">
-          <img src="/logo.png" alt="store logo" class="h-12" />
+        <div class="laptop:hidden cursor-pointer p-2 pl-0">
+          <IconMenu />
+        </div>
+        <NuxtLink to="/" class="">
+          <img src="/logo.png" alt="store logo" class="w-36 laptop:w-52" />
         </NuxtLink>
         <div class="space-x-6 flex items-center">
           <div
@@ -28,8 +31,10 @@
       </div>
       <!-- Submenu -->
       <Transition name="fade">
-        <div v-if="currentNavItem" class="flex flex-wrap gap-4 items-start">
-          <!-- class="grid grid-cols-2 gap-4" -->
+        <div
+          v-if="currentNavItem"
+          class="hidden laptop:flex flex-wrap gap-4 items-start"
+        >
           <div
             class="min-w-[25%]"
             v-for="section in currentNavItem.sections"
