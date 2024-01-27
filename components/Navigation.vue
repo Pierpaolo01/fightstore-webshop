@@ -15,7 +15,7 @@
               class="nav-item group"
               @mouseover="currentNavItem = navItem"
             >
-              <span class="flex items-center">
+              <span class="flex items-center space-x-1">
                 <span>{{ navItem.title }}</span>
                 <IconChevron
                   class="h-4 -rotate-90 group-hover:rotate-0 duration-200 stroke-2"
@@ -28,9 +28,10 @@
       </div>
       <!-- Submenu -->
       <Transition name="fade">
-        <div v-if="currentNavItem" class="flex items-start">
+        <div v-if="currentNavItem" class="flex flex-wrap gap-4 items-start">
+          <!-- class="grid grid-cols-2 gap-4" -->
           <div
-            class="grid grid-cols-2 gap-4"
+            class="min-w-[25%]"
             v-for="section in currentNavItem.sections"
             :key="section.title"
           >
@@ -212,6 +213,72 @@ const navigationData = ref([
             title: "Trainings T-Shirts",
             handle: "TODO",
           },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Kleding",
+    sections: [
+      {
+        title: "Broekjes",
+        items: [
+          { title: "Kickboks broekjes", handle: "TODO" },
+          { title: "MMA Broekjes", handle: "TODO" },
+          { title: "Boks broekjes", handle: "TODO" },
+          { title: "Trainingsbroeken", handle: "TODO" },
+          { title: "Trainings T-Shirts", handle: "TODO" },
+        ],
+      },
+      {
+        title: "Tops",
+        items: [
+          { title: "T-Shirts", handle: "TODO" },
+          { title: "Compressie T-Shirts", handle: "TODO" },
+          { title: "Trainings T-Shirts", handle: "TODO" },
+          { title: "Trainingspakken", handle: "TODO" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Voeding",
+    sections: [
+      {
+        title: "Eiwitten",
+        items: [
+          { title: "Whey Protein", handle: "TODO" },
+          { title: "Nacht Protein", handle: "TODO" },
+          { title: "Vegan Protein", handle: "TODO" },
+          { title: "Lactose Vrije Protein", handle: "TODO" },
+        ],
+      },
+      {
+        title: "Creatine",
+        items: [{ title: "Bekijk assortiment", handle: "TODO" }],
+      },
+      {
+        title: "Amino’s",
+        items: [{ title: "Bekijk assortiment", handle: "TODO" }],
+      },
+      {
+        title: "Pre-workouts",
+        items: [
+          { title: "Zacht", handle: "TODO" },
+          { title: "Medium", handle: "TODO" },
+          { title: "Extreem", handle: "TODO" },
+        ],
+      },
+      {
+        title: "Mass gainers",
+        items: [{ title: "Bekijk assortiment", handle: "TODO" }],
+      },
+      {
+        title: "Vitamines & gezondheid",
+        items: [
+          { title: "Testosterone boosters", handle: "TODO" },
+          { title: "Vitamines", handle: "TODO" },
+          { title: "Fat Burners", handle: "TODO" },
         ],
       },
     ],
