@@ -11,7 +11,7 @@
     </button>
     <div
       v-if="isOpen"
-      class="absolute z-10 w-fit min-w-44 mt-1 bg-white border border-slate-900 rounded-md shadow-xl"
+      class="absolute z-10 w-fit min-w-44 mt-1 bg-white border border-slate-900 rounded-md shadow-xl right-0"
     >
       <ul class="py-1 text-gray-700">
         <li
