@@ -60,7 +60,10 @@
     </UContainer>
   </div>
 
-  <MobileMenu v-model="showMobileMenu" />
+  <MobileMenu
+    v-model="showMobileMenu"
+    @update:modelValue="showMobileMenu = $event"
+  />
 </template>
 
 <script setup lang="ts">

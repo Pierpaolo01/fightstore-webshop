@@ -1,5 +1,5 @@
 <template>
-  <USlideover v-model="gsModelValue">
+  <USlideover v-model="gsModelValue" side="left">
     <div class="w-full flex items-center justify-center p-4 relative">
       <IconClose
         class="absolute top-6 right-4 cursor-pointer z-50"
@@ -10,7 +10,7 @@
       </NuxtLink>
     </div>
     <div class="mt-8 overflow-y-auto">
-      <ul class="px-6 divide-y space-y-4 pb-12">
+      <ul class="px-6 divide-y space-y-4 pb-12 font-roboto">
         <li v-for="navItem in navigation" :key="navItem.title" class="pt-4">
           <button
             class="w-full text-left font-semibold hover:bg-gray-100 flex justify-between items-center"
