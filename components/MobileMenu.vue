@@ -5,9 +5,12 @@
         class="absolute top-6 right-4 cursor-pointer z-50"
         @click="emit('update:modelValue', false)"
       />
-      <NuxtLink to="/" class="pt-2">
+      <span
+        class="pt-2 cursor-pointer"
+        @click="emit('update:modelValue', false)"
+      >
         <img src="/logo.png" alt="store logo" class="w-36 laptop:w-52" />
-      </NuxtLink>
+      </span>
     </div>
     <div class="mt-8 overflow-y-auto">
       <ul class="px-6 divide-y space-y-4 pb-12 font-roboto">
@@ -29,7 +32,7 @@
             class="pl-4 pr-2 py-2 bg-gray-50"
           >
             <div v-for="section in navItem.sections" :key="section.title">
-              <h5 class="font-bold my-2">{{ section.title }}</h5>
+              <h5 class="font-bold mt-4">{{ section.title }}</h5>
               <ul>
                 <li
                   v-for="item in section.items"

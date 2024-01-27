@@ -1,6 +1,7 @@
 <template>
   <button
     class="text-gray-800 uppercase text-lg flex items-center justify-between font-roboto text-left w-full font-semibold"
+    :class="{ 'mb-2': isOpen }"
     @click="isOpen = !isOpen"
   >
     {{ title }}

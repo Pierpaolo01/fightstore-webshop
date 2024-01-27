@@ -6,7 +6,7 @@
         class="flex items-center justify-between w-full font-currency"
         :class="{ hidden: !isOpen }"
       >
-        <ul class="space-y-2 w-full">
+        <ul class="space-y-2 w-full max-h-[400px] overflow-y-auto">
           <li
             v-for="size in sizeOptions"
             :key="size.value"
