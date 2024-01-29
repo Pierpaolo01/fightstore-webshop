@@ -14,6 +14,9 @@ export const CollectionQuery = gql`
       handle
       title
       description
+      image {
+        url
+      }
       products(
         first: $first
         last: $last
@@ -89,6 +92,9 @@ export type Collection = {
   handle: string;
   title: string;
   description: string;
+  image?: {
+    url: string;
+  };
   products: {
     pageInfo: {
       hasNextPage: boolean;

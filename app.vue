@@ -6,6 +6,18 @@
   <SectionFooter />
 </template>
 
+<script setup lang="ts">
+useSeoMeta({
+  title: "The FightStore",
+  description:
+    "Wij zijn een vechtsport winkel voor al jouw vechtsportartikelen en voedingssupplementen. Wij zijn een shop in shop samen met The Fightstudio, een personal training studio",
+  ogTitle: "The FightStore",
+  ogDescription:
+    "Wij zijn een vechtsport winkel voor al jouw vechtsportartikelen en voedingssupplementen. Wij zijn een shop in shop samen met The Fightstudio, een personal training studio",
+  ogImage: "/_nuxt/hero-image.jpg",
+});
+</script>
+
 <style>
 html {
   @apply bg-white font-raleway text-black relative;

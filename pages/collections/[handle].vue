@@ -264,7 +264,7 @@ const activeFilters = ref<any[]>([]);
 
 const route = useRoute();
 
-const { result, refetch } = useQuery(CollectionQuery, {
+const { result, refetch, onResult } = useQuery(CollectionQuery, {
   handle: route.params.handle,
   filters: [] as any[],
   before: undefined as string | undefined,
@@ -302,39 +302,6 @@ const pageInfo = ref();
 const beforeCursor = ref<string>();
 const afterCursor = ref<string>();
 const productSorting = ref({ sortKey: undefined, reversed: false });
-
-const searchDebounce = useDebounce(() => {
-  if (productSearch.value) {
-    refetch({
-      handle: route.params.handle,
-      filters: activeFilters.value.map((filter) => {
-        delete filter.id;
-        return filter;
-      }),
-      before: undefined,
-      after: undefined,
-      first: 250,
-      last: undefined,
-      sortKey: undefined,
-      reversed: false,
-    });
-    return;
-  }
-
-  refetch({
-    handle: route.params.handle,
-    filters: activeFilters.value.map((filter) => {
-      delete filter.id;
-      return filter;
-    }),
-    before: undefined,
-    after: undefined,
-    first: 30,
-    last: undefined,
-    sortKey: undefined,
-    reversed: false,
-  });
-}, 500);
 
 watch(
   productSorting,
@@ -428,4 +395,14 @@ const paginateNext = (cursor?: string) => {
     ...productSorting.value,
   });
 };
+console.log(collection.value);
+onResult(() =>
+  useSeoMeta({
+    title: collection.value?.title,
+    description: collection.value?.description ?? "",
+    ogTitle: collection.value?.title,
+    ogDescription: collection.value?.description ?? "",
+    ogImage: collection.value?.image?.url,
+  })
+);
 </script>
