@@ -395,14 +395,14 @@ const paginateNext = (cursor?: string) => {
     ...productSorting.value,
   });
 };
-console.log(collection.value);
-onResult(() =>
-  useSeoMeta({
-    title: collection.value?.title,
-    description: collection.value?.description ?? "",
-    ogTitle: collection.value?.title,
-    ogDescription: collection.value?.description ?? "",
-    ogImage: collection.value?.image?.url,
-  })
-);
+
+// onResult(() =>
+useSeoMeta({
+  title: collection.value?.title,
+  description: collection.value?.description ?? "",
+  ogTitle: collection.value?.title,
+  ogDescription: collection.value?.description ?? "",
+  ogImage: collection.value?.image?.url,
+});
+// );
 </script>

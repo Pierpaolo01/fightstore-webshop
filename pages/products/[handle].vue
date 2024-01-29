@@ -102,7 +102,7 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const { product, onResult } = useProduct(route.params.handle);
+const { product } = useProduct(route.params.handle);
 const { isAddingToCart, addToCart } = useAddOrUpdateCart();
 
 const quantity = ref(1);
@@ -165,17 +165,20 @@ watch(
 
     if (value.variants[0]?.selectedOptions[0]?.value === "Default Title")
       variantId.value = value.variants[0].id;
+
+    updateSeoMeta();
   },
   { deep: true, immediate: true }
 );
 
-onResult(() =>
+const updateSeoMeta = () =>
   useSeoMeta({
     title: product.value?.title,
     description: product.value?.description,
     ogTitle: product.value?.title,
     ogDescription: product.value?.description,
     ogImage: product.value?.images[0]?.url,
-  })
-);
+  });
+
+updateSeoMeta();
 </script>
