@@ -71,6 +71,13 @@
             variant="soft"
             title="Helaas is deze article/variant momenteel niet op voorraad"
           />
+          <UAlert
+            v-if="selectedVariant?.quantityAvailable < 5"
+            icon="i-heroicons-exclamation-circle"
+            color="orange"
+            variant="outline"
+            :title="`Let op! Nog maar ${selectedVariant?.quantityAvailable} op voorraad`"
+          />
           <ClientOnly>
             <div
               class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
@@ -106,16 +113,10 @@ const quantity = ref(1);
 
 const selectedOptions = ref<Record<string, string>[]>([]);
 const variantId = ref<string>();
+const selectedVariant = ref();
 
 const addToCartIsDisabled = computed(() => {
-  console.log(
-    product.value.variants.find((variant) => variant.id === variantId.value)
-  );
-  return (
-    !variantId.value ||
-    !product.value.variants.find((variant) => variant.id === variantId.value)
-      ?.availableForSale
-  );
+  return !variantId.value || !selectedVariant.value?.availableForSale;
 });
 
 function addOrUpdateOption(option: Record<string, string>) {
@@ -162,6 +163,9 @@ watch(
   selectedOptions.value,
   () => {
     variantId.value = findVariantId();
+    selectedVariant.value = product.value.variants.find(
+      (variant) => variant.id === variantId.value
+    );
   },
   { deep: true }
 );
