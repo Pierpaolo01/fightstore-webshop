@@ -72,7 +72,10 @@
             title="Helaas is deze article/variant momenteel niet op voorraad"
           />
           <UAlert
-            v-if="selectedVariant?.quantityAvailable < 5"
+            v-if="
+              selectedVariant?.quantityAvailable < 5 &&
+              selectedVariant?.quantityAvailable !== 0
+            "
             icon="i-heroicons-exclamation-circle"
             color="orange"
             variant="outline"
@@ -116,7 +119,10 @@ const variantId = ref<string>();
 const selectedVariant = ref();
 
 const addToCartIsDisabled = computed(() => {
-  return !variantId.value || !selectedVariant.value?.availableForSale;
+  return (
+    !variantId.value ||
+    !product.value.variants.find((variant) => variant.id === variantId.value)
+  );
 });
 
 function addOrUpdateOption(option: Record<string, string>) {
