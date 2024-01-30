@@ -233,7 +233,7 @@
           }"
         >
           <ProductCard
-            class="w-full h-[300px]"
+            class="card"
             v-for="product in collection.products"
             :key="product.id"
             :handle="product.handle"
@@ -413,3 +413,13 @@ watch(
   { deep: true, immediate: true }
 );
 </script>
+
+<style scoped>
+:deep(.card) {
+  @apply h-[350px] w-full;
+
+  @media tablet {
+    @apply h-[220px];
+  }
+}
+</style>

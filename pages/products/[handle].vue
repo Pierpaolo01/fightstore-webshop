@@ -71,21 +71,18 @@
             variant="soft"
             title="Helaas is deze article/variant momenteel niet op voorraad"
           />
-          <div
-            class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
-          >
-            <QuantitySelector v-model="quantity" />
-            <AddToCartButton
-              class="w-full"
-              :disabled="
-                !Boolean(variantId) ||
-                !product.variants.find((variant) => variant.id === variantId)
-                  ?.availableForSale
-              "
-              :isAddingToCart="isAddingToCart"
-              @click="addProductToCart()"
-            />
-          </div>
+          <ClientOnly>
+            <div
+              class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
+            >
+              <QuantitySelector v-model="quantity" />
+              <AddToCartButton
+                :isDisabled="addToCartIsDisabled"
+                :isAddingToCart="isAddingToCart"
+                @click="addProductToCart()"
+              />
+            </div>
+          </ClientOnly>
         </div>
       </UContainer>
     </div>
@@ -109,6 +106,17 @@ const quantity = ref(1);
 
 const selectedOptions = ref<Record<string, string>[]>([]);
 const variantId = ref<string>();
+
+const addToCartIsDisabled = computed(() => {
+  console.log(
+    product.value.variants.find((variant) => variant.id === variantId.value)
+  );
+  return (
+    !variantId.value ||
+    !product.value.variants.find((variant) => variant.id === variantId.value)
+      ?.availableForSale
+  );
+});
 
 function addOrUpdateOption(option: Record<string, string>) {
   const optionKey = Object.keys(option)[0];
