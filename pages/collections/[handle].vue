@@ -1,5 +1,5 @@
 <template>
-  <UContainer class="y-padding space-y-28" v-if="collection">
+  <UContainer class="y-padding laptop:space-y-20 space-y-12" v-if="collection">
     <div class="space-y-5">
       <h2>{{ collection.title }}</h2>
       <p>
@@ -8,7 +8,7 @@
     </div>
     <!-- TODO implemnent proper page load -->
     <div class="grid laptop:grid-cols-12" v-if="filters">
-      <div class="col-span-3 px-8 divide-y space-y-4 hidden laptop:block">
+      <div class="col-span-3 pr-6 divide-y space-y-4 hidden laptop:block">
         <FilterPrice
           v-model:activeFilters="activeFilters"
           :filters="filters"
@@ -233,7 +233,7 @@
           }"
         >
           <ProductCard
-            class="w-full"
+            class="w-full h-[300px]"
             v-for="product in collection.products"
             :key="product.id"
             :handle="product.handle"
@@ -243,6 +243,7 @@
           />
         </div>
         <Pagination
+          v-if="pageInfo.hasPreviousPage || pageInfo.hasNextPage"
           :pageInfo="pageInfo"
           @navigateNext="paginateNext($event)"
           @navigatePrevious="paginatePrev($event)"
@@ -259,12 +260,12 @@ import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 
 const productSearch = ref("");
-const productColumns = ref(3);
+const productColumns = ref(2);
 const activeFilters = ref<any[]>([]);
 
 const route = useRoute();
 
-const { result, refetch, onResult } = useQuery(CollectionQuery, {
+const { result, refetch } = useQuery(CollectionQuery, {
   handle: route.params.handle,
   filters: [] as any[],
   before: undefined as string | undefined,

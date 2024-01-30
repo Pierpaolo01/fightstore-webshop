@@ -36,7 +36,7 @@
       <Transition name="fade">
         <div
           v-if="currentNavItem"
-          class="hidden laptop:flex flex-wrap gap-4 items-start"
+          class="hidden laptop:flex flex-wrap gap-4 items-start pt-4"
         >
           <div
             class="min-w-[25%]"

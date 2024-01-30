@@ -10,7 +10,7 @@
           <li
             v-for="material in filterOptions"
             :key="material.value"
-            class="flex items-center justify-between w-full"
+            class="flex items-center justify-between w-full pr-2"
           >
             <div class="flex items-center space-x-2">
               <input

@@ -10,7 +10,11 @@
         @slideStart="isSliding = true"
         @slideEnd="isSliding = false"
       >
-        <VCSlide v-for="product in products" :key="product.id" class="px-4">
+        <VCSlide
+          v-for="product in products"
+          :key="product.id"
+          class="px-4 h-auto"
+        >
           <ProductCard
             :disabled="isSliding"
             :handle="product.handle"

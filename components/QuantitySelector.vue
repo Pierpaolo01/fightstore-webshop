@@ -9,7 +9,7 @@
     </button>
     <input
       type="number"
-      class="w-12 text-center border-t border-b border-gray-300 bg-white focus:outline-none font-medium text-base font-roboto"
+      class="w-12 text-center border-t border-b border-gray-300 bg-white focus:outline-none font-medium text-base font-roboto rounded-none"
       :disabled="disabled"
       :class="{ 'cursor-not-allowed': disabled }"
       v-model="innerValue"
