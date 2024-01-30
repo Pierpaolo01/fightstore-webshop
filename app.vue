@@ -23,6 +23,19 @@ useSeoMeta({
   twitterImage: "/hero-image.jpg",
   twitterCard: "summary",
 });
+
+useHead({
+  htmlAttrs: {
+    lang: "nl",
+  },
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/favicon.png",
+    },
+  ],
+});
 </script>
 
 <style>

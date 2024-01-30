@@ -172,7 +172,7 @@ const updateSeoMeta = () =>
     description: product.value?.description,
     ogTitle: product.value?.title,
     ogDescription: product.value?.description,
-    ogImage: "/logo.png",
+    ogImage: product.value?.images[0]?.url,
     twitterTitle: product.value?.title,
     twitterDescription: product.value?.description ?? "",
     twitterImage: product.value?.images[0]?.url,
