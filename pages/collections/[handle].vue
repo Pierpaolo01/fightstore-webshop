@@ -404,6 +404,10 @@ const updateSeoMeta = () =>
     ogTitle: collection.value?.title,
     ogDescription: collection.value?.description ?? "",
     ogImage: collection.value?.image?.url,
+    twitterTitle: collection.value?.title,
+    twitterDescription: collection.value?.description ?? "",
+    twitterImage: collection.value?.image?.url,
+    twitterCard: "summary",
   });
 
 updateSeoMeta();
