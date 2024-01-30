@@ -158,19 +158,6 @@ watch(
   { deep: true }
 );
 
-watch(
-  product,
-  (value) => {
-    if (!value) return;
-
-    if (value.variants[0]?.selectedOptions[0]?.value === "Default Title")
-      variantId.value = value.variants[0].id;
-
-    updateSeoMeta();
-  },
-  { deep: true, immediate: true }
-);
-
 const updateSeoMeta = () =>
   useSeoMeta({
     title: product.value?.title,
@@ -183,6 +170,19 @@ const updateSeoMeta = () =>
     twitterImage: product.value?.images[0]?.url,
     twitterCard: "summary",
   });
+
+watch(
+  product,
+  (value) => {
+    if (!value) return;
+
+    if (value.variants[0]?.selectedOptions[0]?.value === "Default Title")
+      variantId.value = value.variants[0].id;
+
+    updateSeoMeta();
+  },
+  { deep: true, immediate: true }
+);
 
 updateSeoMeta();
 </script>

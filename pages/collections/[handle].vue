@@ -322,18 +322,6 @@ watch(
   { deep: true }
 );
 
-watch(
-  result,
-  (value) => {
-    if (!value) return;
-
-    filters.value = value.collection.products.filters;
-    pageInfo.value = value.collection.products.pageInfo;
-    updateSeoMeta();
-  },
-  { deep: true, immediate: true }
-);
-
 const addActiveFilter = (filter) => {
   activeFilters.value.push(filter);
 };
@@ -411,4 +399,16 @@ const updateSeoMeta = () =>
   });
 
 updateSeoMeta();
+
+watch(
+  result,
+  (value) => {
+    if (!value) return;
+
+    filters.value = value.collection.products.filters;
+    pageInfo.value = value.collection.products.pageInfo;
+    updateSeoMeta();
+  },
+  { deep: true, immediate: true }
+);
 </script>
