@@ -55,14 +55,19 @@ type Collection = {
   };
 };
 
-const collections = computed<Collection[]>(() => {
-  if (!result.value) {
-    return [];
-  }
+const firstRowCollections = ref<Collection[]>([]);
+const secondRowCollections = ref<Collection[]>([]);
 
-  return result.value.collections.edges.map((edge) => edge.node);
-});
+watch(
+  result,
+  () => {
+    if (!result.value) return;
 
-const firstRowCollections = collections.value.slice(0, 3);
-const secondRowCollections = collections.value.slice(3, 5);
+    const collections = result.value.collections.edges.map((edge) => edge.node);
+
+    firstRowCollections.value = collections.slice(0, 3);
+    secondRowCollections.value = collections.slice(3, 5);
+  },
+  { deep: true, immediate: true }
+);
 </script>

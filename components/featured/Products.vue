@@ -100,3 +100,13 @@ const products = computed<Product[]>(() => {
   return result.value.collection.products.edges.map((edge) => edge.node);
 });
 </script>
+
+<style scoped>
+:deep(.carousel__slide) {
+  @apply h-[350px];
+
+  @media tablet {
+    @apply h-[220px];
+  }
+}
+</style>
