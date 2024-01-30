@@ -26,7 +26,7 @@ import { BlogQuery } from "~/graphql/blogQueries";
 
 const route = useRoute();
 
-const { result } = useQuery(BlogQuery, {
+const { result, onResult } = useQuery(BlogQuery, {
   handle: route.params.handle,
 });
 
@@ -37,9 +37,24 @@ const article = computed(() => {
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
-  // const options = { year: "numeric", month: "long", day: "numeric" };
+
   return date.toLocaleDateString("nl-NL");
 };
+
+const updateSeoMeta = () =>
+  useSeoMeta({
+    title: article.value?.title,
+    description: article.value?.description ?? "",
+    ogTitle: article.value?.title,
+    ogDescription: article.value?.description ?? "",
+    ogImage: article.value?.image?.url,
+  });
+
+onResult(() => {
+  updateSeoMeta();
+});
+
+updateSeoMeta();
 </script>
 
 <style scoped>

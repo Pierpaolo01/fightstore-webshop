@@ -329,6 +329,7 @@ watch(
 
     filters.value = value.collection.products.filters;
     pageInfo.value = value.collection.products.pageInfo;
+    updateSeoMeta();
   },
   { deep: true, immediate: true }
 );
@@ -396,13 +397,14 @@ const paginateNext = (cursor?: string) => {
   });
 };
 
-// onResult(() =>
-useSeoMeta({
-  title: collection.value?.title,
-  description: collection.value?.description ?? "",
-  ogTitle: collection.value?.title,
-  ogDescription: collection.value?.description ?? "",
-  ogImage: collection.value?.image?.url,
-});
-// );
+const updateSeoMeta = () =>
+  useSeoMeta({
+    title: collection.value?.title,
+    description: collection.value?.description ?? "",
+    ogTitle: collection.value?.title,
+    ogDescription: collection.value?.description ?? "",
+    ogImage: collection.value?.image?.url,
+  });
+
+updateSeoMeta();
 </script>
