@@ -2,7 +2,11 @@
   <div>
     <div class="bg-off-white y-padding" v-if="product">
       <UContainer class="grid tablet:grid-cols-2 gap-8">
-        <VCCarousel :itemsToShow="1" snapAlign="center">
+        <VCCarousel
+          :itemsToShow="1"
+          snapAlign="center"
+          v-if="product.images.length"
+        >
           <VCSlide
             v-for="image in product.images"
             :key="image.url"
@@ -16,7 +20,7 @@
             <VCNavigation v-if="slidesCount > 1" />
           </template>
         </VCCarousel>
-        <div class="space-y-8">
+        <div class="space-y-8 col-start-2">
           <div class="space-y-5">
             <h3>
               {{ product.title }}
@@ -184,11 +188,11 @@ const updateSeoMeta = () =>
     ogTitle: () => `${product.value?.title}`,
     ogDescription: () => `${product.value?.description}`,
     ogImage: () =>
-      `${product.value?.images ? product.value?.images[0].url : ""}`,
+      `${product.value?.images.length ? product.value?.images[0].url : ""}`,
     twitterTitle: () => `${product.value?.title}`,
     twitterDescription: () => `${product.value?.description ?? ""}`,
     twitterImage: () =>
-      `${product.value?.images ? product.value?.images[0].url : ""}`,
+      `${product.value?.images.length ? product.value?.images[0].url : ""}`,
     twitterCard: "summary",
   });
 
