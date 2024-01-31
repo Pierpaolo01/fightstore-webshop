@@ -4,6 +4,12 @@ import { GraphQLClient } from "graphql-request";
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
+  routeRules: {
+    "/": { prerender: true },
+    "/collections": { swr: true },
+    "/products/**": { swr: true },
+    "/blogs/**": { swr: true },
+  },
   hooks: {
     async "nitro:config"(nitroConfig) {
       const graphQLClient = new GraphQLClient(
