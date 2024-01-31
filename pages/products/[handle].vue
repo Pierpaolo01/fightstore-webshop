@@ -122,6 +122,7 @@ const addToCartIsDisabled = computed(() => {
   return (
     !variantId.value ||
     !product.value.variants.find((variant) => variant.id === variantId.value)
+      ?.availableForSale
   );
 });
 
