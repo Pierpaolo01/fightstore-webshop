@@ -224,5 +224,29 @@
         ]
       }
     ]
+  },
+  {
+    "title": "Voor sportscholen",
+    "sections": [
+      {
+        "title": "Bokszakken & Trap/Stootkussen ",
+        "items": [
+          { "title": "Bokszakken & benodigheden", "handle": "TODO" },
+          { "title": "Hand / Thai pads", "handle": "TODO" },
+          { "title": "Trapkussens", "handle": "TODO" },
+          { "title": "Buikbeschermers", "handle": "TODO" },
+          { "title": "Striking sticks / paddles", "handle": "TODO" }
+        ]
+      },
+      {
+        "title": "Sportchool benodigheden",
+        "items": [
+          { "title": "Matten & Vloeren", "handle": "TODO" },
+          { "title": "Kracht & Conditie training", "handle": "TODO" },
+          { "title": "Klokken & Timers", "handle": "TODO" },
+          { "title": "Overige benodigheden", "handle": "TODO" }
+        ]
+      }
+    ]
   }
 ]
