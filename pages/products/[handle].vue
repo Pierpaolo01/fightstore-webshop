@@ -184,11 +184,11 @@ const updateSeoMeta = () =>
     ogTitle: () => `${product.value?.title}`,
     ogDescription: () => `${product.value?.description}`,
     ogImage: () =>
-      `${product.value?.images?.length ? product.value?.images[0].url : ""}`,
+      `${product.value?.images ? product.value?.images[0].url : ""}`,
     twitterTitle: () => `${product.value?.title}`,
     twitterDescription: () => `${product.value?.description ?? ""}`,
     twitterImage: () =>
-      `${product.value?.images?.length ? product.value?.images[0].url : ""}`,
+      `${product.value?.images ? product.value?.images[0].url : ""}`,
     twitterCard: "summary",
   });
 

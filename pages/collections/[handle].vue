@@ -393,15 +393,11 @@ const updateSeoMeta = () =>
     ogTitle: () => `${collection.value?.title}`,
     ogDescription: () => `${collection.value?.description}`,
     ogImage: () =>
-      `${
-        collection.value?.images?.length ? collection.value?.images[0].url : ""
-      }`,
+      `${collection.value?.images ? collection.value?.images[0].url : ""}`,
     twitterTitle: () => `${collection.value?.title}`,
     twitterDescription: () => `${collection.value?.description ?? ""}`,
     twitterImage: () =>
-      `${
-        collection.value?.images?.length ? collection.value?.images[0].url : ""
-      }`,
+      `${collection.value?.images ? collection.value?.images[0].url : ""}`,
     twitterCard: "summary",
   });
 
