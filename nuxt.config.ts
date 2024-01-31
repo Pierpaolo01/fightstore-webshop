@@ -6,9 +6,9 @@ export default defineNuxtConfig({
   ssr: true,
   routeRules: {
     "/": { prerender: true },
-    "/collections": { swr: true },
-    "/products/**": { swr: true },
-    "/blogs/**": { swr: true },
+    "/collections": { swr: 3600 },
+    "/products/**": { swr: 60 },
+    "/blogs/**": { swr: 3600 },
   },
   hooks: {
     async "nitro:config"(nitroConfig) {
