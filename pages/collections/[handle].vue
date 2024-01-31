@@ -388,14 +388,20 @@ const paginateNext = (cursor?: string) => {
 
 const updateSeoMeta = () =>
   useSeoMeta({
-    title: collection.value?.title,
-    description: collection.value?.description ?? "",
-    ogTitle: collection.value?.title,
-    ogDescription: collection.value?.description ?? "",
-    ogImage: collection.value?.image?.url,
-    twitterTitle: collection.value?.title,
-    twitterDescription: collection.value?.description ?? "",
-    twitterImage: collection.value?.image?.url,
+    title: () => `${collection.value?.title}`,
+    description: () => `${collection.value?.description}`,
+    ogTitle: () => `${collection.value?.title}`,
+    ogDescription: () => `${collection.value?.description}`,
+    ogImage: () =>
+      `${
+        collection.value?.images?.length ? collection.value?.images[0].url : ""
+      }`,
+    twitterTitle: () => `${collection.value?.title}`,
+    twitterDescription: () => `${collection.value?.description ?? ""}`,
+    twitterImage: () =>
+      `${
+        collection.value?.images?.length ? collection.value?.images[0].url : ""
+      }`,
     twitterCard: "summary",
   });
 

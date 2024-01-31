@@ -43,14 +43,14 @@ const formatDate = (dateString) => {
 
 const updateSeoMeta = () =>
   useSeoMeta({
-    title: article.value?.title,
-    description: article.value?.description ?? "",
-    ogTitle: article.value?.title,
-    ogDescription: article.value?.description ?? "",
-    ogImage: article.value?.image?.url,
-    twitterTitle: article.value?.title,
-    twitterDescription: article.value?.description ?? "",
-    twitterImage: article.value?.image?.url,
+    title: () => `${article.value?.title}`,
+    description: () => `${article.value?.description}`,
+    ogTitle: () => `${article.value?.title}`,
+    ogDescription: () => `${article.value?.description}`,
+    ogImage: () => `${article.value?.image?.url}`,
+    twitterTitle: () => `${article.value?.title}`,
+    twitterDescription: () => `${article.value?.description ?? ""}`,
+    twitterImage: () => `${article.value?.image.url}`,
     twitterCard: "summary",
   });
 

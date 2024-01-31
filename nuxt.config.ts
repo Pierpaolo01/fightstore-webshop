@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   ssr: true,
   routeRules: {
     "/": { prerender: true },
-    "/collections": { swr: true },
+    "/collections/**": { swr: true },
     "/products/**": { swr: true },
     "/blogs/**": { swr: 3600 },
   },
