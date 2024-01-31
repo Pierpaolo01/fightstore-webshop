@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { prerender: true },
     "/collections": { swr: 3600 },
-    "/products/**": { swr: 60 },
+    "/products/**": { swr: true },
     "/blogs/**": { swr: 3600 },
   },
   hooks: {
