@@ -20,7 +20,7 @@
             <VCNavigation v-if="slidesCount > 1" />
           </template>
         </VCCarousel>
-        <div class="space-y-8 col-start-2">
+        <div class="space-y-8 tablet:col-start-2">
           <div class="space-y-5">
             <h3>
               {{ product.title }}
