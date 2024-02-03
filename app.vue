@@ -1,9 +1,13 @@
 <template>
-  <Navigation />
-  <div class="pt-[80px]">
-    <NuxtPage />
+  <div class="min-h-screen relative tablet:pb-[420px] pb-[600px]">
+    <Navigation />
+    <div class="pt-[80px]">
+      <NuxtPage />
+    </div>
+    <div>
+      <SectionFooter class="absolute bottom-0 w-full" />
+    </div>
   </div>
-  <SectionFooter />
 </template>
 
 <script setup lang="ts">

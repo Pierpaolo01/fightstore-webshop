@@ -29,8 +29,59 @@
       </UContainer>
     </div>
     <div class="bg-darker-white/15 p-8">
-      <UContainer class="flex justify-center items-center p-8 pb-8">
-        <img src="/logo.png" alt="store logo" class="max-w-[240px]" />
+      <UContainer
+        class="flex flex-col-reverse gap-4 tablet:gap-0 tablet:flex-row tablet:justify-between tablet:items-start p-8 pb-8"
+      >
+        <div class="flex flex-col tablet:flex-row gap-4 tablet:gap-8">
+          <div>
+            <h5 class="font-semibold text-lg mb-2">Policies</h5>
+            <ul class="space-y-1">
+              <li>
+                <NuxtLink class="hover:underline" to="/policies/privacy"
+                  >Privacybeleid</NuxtLink
+                >
+              </li>
+              <li>
+                <NuxtLink class="hover:underline" to="/policies/return"
+                  >Retourbeleid</NuxtLink
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h5 class="font-semibold text-lg mb-2">Contact</h5>
+            <ul class="space-y-1">
+              <li>
+                <p class="hover:underline" to="/policies/privacy">
+                  Tel Alemere:
+                  <a class="font-currency" href="tel:0641763393"
+                    >+31 6 41763393</a
+                  >
+                </p>
+              </li>
+              <li>
+                <p class="hover:underline">
+                  Tel Hilversum:
+                  <a class="font-currency" href="tel:0639735604"
+                    >+31 6 39735604</a
+                  >
+                </p>
+              </li>
+              <li>
+                <p class="hover:underline">
+                  Email:
+                  <a class="font-currency" href="mailto:info@fightstore036.nl"
+                    >info@fightstore036.nl</a
+                  >
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="">
+          <img src="/logo.png" alt="store logo" class="max-w-[240px]" />
+          <span class="text-xs font-light">© 2024 The Fightstore</span>
+        </div>
       </UContainer>
     </div>
   </div>
