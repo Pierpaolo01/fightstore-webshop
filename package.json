@@ -25,7 +25,6 @@
     "@vue/apollo-composable": "^4.0.0-beta.12",
     "graphql-request": "^6.1.0",
     "pinia": "^2.1.7",
-    "vue-hotjar-next": "^2.0.1",
     "vue3-carousel-nuxt": "^1.1.0"
   }
 }
