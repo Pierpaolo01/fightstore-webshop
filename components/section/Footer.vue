@@ -1,7 +1,8 @@
 <template>
   <div class="w-full">
-    <div class="bg-off-white p-8">
-      <UContainer>
+    <!-- TODO News letter out of scope for now -->
+    <!-- <div class="bg-off-white p-8">
+       <UContainer>
         <form
           @submit.prevent="submitNewsletter"
           class="flex flex-col items-center justify-center space-y-4 max-w-[300px] mx-auto"
@@ -27,7 +28,7 @@
           </button>
         </form>
       </UContainer>
-    </div>
+    </div> -->
     <div class="bg-darker-white/15 p-8">
       <UContainer
         class="flex flex-col-reverse gap-4 tablet:gap-0 tablet:flex-row tablet:justify-between tablet:items-start p-8 pb-8"
@@ -87,11 +88,11 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 //TODO Create newsletter signups
-const submitNewsletter = () => {
-  alert("You have subscribed to our newsletter!");
-};
+// const submitNewsletter = () => {
+//   alert("You have subscribed to our newsletter!");
+// };
 
-const email = ref("");
-</script>
+// const email = ref("");
+</script> -->
