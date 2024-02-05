@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-0 w-full bg-[#f7f7f7] z-50">
+  <div class="fixed top-0 w-full bg-white z-50">
     <UContainer @mouseleave="currentNavItem = undefined">
       <div class="flex justify-between items-center py-4">
         <div

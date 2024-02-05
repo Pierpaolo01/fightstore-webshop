@@ -32,13 +32,7 @@ useHead({
   htmlAttrs: {
     lang: "nl",
   },
-  link: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "/favico.png",
-    },
-  ],
+
   script: [
     {
       children: `(function(h,o,t,j,a,r){
