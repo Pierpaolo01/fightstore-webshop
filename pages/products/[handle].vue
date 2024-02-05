@@ -100,7 +100,8 @@
         </div>
       </UContainer>
     </div>
-    <FeaturedProducts />
+
+    <FeaturedProductsRecommendation :product-id="product.id" />
 
     <div class="bg-off-white">
       <UContainer>
