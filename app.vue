@@ -36,7 +36,7 @@ useHead({
     {
       rel: "icon",
       type: "image/png",
-      href: "/logo.png",
+      href: "/favico.ico",
     },
   ],
   script: [

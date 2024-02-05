@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-0 w-full bg-white z-50">
+  <div class="fixed top-0 w-full bg-[#f7f7f7] z-50">
     <UContainer @mouseleave="currentNavItem = undefined">
       <div class="flex justify-between items-center py-4">
         <div
@@ -39,12 +39,14 @@
           class="hidden laptop:flex flex-wrap gap-4 items-start pt-4"
         >
           <div
-            class="min-w-[25%]"
+            class="min-w-[30%]"
             v-for="section in currentNavItem.sections"
             :key="section.title"
           >
-            <div class="pb-6">
-              <h3 class="font-semibold mb-4">{{ section.title }}</h3>
+            <div class="pb-6 max-w-[400px]">
+              <h4 class="font-bold mb-4">
+                {{ section.title }}
+              </h4>
               <ul class="space-y-2 font-roboto">
                 <li v-for="item in section.items" :key="item.title">
                   <!-- TODO NuxtLink to :to="`/${item.handle}`" -->

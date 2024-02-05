@@ -15,11 +15,11 @@
     </div>
     <div class="flex justify-between space-x-2">
       <div class="font-roboto text-left">
-        <p class="font-bold">
+        <p class="font-bold uppercase">
           {{ title }}
         </p>
         <span class="font-medium text-left font-currency">
-          {{ minVariantPrice?.amount }}
+          {{ formattedCurrency }}
           {{ minVariantPrice?.currencyCode }}
         </span>
       </div>
@@ -37,7 +37,7 @@
 <script setup lang="ts">
 const isHovering = ref(false);
 
-defineProps({
+const props = defineProps({
   handle: {
     type: String,
     required: true,
@@ -62,6 +62,15 @@ defineProps({
     required: false,
     default: false,
   },
+});
+
+const formattedCurrency = computed(() => {
+  if (!process.client) return props.minVariantPrice.amount;
+
+  return new Intl.NumberFormat("nl-NL", {
+    style: "currency",
+    currency: props.minVariantPrice.currencyCode,
+  }).format(props.minVariantPrice.amount);
 });
 </script>
 

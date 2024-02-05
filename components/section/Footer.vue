@@ -54,7 +54,7 @@
             <ul class="space-y-1">
               <li>
                 <p class="hover:underline" to="/policies/privacy">
-                  Tel Alemere:
+                  Tel Almere:
                   <a class="font-currency" href="tel:0641763393"
                     >+31 6 41763393</a
                   >

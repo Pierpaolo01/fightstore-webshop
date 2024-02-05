@@ -229,7 +229,7 @@
     "title": "Voor sportscholen",
     "sections": [
       {
-        "title": "Bokszakken & Trap/Stootkussen ",
+        "title": "Bokszakken & kussen ",
         "items": [
           { "title": "Bokszakken & benodigheden", "handle": "TODO" },
           { "title": "Hand / Thai pads", "handle": "TODO" },
@@ -239,13 +239,17 @@
         ]
       },
       {
-        "title": "Sportchool benodigheden",
+        "title": "Sportschool benodigheden",
         "items": [
           { "title": "Matten & Vloeren", "handle": "TODO" },
           { "title": "Kracht & Conditie training", "handle": "TODO" },
           { "title": "Klokken & Timers", "handle": "TODO" },
           { "title": "Overige benodigheden", "handle": "TODO" }
         ]
+      },
+      {
+        "title": "Opmaat gemaakte Articelen",
+        "items": [{ "title": "Neem contact met ons op", "handle": "TODO" }]
       }
     ]
   }
