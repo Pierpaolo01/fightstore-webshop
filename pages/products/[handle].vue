@@ -86,22 +86,35 @@
             :title="`Let op! Nog maar ${selectedVariant?.quantityAvailable} op voorraad`"
           />
           <ClientOnly>
-            <div
-              class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
-            >
-              <QuantitySelector v-model="quantity" />
-              <AddToCartButton
-                :isDisabled="addToCartIsDisabled"
-                :isAddingToCart="isAddingToCart"
-                @click="addProductToCart()"
-              />
+            <div>
+              <p class="font-currency mb-4" v-if="selectedVariant">
+                {{
+                  new Intl.NumberFormat("nl-NL", {
+                    style: "currency",
+                    currency: "EUR",
+                  }).format(selectedVariant?.price.amount)
+                }}
+              </p>
+              <div
+                class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
+              >
+                <QuantitySelector v-model="quantity" />
+                <AddToCartButton
+                  :isDisabled="addToCartIsDisabled"
+                  :isAddingToCart="isAddingToCart"
+                  @click="addProductToCart()"
+                />
+              </div>
             </div>
           </ClientOnly>
         </div>
       </UContainer>
     </div>
 
-    <FeaturedProductsRecommendation :product-id="product.id" />
+    <FeaturedProductsRecommendation
+      v-if="product && product.id"
+      :product-id="product.id"
+    />
 
     <div class="bg-off-white">
       <UContainer>

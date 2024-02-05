@@ -20,6 +20,10 @@ export const GetProductQuery = gql`
         edges {
           node {
             id
+            price {
+              amount
+              currencyCode
+            }
             quantityAvailable
             availableForSale
             selectedOptions {
@@ -58,6 +62,10 @@ export type Product = {
   }[];
   variants: Array<{
     id: string;
+    price: {
+      amount: number;
+      currencyCode: string;
+    };
     quantityAvailable: number;
     availableForSale: boolean;
     selectedOptions: {
