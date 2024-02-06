@@ -33,9 +33,9 @@
 
   <div class="w-full h-[650px] relative bg-cover bg-center">
     <div class="gradient absolute w-full h-full">
+      <!--       :wrapAround="true"
+        :autoplay="6000" -->
       <VCCarousel
-        :wrapAround="true"
-        :autoplay="6000"
         :pauseAutoplayOnHover="true"
         @slideStart="isSliding = true"
         @slideEnd="isSliding = false"
@@ -50,28 +50,23 @@
                 Bezoek onze twee unieke locaties en ervaar de persoonlijke
                 service en expertise die onze winkels te bieden hebben. In elke
                 winkel vind je een uitgebreide selectie van onze producten, die
-                je kunt zien, voelen en uitproberen voordat je koopt. Ons
-                deskundige personeel staat klaar om je te adviseren en te helpen
-                bij het vinden van de perfecte uitrusting voor jouw behoeften.
-                Kom gezelig langs en bekijk de mogelijkheden. We kijken ernaar
-                uit je te verwelkomen!
+                je kunt zien, voelen en uitproberen voordat je koopt. Kom
+                gezelig langs en bekijk de mogelijkheden. We kijken ernaar uit
+                je te verwelkomen!
               </p>
             </div>
           </UContainer>
         </VCSlide>
 
         <VCSlide class="px-4 h-auto flex items-center justify-end">
-          <UContainer
-            class="y-padding z-20 text-white h-full w-full flex justify-between"
-          >
+          <UContainer class="slider-container y-padding">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.9887457544596!2d5.1701883783173255!3d52.22542227198549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c66b4c8b38450f%3A0xc75cd5427a0de481!2sTHE%20FIGHTSTORE%20035!5e0!3m2!1sen!2snl!4v1707224161795!5m2!1sen!2snl"
-              width="500"
-              height="382"
               style="border: 0"
               allowfullscreen="false"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
+              class="tablet:w-[500px] tablet:h-[382px] w-[250px] h-[191px]"
             ></iframe>
             <div class="max-w-[624px] space-y-4 bg-black/20 h-fit p-6 rounded">
               <h2 class="font-bold">Hilversum</h2>
@@ -82,18 +77,15 @@
           </UContainer>
         </VCSlide>
 
-        <VCSlide class="px-4 h-auto flex items-center justify-end">
-          <UContainer
-            class="y-padding z-20 text-white h-full w-full flex justify-between"
-          >
+        <VCSlide class="px-4 h-auto flex flex-col items-center">
+          <UContainer class="slider-container y-padding">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.016270876568!2d5.2130248783206925!3d52.37012497202233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c6171749778ed1%3A0xb0c46ac226e9364b!2sTHE%20FIGHTSTORE%20036!5e0!3m2!1sen!2snl!4v1707224630874!5m2!1sen!2snl"
-              width="500"
-              height="382"
               style="border: 0"
               allowfullscreen="false"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
+              class="tablet:w-[500px] tablet:h-[382px] w-[250px] h-[191px]"
             ></iframe>
             <div class="max-w-[624px] space-y-4 bg-black/20 h-fit p-6 rounded">
               <h2 class="font-bold">Almere</h2>
@@ -122,5 +114,11 @@ const isSliding = ref(false);
     url("/our-store.jpg");
   background-size: cover;
   background-position: center;
+}
+</style>
+
+<style scoped>
+.slider-container {
+  @apply z-20 text-white h-full w-full flex flex-col items-center justify-between tablet:flex-row gap-6;
 }
 </style>
