@@ -33,10 +33,10 @@
 
   <div class="w-full h-[650px] relative bg-cover bg-center">
     <div class="gradient absolute w-full h-full">
-      <!-- :autoplay="8000"
-        :pauseAutoplayOnHover="true" -->
       <VCCarousel
         :wrapAround="true"
+        :autoplay="6000"
+        :pauseAutoplayOnHover="true"
         @slideStart="isSliding = true"
         @slideEnd="isSliding = false"
       >
