@@ -32,7 +32,6 @@
           <Cart />
         </div>
       </div>
-      <!-- Submenu -->
       <Transition name="fade">
         <div
           v-if="currentNavItem"

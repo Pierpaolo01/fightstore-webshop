@@ -76,6 +76,20 @@
             "handle": "TODO"
           }
         ]
+      },
+      {
+        "title": "Bokszakken & kussen",
+        "items": [
+          { "title": "Bokszakken & benodigheden", "handle": "TODO" },
+          { "title": "Hand / Thai pads", "handle": "TODO" },
+          { "title": "Trapkussens", "handle": "TODO" },
+          { "title": "Buikbeschermers", "handle": "TODO" },
+          { "title": "Striking sticks / paddles", "handle": "TODO" }
+        ]
+      },
+      {
+        "title": "Fitness materiaal",
+        "items": [{ "title": "Bekijk assortiment", "handle": "TODO" }]
       }
     ]
   },
@@ -229,7 +243,7 @@
     "title": "Voor sportscholen",
     "sections": [
       {
-        "title": "Bokszakken & kussen ",
+        "title": "Bokszakken & kussen",
         "items": [
           { "title": "Bokszakken & benodigheden", "handle": "TODO" },
           { "title": "Hand / Thai pads", "handle": "TODO" },

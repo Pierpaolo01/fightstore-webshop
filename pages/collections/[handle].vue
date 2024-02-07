@@ -6,7 +6,6 @@
         {{ collection.description }}
       </p>
     </div>
-    <!-- TODO implemnent proper page load -->
     <div class="grid laptop:grid-cols-12" v-if="filters">
       <div class="col-span-3 pr-6 divide-y space-y-4 hidden laptop:block">
         <FilterPrice

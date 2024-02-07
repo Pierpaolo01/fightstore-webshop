@@ -33,10 +33,10 @@
 
   <div class="w-full h-[650px] relative bg-cover bg-center">
     <div class="gradient absolute w-full h-full">
-      <!--       :wrapAround="true"
-        :autoplay="6000" -->
       <VCCarousel
         :pauseAutoplayOnHover="true"
+        :wrapAround="true"
+        :autoplay="6000"
         @slideStart="isSliding = true"
         @slideEnd="isSliding = false"
       >
@@ -111,7 +111,7 @@ const isSliding = ref(false);
       rgba(255, 255, 255, 0) 0%,
       rgba(0, 0, 0, 0.7) 100%
     ),
-    url("/our-store.jpg");
+    url("/our-store.jpeg");
   background-size: cover;
   background-position: center;
 }

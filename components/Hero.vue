@@ -16,7 +16,9 @@
             met een groep, of je voorbereidt op een gevecht, wij zorgen dat je
             het beste uit jezelf haalt
           </p>
-          <Button label="Ontdek Onze Lessen" />
+          <NuxtLink to="personal-training">
+            <Button label="Ontdek Onze Lessen" />
+          </NuxtLink>
         </div>
       </div>
     </UContainer>
