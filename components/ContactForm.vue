@@ -1,48 +1,143 @@
 <template>
-  <UForm
-    :state="state"
-    class="space-y-4 max-w-[450px] mx-auto y-padding"
-    @submit="onSubmit"
+  <form
+    ref="form"
+    @submit.prevent="sendEmail"
+    class="max-w-lg mx-auto p-8 rounded-lg"
   >
-    <UFormGroup label="Name" name="name">
+    <div class="mb-4">
+      <h3>Neem contact op</h3>
+      <p>Wij doen ons best om jouw vragen te beantworden</p>
+    </div>
+    <div class="mb-4">
+      <label for="from_name" class="block text-gray-700 text-sm font-bold mb-2">
+        Naam *
+      </label>
       <input
         type="text"
-        placeholder="Jouw naam"
-        class="border border-gray-300 rounded px-2 py-1 focus:outline-none w-full"
+        name="from_name"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        v-model="formName"
       />
-    </UFormGroup>
-
-    <UFormGroup label="Email" name="email" required>
+      <div v-if="formNameError" class="text-red-600">
+        Naam veld is verplicht
+      </div>
+    </div>
+    <div class="mb-4">
+      <label
+        for="from_email"
+        class="block text-gray-700 text-sm font-bold mb-2"
+      >
+        Email *
+      </label>
       <input
         type="email"
-        placeholder="Jouw email"
-        class="border border-gray-300 rounded px-2 py-1 focus:outline-none w-full"
+        name="from_email"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        v-model="formEmail"
       />
-    </UFormGroup>
-
-    <UFormGroup label="Description" name="description" required>
+      <div v-if="formEmailError" class="text-red-600">
+        Email veld is verplicht
+      </div>
+    </div>
+    <div class="mb-6">
+      <label for="message" class="block text-gray-700 text-sm font-bold mb-2">
+        Toelichting
+      </label>
       <textarea
-        type="email"
-        placeholder="Toelichting"
-        class="border border-gray-300 rounded px-2 py-1 focus:outline-none w-full"
-      />
-    </UFormGroup>
+        name="message"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        rows="3"
+      ></textarea>
+    </div>
+    <div class="flex items-center justify-between">
+      <button
+        type="submit"
+        class="bg-green-500 font-roboto hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-center gap-2"
+        :class="{ 'cursor-not-allowed opacity-70': loading }"
+        :disabled="loading"
+      >
+        <IconLoading v-if="loading" class="animate-spin" />
+        Verstuur
+      </button>
 
-    <Button type="submit" variant="outlined" color="black" class="w-full">
-      Verstuur
-    </Button>
-  </UForm>
+      <div v-if="success" class="text-green-500">
+        Bericht succesvol verzonden!
+      </div>
+      <div v-if="failure" class="text-red-500">
+        Verzenden mislukt. Probeer het opnieuw.
+      </div>
+    </div>
+  </form>
 </template>
 
 <script setup lang="ts">
-import type { FormSubmitEvent } from "@nuxt/ui/dist/runtime/types";
+import { ref, onMounted } from "vue";
+import { init, sendForm } from "@emailjs/browser";
 
-const state = reactive({
-  email: undefined,
-  password: undefined,
+const config = useRuntimeConfig();
+
+onMounted(() => {
+  init(config.public.EMAILJS_PUBLIC_KEY);
 });
 
-const onSubmit = async (event: FormSubmitEvent<any>) => {
-  alert(event.data);
+const form = ref<HTMLFormElement>();
+const loading = ref(false);
+const success = ref(false);
+const failure = ref(false);
+const formName = ref("");
+const formNameError = ref(false);
+const formEmail = ref("");
+const formEmailError = ref(false);
+
+const sendEmail = () => {
+  if (!formName.value) {
+    formNameError.value = true;
+
+    setTimeout(() => {
+      formNameError.value = false;
+    }, 3000);
+  }
+
+  if (!formEmail.value) {
+    formEmailError.value = true;
+
+    setTimeout(() => {
+      formEmailError.value = false;
+    }, 3000);
+  }
+
+  if (!formName.value || !formEmail.value) {
+    return;
+  }
+
+  loading.value = true;
+  success.value = false;
+  failure.value = false;
+
+  sendForm(
+    config.public.EMAILJS_SERVICE_ID,
+    config.public.EMAILJS_TEMPLATE_ID,
+    form.value ?? ""
+  )
+    .then(
+      () => {
+        success.value = true;
+        form.value?.reset();
+
+        setTimeout(() => {
+          success.value = false;
+        }, 5000);
+      },
+      (error) => {
+        failure.value = true;
+
+        setTimeout(() => {
+          failure.value = false;
+        }, 5000);
+      }
+    )
+    .finally(() => {
+      loading.value = false;
+    });
 };
 </script>
