@@ -1,7 +1,7 @@
 <template>
   <UContainer class="y-padding laptop:space-y-20 space-y-12">
     <div
-      class="w-full h-[360px] flex relative justify-center items-center shadow-lg rounded-md overflow-hidden"
+      class="w-full py-12 flex relative justify-center items-center shadow-lg rounded-md overflow-hidden"
     >
       <img
         src="/personal-training.jpeg"
@@ -27,7 +27,7 @@
         </div>
       </UContainer>
     </div>
-    <div class="grid gap-4 laptop:grid-cols-3">
+    <div class="grid gap-y-12 laptop:gap-4 laptop:grid-cols-3">
       <div class="card-container">
         <div>
           <img
