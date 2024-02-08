@@ -117,9 +117,9 @@
     />
 
     <div class="bg-off-white">
-      <UContainer>
+      <UContainer class="y-padding">
         <ClientOnly>
-          <ContactForm />
+          <ContactForm class="mx-auto" />
         </ClientOnly>
       </UContainer>
     </div>

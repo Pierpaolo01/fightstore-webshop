@@ -1,9 +1,5 @@
 <template>
-  <form
-    ref="form"
-    @submit.prevent="sendEmail"
-    class="max-w-lg mx-auto p-8 rounded-lg"
-  >
+  <form ref="form" @submit.prevent="sendEmail" class="max-w-lg rounded-lg">
     <div class="mb-4">
       <h3>Neem contact op</h3>
       <p>Wij doen ons best om jouw vragen te beantworden</p>
