@@ -391,10 +391,12 @@ const updateSeoMeta = () =>
     description: () => `${collection.value?.description}`,
     ogTitle: () => `${collection.value?.title}`,
     ogDescription: () => `${collection.value?.description}`,
-    ogImage: () => `${collection.value?.image.url}`,
+    ogImage: () =>
+      `${collection.value?.image ? collection.value.image.url : ""}`,
     twitterTitle: () => `${collection.value?.title}`,
     twitterDescription: () => `${collection.value?.description ?? ""}`,
-    twitterImage: () => `${collection.value?.image.url}`,
+    twitterImage: () =>
+      `${collection.value?.image ? collection.value.image.url : ""}`,
     twitterCard: "summary",
   });
 
