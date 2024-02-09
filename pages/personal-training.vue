@@ -194,17 +194,14 @@ useSeoMeta({
             afgestemd op jouw unieke fitnessdoelen, van afvallen tot
             wedstrijdklaar worden. Leer de basis van kickboksen en boksen, bouw
             spiermassa op, en bereik de topvorm die je altijd al wilde.`,
-  ogUrl:
-    config.public.NODE_ENV === "dev"
-      ? "https://fightstore-webshop.pages.dev"
-      : "https://thefightstore.nl",
-  ogImage: "/personal-training.jpeg",
+  ogUrl: "https://thefightstore.nl",
+  ogImage: "/_nuxt/personal-training.jpeg",
   twitterTitle: "Personal training",
   twitterDescription: `Ontdek onze persoonlijke en kleine groepstrainingen, perfect
             afgestemd op jouw unieke fitnessdoelen, van afvallen tot
             wedstrijdklaar worden. Leer de basis van kickboksen en boksen, bouw
             spiermassa op, en bereik de topvorm die je altijd al wilde.`,
-  twitterImage: "/personal-training.jpeg",
+  twitterImage: "/_nuxt/personal-training.jpeg",
   twitterCard: "summary",
 });
 </script>
