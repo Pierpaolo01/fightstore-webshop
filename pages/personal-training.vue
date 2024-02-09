@@ -7,13 +7,13 @@
       <UContainer class="text-white z-40">
         <div class="space-y-5">
           <h2>Personal training</h2>
-          <p>
+          <p class="font-semibold">
             Ontdek onze persoonlijke en kleine groepstrainingen, perfect
             afgestemd op jouw unieke fitnessdoelen, van afvallen tot
             wedstrijdklaar worden. Leer de basis van kickboksen en boksen, bouw
             spiermassa op, en bereik de topvorm die je altijd al wilde.
           </p>
-          <ul>
+          <ul class="font-semibold">
             <li>Volledig gepersonaliseerd programma</li>
             <li>Eén-op-één begeleiding</li>
             <li>Flexibele planning naar jouw beschikbaarheid</li>
@@ -40,7 +40,7 @@
           <p>
             Ontdek de kracht van maatwerk met onze Personal Training. Of je nu
             spiermassa wilt opbouwen, afvallen, of simpelweg fitter wilt worden,
-            onze experts stellen een programma samen dat perfect bij jou past.
+            wij stellen een programma samen dat perfect bij jou past.
           </p>
           <ul>
             <li>Wedstrijdspecifieke training</li>
