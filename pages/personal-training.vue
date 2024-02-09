@@ -49,7 +49,9 @@
             <li>Mentale weerbaarheidstraining</li>
           </ul>
         </div>
-        <button class="learn-more-button">Ik wil meer weten!</button>
+        <NuxtLink to="#contact-us">
+          <button class="learn-more-button">Ik wil meer weten!</button>
+        </NuxtLink>
       </div>
       <div class="card-container">
         <div>
@@ -73,7 +75,9 @@
             <li>Mentale weerbaarheidstraining</li>
           </ul>
         </div>
-        <button class="learn-more-button">Ik wil meer weten!</button>
+        <NuxtLink to="#contact-us">
+          <button class="learn-more-button">Ik wil meer weten!</button>
+        </NuxtLink>
       </div>
       <div class="card-container">
         <div>
@@ -98,10 +102,12 @@
             <li>Toegankelijk voor alle niveaus</li>
           </ul>
         </div>
-        <button class="learn-more-button">Ik wil meer weten!</button>
+        <NuxtLink to="#contact-us">
+          <button class="learn-more-button">Ik wil meer weten!</button>
+        </NuxtLink>
       </div>
     </div>
-    <div class="grid laptop:grid-cols-2">
+    <div class="grid laptop:grid-cols-2 y-padding" id="contact-us">
       <div>
         <ContactForm class="w-full" />
       </div>
@@ -175,6 +181,8 @@
 </template>
 
 <script setup lang="ts">
+const config = useRuntimeConfig();
+
 useSeoMeta({
   title: "Personal training",
   description: `Ontdek onze persoonlijke en kleine groepstrainingen, perfect
@@ -186,6 +194,10 @@ useSeoMeta({
             afgestemd op jouw unieke fitnessdoelen, van afvallen tot
             wedstrijdklaar worden. Leer de basis van kickboksen en boksen, bouw
             spiermassa op, en bereik de topvorm die je altijd al wilde.`,
+  ogUrl:
+    config.public.NODE_ENV === "dev"
+      ? "https://fightstore-webshop.pages.dev"
+      : "https://thefightstore.nl",
   ogImage: "/personal-training.jpeg",
   twitterTitle: "Personal training",
   twitterDescription: `Ontdek onze persoonlijke en kleine groepstrainingen, perfect

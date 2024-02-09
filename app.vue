@@ -11,16 +11,20 @@
 </template>
 
 <script setup lang="ts">
+const config = useRuntimeConfig();
+
 useSeoMeta({
   title: "The FightStore",
   description:
     "Wij zijn een vechtsport winkel voor al jouw vechtsportartikelen en voedingssupplementen. Wij zijn een shop in shop samen met The Fightstudio, een personal training studio",
   ogTitle: "The FightStore",
-  ogUrl: "https://thefightstore.nl",
+  ogUrl:
+    config.public.NODE_ENV === "dev"
+      ? "https://fightstore-webshop.pages.dev"
+      : "https://thefightstore.nl",
   ogDescription:
     "Wij zijn een vechtsport winkel voor al jouw vechtsportartikelen en voedingssupplementen. Wij zijn een shop in shop samen met The Fightstudio, een personal training studio",
   ogImage: "/hero-image.jpg",
-
   twitterTitle: "The FightStore",
   twitterDescription:
     "Wij zijn een vechtsport winkel voor al jouw vechtsportartikelen en voedingssupplementen. Wij zijn een shop in shop samen met The Fightstudio, een personal training studio",
