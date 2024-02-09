@@ -7,19 +7,15 @@
         "items": [
           {
             "title": "(Kick)bokshandschoenen",
-            "handle": "TODO"
+            "handle": "/collections/kickbokshandschoenen"
           },
           {
             "title": "MMA handschoenen",
-            "handle": "TODO"
+            "handle": "/collections/mma-handschoenen"
           },
           {
             "title": "Bandages",
-            "handle": "TODO"
-          },
-          {
-            "title": "Handschoen accessoires",
-            "handle": "TODO"
+            "handle": "/collections/bandages"
           }
         ]
       },
@@ -28,27 +24,23 @@
         "items": [
           {
             "title": "Scheenbeschermers",
-            "handle": "TODO"
+            "handle": "/collections/scheenbeschermers"
           },
           {
             "title": "Kniebeschermers",
-            "handle": "TODO"
+            "handle": "/collections/kniebeschermers"
           },
           {
             "title": "Hoofdbeschermers",
-            "handle": "TODO"
+            "handle": "/collections/hoofdbeschermers"
           },
           {
             "title": "Bitjes",
-            "handle": "TODO"
-          },
-          {
-            "title": "Binnenhandschoenen",
-            "handle": "TODO"
+            "handle": "/collections/bitjes"
           },
           {
             "title": "Tok / Kruisbeschermers",
-            "handle": "TODO"
+            "handle": "/collections/tok-kruisbeschermers"
           }
         ]
       },
@@ -56,40 +48,45 @@
         "title": "Fightshorts",
         "items": [
           {
-            "title": "Kickboks broekjes",
-            "handle": "TODO"
+            "title": "(Kick)boks broekjes",
+            "handle": "/collections/kickboks-broekjes"
           },
           {
             "title": "MMA Broekjes",
-            "handle": "TODO"
-          },
-          {
-            "title": "Boks broekjes",
-            "handle": "TODO"
-          },
-          {
-            "title": "Trainingsbroeken",
-            "handle": "TODO"
+            "handle": "/collections/mma-broekjes"
           },
           {
             "title": "Trainings T-Shirts",
-            "handle": "TODO"
+            "handle": "/collections/trainings-t-shirts"
           }
         ]
       },
       {
         "title": "Bokszakken & kussen",
         "items": [
-          { "title": "Bokszakken & benodigheden", "handle": "TODO" },
-          { "title": "Hand / Thai pads", "handle": "TODO" },
-          { "title": "Trapkussens", "handle": "TODO" },
-          { "title": "Buikbeschermers", "handle": "TODO" },
-          { "title": "Striking sticks / paddles", "handle": "TODO" }
+          {
+            "title": "Bokszakken & benodigheden",
+            "handle": "/collections/bokszakken"
+          },
+          {
+            "title": "Hand / Thai pads & Trapkussens",
+            "handle": "/collections/hand-thai-pads-trapkussen"
+          },
+          { "title": "Buikbeschermers", "handle": "/collections/TODO" },
+          {
+            "title": "Striking sticks / paddles",
+            "handle": "/collections/TODO"
+          }
         ]
       },
       {
         "title": "Fitness materiaal",
-        "items": [{ "title": "Bekijk assortiment", "handle": "TODO" }]
+        "items": [
+          {
+            "title": "Bekijk assortiment",
+            "handle": "/collections/fitness-matriaal"
+          }
+        ]
       }
     ]
   },
@@ -101,19 +98,11 @@
         "items": [
           {
             "title": "(Kick)bokshandschoenen",
-            "handle": "TODO"
-          },
-          {
-            "title": "MMA handschoenen",
-            "handle": "TODO"
+            "handle": "/collections/kids-handschoenen"
           },
           {
             "title": "Bandages",
-            "handle": "TODO"
-          },
-          {
-            "title": "Handschoen accessoires",
-            "handle": "TODO"
+            "handle": "/collections/bandages"
           }
         ]
       },
@@ -122,27 +111,19 @@
         "items": [
           {
             "title": "Scheenbeschermers",
-            "handle": "TODO"
-          },
-          {
-            "title": "Kniebeschermers",
-            "handle": "TODO"
+            "handle": "/collections/kids-scheenbeschermers"
           },
           {
             "title": "Hoofdbeschermers",
-            "handle": "TODO"
+            "handle": "/collections/hoofdbeschermers"
           },
           {
             "title": "Bitjes",
-            "handle": "TODO"
-          },
-          {
-            "title": "Binnenhandschoenen",
-            "handle": "TODO"
+            "handle": "/collections/bitjes"
           },
           {
             "title": "Tok / Kruisbeschermers",
-            "handle": "TODO"
+            "handle": "/collections/tok-kruisbeschermers"
           }
         ]
       },
@@ -151,48 +132,12 @@
         "items": [
           {
             "title": "Kickboks broekjes",
-            "handle": "TODO"
-          },
-          {
-            "title": "MMA Broekjes",
-            "handle": "TODO"
-          },
-          {
-            "title": "Boks broekjes",
-            "handle": "TODO"
-          },
-          {
-            "title": "Trainingsbroeken",
-            "handle": "TODO"
+            "handle": "/collections/kids-broekjes"
           },
           {
             "title": "Trainings T-Shirts",
-            "handle": "TODO"
+            "handle": "/collections/trainings-t-shirts-1"
           }
-        ]
-      }
-    ]
-  },
-  {
-    "title": "Kleding",
-    "sections": [
-      {
-        "title": "Broekjes",
-        "items": [
-          { "title": "Kickboks broekjes", "handle": "TODO" },
-          { "title": "MMA Broekjes", "handle": "TODO" },
-          { "title": "Boks broekjes", "handle": "TODO" },
-          { "title": "Trainingsbroeken", "handle": "TODO" },
-          { "title": "Trainings T-Shirts", "handle": "TODO" }
-        ]
-      },
-      {
-        "title": "Tops",
-        "items": [
-          { "title": "T-Shirts", "handle": "TODO" },
-          { "title": "Compressie T-Shirts", "handle": "TODO" },
-          { "title": "Trainings T-Shirts", "handle": "TODO" },
-          { "title": "Trainingspakken", "handle": "TODO" }
         ]
       }
     ]
@@ -203,38 +148,50 @@
       {
         "title": "Eiwitten",
         "items": [
-          { "title": "Whey Protein", "handle": "TODO" },
-          { "title": "Nacht Protein", "handle": "TODO" },
-          { "title": "Vegan Protein", "handle": "TODO" },
-          { "title": "Lactose Vrije Protein", "handle": "TODO" }
+          { "title": "Whey Protein", "handle": "/collections/whey-protein" }
         ]
       },
       {
         "title": "Creatine",
-        "items": [{ "title": "Bekijk assortiment", "handle": "TODO" }]
+        "items": [
+          { "title": "Bekijk assortiment", "handle": "/collections/creatine" }
+        ]
       },
       {
         "title": "Amino’s",
-        "items": [{ "title": "Bekijk assortiment", "handle": "TODO" }]
+        "items": [
+          { "title": "Bekijk assortiment", "handle": "/collections/amino-s" }
+        ]
       },
       {
         "title": "Pre-workouts",
         "items": [
-          { "title": "Zacht", "handle": "TODO" },
-          { "title": "Medium", "handle": "TODO" },
-          { "title": "Extreem", "handle": "TODO" }
+          {
+            "title": "Bekijk assortiment",
+            "handle": "/collections/pre-workouts"
+          }
         ]
       },
       {
         "title": "Mass gainers",
-        "items": [{ "title": "Bekijk assortiment", "handle": "TODO" }]
+        "items": [
+          {
+            "title": "Bekijk assortiment",
+            "handle": "/collections/mass-gainers"
+          }
+        ]
       },
       {
         "title": "Vitamines & gezondheid",
         "items": [
-          { "title": "Testosterone boosters", "handle": "TODO" },
-          { "title": "Vitamines", "handle": "TODO" },
-          { "title": "Fat Burners", "handle": "TODO" }
+          {
+            "title": "Testosterone boosters",
+            "handle": "/collections/testosterone-boosters"
+          },
+          {
+            "title": "Vitamines & Fat burners",
+            "handle": "/collections/vitamines-fat-burners"
+          }
         ]
       }
     ]
@@ -245,25 +202,24 @@
       {
         "title": "Bokszakken & kussen",
         "items": [
-          { "title": "Bokszakken & benodigheden", "handle": "TODO" },
-          { "title": "Hand / Thai pads", "handle": "TODO" },
-          { "title": "Trapkussens", "handle": "TODO" },
-          { "title": "Buikbeschermers", "handle": "TODO" },
-          { "title": "Striking sticks / paddles", "handle": "TODO" }
-        ]
-      },
-      {
-        "title": "Sportschool benodigheden",
-        "items": [
-          { "title": "Matten & Vloeren", "handle": "TODO" },
-          { "title": "Kracht & Conditie training", "handle": "TODO" },
-          { "title": "Klokken & Timers", "handle": "TODO" },
-          { "title": "Overige benodigheden", "handle": "TODO" }
+          {
+            "title": "Bokszakken & benodigheden",
+            "handle": "/collections/bokszakken"
+          },
+          {
+            "title": "Hand / Thai pads & Trapkussens",
+            "handle": "/collections/hand-thai-pads-trapkussen"
+          }
         ]
       },
       {
         "title": "Opmaat gemaakte Articelen",
-        "items": [{ "title": "Neem contact met ons op", "handle": "TODO" }]
+        "items": [
+          {
+            "title": "Neem contact met ons op",
+            "handle": "/#contact-us"
+          }
+        ]
       }
     ]
   }

@@ -55,9 +55,9 @@
               <ul class="space-y-2 font-roboto">
                 <li v-for="item in section.items" :key="item.title">
                   <!-- TODO NuxtLink to :to="`/${item.handle}`" -->
-                  <span class="nav-link w-fit">
+                  <NuxtLink class="nav-link w-fit" :to="item.handle">
                     {{ item.title }}
-                  </span>
+                  </NuxtLink>
                 </li>
               </ul>
             </div>

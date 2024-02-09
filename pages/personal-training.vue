@@ -32,7 +32,7 @@
           />
 
           <h4 class="card-title">PERSONAL TRAININGEN</h4>
-          <p class="font-currency font-normal mb-2">50 incl BTW</p>
+          <p class="font-currency font-normal mb-2">65 incl BTW per les</p>
           <p class="font-bold mb-4">
             Ideaal voor iedereen die een op maat gemaakte aanpak zoekt om
             persoonlijke fitnessdoelen te bereiken.
@@ -58,7 +58,7 @@
           <img src="/fight-ready.avif" alt="" class="selection-image" />
 
           <h4 class="card-title">GET FIGHT READY</h4>
-          <p class="font-currency font-normal mb-2">50 incl BTW</p>
+          <p class="font-currency font-normal mb-2">65 incl BTW per les</p>
           <p class="font-bold mb-4">
             Perfect voor vechtsporters die zich optimaal willen voorbereiden op
             hun volgende competitie of wedstrijd.
