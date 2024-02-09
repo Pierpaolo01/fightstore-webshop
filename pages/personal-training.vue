@@ -194,7 +194,6 @@ useSeoMeta({
             afgestemd op jouw unieke fitnessdoelen, van afvallen tot
             wedstrijdklaar worden. Leer de basis van kickboksen en boksen, bouw
             spiermassa op, en bereik de topvorm die je altijd al wilde.`,
-  ogUrl: "https://thefightstore.nl",
   ogImage: "/_nuxt/personal-training.jpeg",
   twitterTitle: "Personal training",
   twitterDescription: `Ontdek onze persoonlijke en kleine groepstrainingen, perfect

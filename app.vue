@@ -18,7 +18,6 @@ useSeoMeta({
   description:
     "Wij zijn een vechtsport winkel voor al jouw vechtsportartikelen en voedingssupplementen. Wij zijn een shop in shop samen met The Fightstudio, een personal training studio",
   ogTitle: "The FightStore",
-  ogUrl: "https://thefightstore.nl",
   ogDescription:
     "Wij zijn een vechtsport winkel voor al jouw vechtsportartikelen en voedingssupplementen. Wij zijn een shop in shop samen met The Fightstudio, een personal training studio",
   ogImage: "/_nuxt/hero-image.jpg",
