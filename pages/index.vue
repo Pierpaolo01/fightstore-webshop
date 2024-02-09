@@ -4,6 +4,9 @@
   <FeaturedProducts />
   <SectionAboutUs />
   <SectionBlog />
+  <UContainer>
+    <SectionContactUs />
+  </UContainer>
 </template>
 
 <script setup lang="ts">
