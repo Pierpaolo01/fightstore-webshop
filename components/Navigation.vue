@@ -35,8 +35,14 @@
       <Transition name="fade">
         <div
           v-if="currentNavItem"
-          class="hidden laptop:flex flex-wrap gap-4 items-start pt-4"
+          class="hidden laptop:flex flex-wrap gap-4 items-start pt-6 relative"
         >
+          <button
+            class="absolute top-0 right-0 hover:bg-slate-200 rounded-md"
+            @click="currentNavItem = undefined"
+          >
+            <IconClose />
+          </button>
           <div
             class="min-w-[30%]"
             v-for="section in currentNavItem.sections"

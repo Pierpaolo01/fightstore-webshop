@@ -3,11 +3,6 @@
     <div
       class="w-full py-12 flex relative justify-center items-center shadow-lg rounded-md overflow-hidden"
     >
-      <img
-        src="/personal-training.jpeg"
-        alt="hero image"
-        class="absolute h-full w-full object-cover z-10"
-      />
       <div class="absolute w-full h-full z-20 gradient"></div>
       <UContainer class="text-white z-40">
         <div class="space-y-5">
