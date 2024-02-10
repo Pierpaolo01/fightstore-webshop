@@ -1,5 +1,8 @@
 <template>
-  <div class="fixed top-0 w-full bg-white z-50">
+  <div
+    class="fixed top-0 w-full bg-white z-50 shadow-lg"
+    :class="{ ' shadow-2xl': currentNavItem }"
+  >
     <UContainer @mouseleave="currentNavItem = undefined">
       <div class="flex justify-between items-center py-4">
         <div

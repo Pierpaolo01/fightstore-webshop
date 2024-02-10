@@ -24,7 +24,6 @@
         <div v-if="cartDetail" class="h-full w-full space-y-12 relative">
           <h2>Jouw winkelwagen</h2>
           <div class="space-y-6 relative">
-            <!-- CartLine Merchandise listing -->
             <div v-for="line in cartDetail.lines" :key="line.id">
               <div class="flex justify-between">
                 <div class="flex space-x-2" :disabled="true">
@@ -125,6 +124,9 @@
                   Naar checkout
                 </button>
               </NuxtLink>
+              <p class="text-slate-500 font-roboto -">
+                Geschakte shipping times 2-4 werkdagen
+              </p>
             </div>
           </div>
         </div>

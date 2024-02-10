@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="`/collections/${handle}`"
-    class="relative rounded-xl overflow-hidden hover:shadow-xl hover:scale-95 duration-200 cursor-pointer"
+    class="relative rounded-xl overflow-hidden hover:scale-95 duration-200 cursor-pointer"
   >
     <img
       v-if="image"
