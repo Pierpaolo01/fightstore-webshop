@@ -241,6 +241,11 @@
             :minVariantPrice="product.priceRange?.minVariantPrice"
           />
         </div>
+        <div v-if="!collection.products.length">
+          <span class="font-semibold text-slate-500 text-center"
+            >Er zijn geen producten gevonden in deze categorie</span
+          >
+        </div>
         <Pagination
           v-if="pageInfo.hasPreviousPage || pageInfo.hasNextPage"
           :pageInfo="pageInfo"

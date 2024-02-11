@@ -21,8 +21,8 @@
         class="group-hover:scale-110 transition-all duration-200"
       />
     </div>
-    <div class="space-y-1 mt-2">
-      <h4>{{ title }}</h4>
+    <div class="space-y-2 mt-4">
+      <h4 class="line-clamp-2" :title="title">{{ title }}</h4>
       <span class="flex space-x-2 text-blue-700 uppercase italic text-xs">
         <span
           class="group-hover:pl-1 group-hover:scale-110 transition-all duration-200"

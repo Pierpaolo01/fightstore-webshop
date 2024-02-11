@@ -1,7 +1,7 @@
 <template>
   <div
-    class="fixed top-0 w-full bg-white z-50 shadow-lg"
-    :class="{ ' shadow-2xl': currentNavItem }"
+    class="fixed top-0 w-full bg-white z-50 shadow-md"
+    :class="{ 'shadow-2xl': currentNavItem }"
   >
     <UContainer @mouseleave="currentNavItem = undefined">
       <div class="flex justify-between items-center py-4">
@@ -28,6 +28,9 @@
                 <span>{{ navItem.title }}</span>
                 <IconChevron
                   class="h-4 -rotate-90 group-hover:rotate-0 duration-200 stroke-2"
+                  :class="{
+                    'rotate-0': currentNavItem?.title === navItem.title,
+                  }"
                 />
               </span>
             </div>

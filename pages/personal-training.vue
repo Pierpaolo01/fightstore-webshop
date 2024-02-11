@@ -84,7 +84,7 @@
           <img src="/duo-training.avif" alt="" class="selection-image" />
 
           <h4 class="card-title">DUO TRAININGEN</h4>
-          <p class="font-currency font-normal mb-2">50 incl BTW p.p</p>
+          <p class="font-currency font-normal mb-2">50 incl BTW p.p per les</p>
           <p class="font-bold mb-4">
             Ideaal voor vrienden, familieleden of collega's die samen willen
             trainen en elkaar willen motiveren.
