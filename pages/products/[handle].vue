@@ -87,13 +87,8 @@
           />
           <ClientOnly>
             <div>
-              <p class="font-currency mb-4" v-if="selectedVariant">
-                {{
-                  new Intl.NumberFormat("nl-NL", {
-                    style: "currency",
-                    currency: "EUR",
-                  }).format(selectedVariant?.price.amount)
-                }}
+              <p class="font-currency mb-4">
+                {{ variantPrice }}
               </p>
               <div
                 class="laptop:flex w-full space-y-4 laptop:space-y-0 laptop:space-x-4"
@@ -217,13 +212,29 @@ watch(
   (value) => {
     if (!value) return;
 
-    if (value.variants[0]?.selectedOptions[0]?.value === "Default Title")
+    if (value.variants[0]?.selectedOptions[0]?.value === "Default Title") {
       variantId.value = value.variants[0].id;
+    }
 
     updateSeoMeta();
   },
   { deep: true, immediate: true }
 );
+
+const variantPrice = computed(() => {
+  const selectedVariant = product.value.variants.find(
+    (variant) => variant.id === variantId.value
+  );
+
+  console.log("test", selectedVariant, variantId.value);
+
+  if (!selectedVariant) return;
+
+  return new Intl.NumberFormat("nl-NL", {
+    style: "currency",
+    currency: "EUR",
+  }).format(selectedVariant?.price.amount);
+});
 
 updateSeoMeta();
 
