@@ -50,7 +50,7 @@
               @update:option="addOrUpdateOption($event)"
             />
             <OptionsDropdown
-              label="Kies een smaak"
+              label="Kies een kleur"
               type="kleur"
               :options="product.options"
               :selectedOptions="selectedOptions"

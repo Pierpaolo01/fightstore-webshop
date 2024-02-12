@@ -21,7 +21,7 @@
             <div
               v-for="navItem in navigationData"
               :key="navItem.title"
-              class="nav-item group"
+              class="nav-item group cursor-default"
               @mouseover="currentNavItem = navItem"
             >
               <span class="flex items-center space-x-1">

@@ -73,13 +73,36 @@
             "handle": "/collections/hand-thai-pads-trapkussen"
           }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "title": "Fitness materiaal",
+    "sections": [
       {
-        "title": "Fitness materiaal",
+        "title": "Sport flessen & shakers",
         "items": [
           {
             "title": "Bekijk assortiment",
-            "handle": "/collections/fitness-matriaal"
+            "handle": "/collections/sport-flessen-shakers"
+          }
+        ]
+      },
+      {
+        "title": "Sport materiaal",
+        "items": [
+          {
+            "title": "Bekijk assortiment",
+            "handle": "/collections/sport-materiaal"
+          }
+        ]
+      },
+      {
+        "title": "Sport tassen",
+        "items": [
+          {
+            "title": "Bekijk assortiment",
+            "handle": "/collections/sport-tassen"
           }
         ]
       }

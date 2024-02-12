@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen relative tablet:pb-[375px] pb-[800px]">
+  <div class="min-h-screen relative tablet:pb-[420px] pb-[900px]">
     <Navigation />
-    <div class="pt-[80px]">
+    <div class="pt-[72px]">
       <NuxtPage />
     </div>
     <div>
