@@ -40,9 +40,13 @@
                   class="text-sm py-1"
                 >
                   <!-- TODO: Replace with NuxtLink and handle -->
-                  <span class="hover:text-blue-600 cursor-pointer">
+                  <NuxtLink
+                    class="nav-link w-fit"
+                    :to="item.handle"
+                    @click="emit('update:modelValue', false)"
+                  >
                     {{ item.title }}
-                  </span>
+                  </NuxtLink>
                 </li>
               </ul>
             </div>
