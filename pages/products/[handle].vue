@@ -226,8 +226,6 @@ const variantPrice = computed(() => {
     (variant) => variant.id === variantId.value
   );
 
-  console.log("test", selectedVariant, variantId.value);
-
   if (!selectedVariant) return;
 
   return new Intl.NumberFormat("nl-NL", {

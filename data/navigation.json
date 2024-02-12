@@ -77,38 +77,6 @@
     ]
   },
   {
-    "title": "Fitness materiaal",
-    "sections": [
-      {
-        "title": "Sport flessen & shakers",
-        "items": [
-          {
-            "title": "Bekijk assortiment",
-            "handle": "/collections/sport-flessen-shakers"
-          }
-        ]
-      },
-      {
-        "title": "Sport materiaal",
-        "items": [
-          {
-            "title": "Bekijk assortiment",
-            "handle": "/collections/sport-materiaal"
-          }
-        ]
-      },
-      {
-        "title": "Sport tassen",
-        "items": [
-          {
-            "title": "Bekijk assortiment",
-            "handle": "/collections/sport-tassen"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "title": "Kids",
     "sections": [
       {
@@ -155,6 +123,38 @@
           {
             "title": "Trainings T-Shirts",
             "handle": "/collections/kids-trainings-t-shirts"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Fitness materiaal",
+    "sections": [
+      {
+        "title": "Sport flessen & shakers",
+        "items": [
+          {
+            "title": "Bekijk assortiment",
+            "handle": "/collections/sport-flessen-shakers"
+          }
+        ]
+      },
+      {
+        "title": "Sport materiaal",
+        "items": [
+          {
+            "title": "Bekijk assortiment",
+            "handle": "/collections/sport-materiaal"
+          }
+        ]
+      },
+      {
+        "title": "Sport tassen",
+        "items": [
+          {
+            "title": "Bekijk assortiment",
+            "handle": "/collections/sport-tassen"
           }
         ]
       }
