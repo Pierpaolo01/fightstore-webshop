@@ -78,6 +78,17 @@ export default defineNuxtConfig({
   carousel: {
     prefix: "VC",
   },
+  // Netlify build hack
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+      cssnano:
+        process.env.NODE_ENV === "production"
+          ? { preset: ["default", { discardComments: { removeAll: true } }] }
+          : false, // disable cssnano when not in production
+    },
+  },
 });
 
 async function fetchAllProducts(graphQLClient) {
@@ -157,7 +168,6 @@ async function fetchAllBlogArticles(graphQLClient) {
   return allArticles;
 }
 
-//TODO Fetch all collections
 async function fetchAllCollections(graphQLClient) {
   let allCollections = [];
   let lastCursor = null;
