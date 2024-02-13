@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-[720px] flex">
+  <div class="w-full h-[560px] tablet:h-[720px] flex">
     <VCCarousel
       id="hero"
       class="w-full h-full"
@@ -11,7 +11,7 @@
       @slideStart="isSliding = true"
       @slideEnd="isSliding = false"
     >
-      <VCSlide class="w-full h-[720px] relative">
+      <VCSlide class="w-full h-[560px] relative">
         <img
           src="/hero-1.jpeg"
           alt="hero image"
@@ -32,7 +32,7 @@
           </div>
         </UContainer>
       </VCSlide>
-      <VCSlide class="w-full h-[720px] relative">
+      <VCSlide class="w-full h-[560px] relative">
         <img
           src="/hero-2.jpeg"
           alt="hero image"
@@ -53,7 +53,7 @@
           </div>
         </UContainer>
       </VCSlide>
-      <VCSlide class="w-full h-[720px] relative">
+      <VCSlide class="w-full h-[560px] relative">
         <img
           src="/hero-3.jpeg"
           alt="hero image"
