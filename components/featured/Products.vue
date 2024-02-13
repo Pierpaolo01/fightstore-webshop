@@ -106,7 +106,7 @@ const products = computed<Product[]>(() => {
   @apply h-[350px];
 
   @media tablet {
-    @apply h-[220px];
+    height: 220px;
   }
 }
 </style>
