@@ -67,7 +67,8 @@ h1 {
   @apply text-4xl font-extrabold;
 
   @screen tablet {
-    @apply text-5xl;
+    font-size: 3rem /* 48px */;
+    line-height: 1;
   }
 }
 
@@ -75,7 +76,8 @@ h2 {
   @apply text-3xl font-bold;
 
   @screen tablet {
-    @apply text-4xl;
+    font-size: 2.25rem /* 36px */;
+    line-height: 2.5rem /* 40px */;
   }
 }
 
@@ -83,7 +85,8 @@ h3 {
   @apply text-2xl font-bold;
 
   @screen tablet {
-    @apply text-3xl;
+    font-size: 1.875rem /* 30px */;
+    line-height: 2.25rem /* 36px */;
   }
 }
 
@@ -100,7 +103,8 @@ textarea {
   @apply py-8;
 
   @screen tablet {
-    @apply py-12;
+    padding-top: 3rem /* 48px */;
+    padding-bottom: 3rem /* 48px */;
   }
 }
 </style>
