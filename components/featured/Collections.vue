@@ -6,6 +6,7 @@
       </template>
       <div class="grid tablet:grid-cols-3 gap-4 mb-4">
         <FeaturedCollectionsCard
+          class="max-h-[300px]"
           v-for="collection in firstRowCollections"
           :image="collection.image"
           :title="collection.title"
@@ -14,6 +15,7 @@
       </div>
       <div class="grid tablet:grid-cols-2 gap-4">
         <FeaturedCollectionsCard
+          class="max-h-[400px]"
           v-for="collection in secondRowCollections"
           :key="collection.id"
           :image="collection.image"

@@ -21,7 +21,7 @@
           </div>
           <div>
             <img
-              src="/about-us.jpg"
+              src="/about-us.jpeg"
               alt="about us image"
               class="rounded-lg shadow-lg w-full max-w-[380px]"
             />
@@ -40,7 +40,7 @@
         @slideStart="isSliding = true"
         @slideEnd="isSliding = false"
       >
-        <VCSlide class="w-full" :class="'w-full '">
+        <VCSlide class="w-full" :class="'w-full'">
           <UContainer
             class="y-padding z-20 text-white h-full w-full flex justify-end"
           >
