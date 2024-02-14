@@ -41,6 +41,14 @@
           {
             "title": "Tok / Kruisbeschermers",
             "handle": "/collections/tok-kruisbeschermers"
+          },
+          {
+            "title": "Body protectors",
+            "handle": "/collections/body-protectors"
+          },
+          {
+            "title": "Bandages & binnen handschoenen",
+            "handle": "/collections/bandages-binnen-handschoenen"
           }
         ]
       },
@@ -62,7 +70,7 @@
         ]
       },
       {
-        "title": "Bokszakken & kussen",
+        "title": "Bokszakken & trap/stoot kussen",
         "items": [
           {
             "title": "Bokszakken & benodigheden",
@@ -71,6 +79,15 @@
           {
             "title": "Hand / Thai pads & Trapkussens",
             "handle": "/collections/hand-thai-pads-trapkussen"
+          }
+        ]
+      },
+      {
+        "title": "Onderhoud & zorging",
+        "items": [
+          {
+            "title": "Bekijk assortiment",
+            "handle": "/collections/onderhoud-zorging"
           }
         ]
       }

@@ -41,7 +41,7 @@
       <Transition name="fade">
         <div
           v-if="currentNavItem"
-          class="hidden laptop:flex flex-wrap gap-4 items-start pt-6 relative"
+          class="hidden laptop:grid grid-cols-3 gap-x-8 gap-y-4 items-start pt-6 pb-8 relative"
         >
           <button
             class="absolute top-0 right-0 hover:bg-slate-200 rounded-md"
@@ -54,7 +54,7 @@
             v-for="section in currentNavItem.sections"
             :key="section.title"
           >
-            <div class="pb-6 max-w-[400px]">
+            <div>
               <h4 class="font-bold mb-4">
                 {{ section.title }}
               </h4>

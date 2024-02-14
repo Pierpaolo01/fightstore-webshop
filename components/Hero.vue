@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-[560px] tablet:h-[720px] flex">
+  <div class="w-full h-[560px] flex">
     <VCCarousel
       id="hero"
       class="w-full h-full"
@@ -47,7 +47,7 @@
               </h1>
 
               <NuxtLink to="/collections/kids-handschoenen">
-                <Button label="Naarhandschoenen" />
+                <Button label="Naar handschoenen" />
               </NuxtLink>
             </div>
           </div>
