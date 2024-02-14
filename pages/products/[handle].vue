@@ -75,16 +75,6 @@
             variant="soft"
             title="Helaas is deze article/variant momenteel niet op voorraad"
           />
-          <UAlert
-            v-if="
-              selectedVariant?.quantityAvailable < 5 &&
-              selectedVariant?.quantityAvailable !== 0
-            "
-            icon="i-heroicons-exclamation-circle"
-            color="orange"
-            variant="outline"
-            :title="`Let op! Nog maar ${selectedVariant?.quantityAvailable} op voorraad`"
-          />
           <ClientOnly>
             <div>
               <p class="font-currency mb-4">
