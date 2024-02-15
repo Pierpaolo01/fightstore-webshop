@@ -60,8 +60,8 @@
             "handle": "/collections/kickboks-broekjes"
           },
           {
-            "title": "MMA Broekjes",
-            "handle": "/collections/mma-broekjes"
+            "title": "MMA Kleding",
+            "handle": "/collections/mma-kleding"
           },
           {
             "title": "Trainings T-Shirts",
@@ -158,11 +158,20 @@
         ]
       },
       {
-        "title": "Sport",
+        "title": "Sport materiaal",
         "items": [
           {
             "title": "Bekijk assortiment",
             "handle": "/collections/sport-materiaal"
+          }
+        ]
+      },
+      {
+        "title": "Sport kleding",
+        "items": [
+          {
+            "title": "Bekijk assortiment",
+            "handle": "/collections/sport-kleding"
           }
         ]
       },
