@@ -90,6 +90,15 @@
             "handle": "/collections/onderhoud-zorging"
           }
         ]
+      },
+      {
+        "title": "Sport tassen",
+        "items": [
+          {
+            "title": "Bekijk assortiment",
+            "handle": "/collections/sport-tassen"
+          }
+        ]
       }
     ]
   },
@@ -235,6 +244,20 @@
           {
             "title": "Vitamines & Fat burners",
             "handle": "/collections/vitamines-fat-burners"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Personal trainings",
+    "sections": [
+      {
+        "title": "Personal training",
+        "items": [
+          {
+            "title": "Bekijk trainingen",
+            "handle": "/personal-training"
           }
         ]
       }
