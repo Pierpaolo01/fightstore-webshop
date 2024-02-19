@@ -125,7 +125,7 @@
                 </button>
               </NuxtLink>
               <p class="text-slate-500 font-roboto -">
-                Geschakte shipping times 2-4 werkdagen
+                Geschakte lever tijden 2-3 werkdagen
               </p>
             </div>
           </div>

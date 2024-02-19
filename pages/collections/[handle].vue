@@ -370,6 +370,8 @@ const paginatePrev = (cursor?: string) => {
     last: 30,
     ...productSorting.value,
   });
+
+  window.scrollTo(0, 0);
 };
 
 const paginateNext = (cursor?: string) => {
@@ -388,6 +390,8 @@ const paginateNext = (cursor?: string) => {
     last: undefined,
     ...productSorting.value,
   });
+
+  window.scrollTo(0, 0);
 };
 
 const updateSeoMeta = () =>
