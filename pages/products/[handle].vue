@@ -101,7 +101,7 @@
       :product-id="product.id"
     />
 
-    <div class="bg-off-white">
+    <div class="bg-off-white mb-8">
       <UContainer class="y-padding">
         <ClientOnly>
           <ContactForm class="mx-auto" />

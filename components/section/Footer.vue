@@ -85,14 +85,16 @@
 
           <div>
             <h5 class="font-semibold text-lg mb-2">Onze partners</h5>
-            <div
-              class="flex items-start tablet:items-center flex-col tablet:flex-row gap-4"
-            >
+            <div class="grid grid-cols-2 gap-4 tablet:grid-cols-3">
+              <!-- class="flex items-start tablet:items-center flex-col tablet:flex-row gap-4" -->
               <a href="http://finestfightevents.nl/" target="_blank">
                 <img src="/FFE_Logo.png" alt="" class="w-[100px]" />
               </a>
               <img src="/joyalogo.png" alt="" class="w-[100px]" />
               <img src="/boosterlogo.webp" alt="" class="w-[200px]" />
+              <img src="/sponsor_1.png" alt="" class="w-[100px]" />
+              <img src="/sponsor_2.png" alt="" class="w-[150px]" />
+              <img src="/sponsor_3.png" alt="" class="w-[150px]" />
             </div>
           </div>
         </div>
@@ -154,12 +156,3 @@
     </div>
   </div>
 </template>
-
-<!-- <script setup lang="ts">
-//TODO Create newsletter signups
-// const submitNewsletter = () => {
-//   alert("You have subscribed to our newsletter!");
-// };
-
-// const email = ref("");
-</script> -->
