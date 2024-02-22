@@ -120,6 +120,10 @@ export const GetCartDetailQuery = gql`
           amount
           currencyCode
         }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
         totalTaxAmount {
           amount
           currencyCode
@@ -150,6 +154,7 @@ export const GetCartDetailQuery = gql`
                 }
                 product {
                   title
+                  id
                 }
                 price {
                   amount
@@ -173,6 +178,10 @@ export type CartDetail = {
   checkoutUrl: string;
   cost: {
     totalAmount: {
+      amount: number;
+      currencyCode: string;
+    };
+    subtotalAmount: {
       amount: number;
       currencyCode: string;
     };
@@ -203,6 +212,7 @@ export type CartDetail = {
       }>;
       product: {
         title: string;
+        id: string;
       };
       price: {
         amount: number;

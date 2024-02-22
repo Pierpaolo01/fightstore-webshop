@@ -38,7 +38,7 @@ export const useAddOrUpdateCart = () => {
     () => loadingAdd.value || loadingCreate.value
   );
 
-  const addToCart = async (productId: string, quantity: number) => {
+  const addToCart = async (productId: string, quantity = 1) => {
     if (!isClient) return;
 
     if (!storedCartId.value) {

@@ -35,7 +35,9 @@
               </span>
             </div>
           </div>
-          <Cart />
+          <ClientOnly>
+            <Cart />
+          </ClientOnly>
         </div>
       </div>
       <Transition name="fade">

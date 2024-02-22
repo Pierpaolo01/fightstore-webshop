@@ -15,7 +15,7 @@ export default {
     color: {
       type: String,
       default: "white",
-      validator: (value) => ["white", "black"].includes(value),
+      validator: (value) => ["white", "black", "green-500"].includes(value),
     },
     size: {
       type: String,

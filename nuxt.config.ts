@@ -50,6 +50,9 @@ export default defineNuxtConfig({
       EMAILJS_PUBLIC_KEY: process.env.EMAILJS_PUBLIC_KEY ?? "",
       EMAILJS_TEMPLATE_ID: process.env.EMAILJS_TEMPLATE_ID ?? "",
       EMAILJS_SERVICE_ID: process.env.EMAILJS_SERVICE_ID ?? "",
+      SHOPIFY_BASE_URL: process.env.SHOPIFY_BASE_URL ?? "",
+      SHOPIFY_PUBLIC_ACCESS_TOKEN:
+        process.env.SHOPIFY_PUBLIC_ACCESS_TOKEN ?? "",
       NODE_ENV: process.env.NODE_ENV ?? "dev",
     },
   },

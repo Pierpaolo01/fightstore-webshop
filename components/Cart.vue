@@ -40,10 +40,10 @@
                       <span class="font-bold text-black">Variant: </span>
                       {{ line.merchandise.title }}
                     </p>
-                    <p class="text-sm font-semibold text-black/70">
-                      <span class="font-bold text-black font-currency">
-                        prijs:
-                      </span>
+                    <p
+                      class="text-sm font-semibold text-black/70 font-currency"
+                    >
+                      <span class="font-bold text-black"> prijs: </span>
                       {{ line.merchandise.price.amount }}
                       {{ line.merchandise.price.currencyCode }}
                     </p>
@@ -109,8 +109,8 @@
               <div class="flex justify-between font-currency">
                 <span> Winkelwagen subtotaal </span>
                 <span>
-                  {{ cartDetail.cost.totalAmount.amount }}
-                  {{ cartDetail.cost.totalAmount.currencyCode }}
+                  {{ cartDetail.cost.subtotalAmount.amount }}
+                  {{ cartDetail.cost.subtotalAmount.currencyCode }}
                 </span>
               </div>
               <NuxtLink
@@ -129,6 +129,49 @@
               </p>
             </div>
           </div>
+          <div v-if="complimentaryProducts.length">
+            <h3 class="mb-4">Aanraders</h3>
+            <div
+              v-for="recommendation in complimentaryProducts"
+              :key="recommendation.id"
+            >
+              <div class="flex justify-between">
+                <div class="flex space-x-2" :disabled="true">
+                  <img
+                    :src="recommendation.featuredImage?.url"
+                    alt="line"
+                    class="h-16 w-16 object-contain"
+                  />
+                  <div>
+                    <p class="font-bold">
+                      {{ recommendation.title }}
+                    </p>
+                    <p
+                      class="text-sm font-semibold text-black/70 font-currency"
+                    >
+                      <span class="font-bold text-black"> prijs: </span>
+                      {{ recommendation.priceRange.minVariantPrice.amount }}
+                      {{
+                        recommendation.priceRange.minVariantPrice.currencyCode
+                      }}
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <!-- <div v-if="recommendation.variants.length">Has variants</div> -->
+                  {{ recommendation.variants }}
+                  <Button
+                    variant="solid"
+                    color="green-500"
+                    size="sm"
+                    @click="addToCart(recommendation.id)"
+                  >
+                    Voeg toe
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </USlideover>
@@ -145,10 +188,14 @@ import {
 } from "~/graphql/queries";
 import { useCartStore } from "~/store/useCartStore";
 import { is10DaysOrMoreAgo } from "~/utils/utils";
+
 const slideoverIsOpen = ref(false);
 const store = useCartStore();
-
 const { triggerRefetch } = storeToRefs(store);
+const { getComplimentaryProducts, complimentaryProducts } =
+  useComplimentaryProducts();
+
+const { addToCart } = useAddOrUpdateCart();
 
 const { showWarning, setWarning, warningDescription, warningTitle } =
   useWarning();
@@ -247,7 +294,7 @@ const cart = computed(() => cartTotalResult.value?.cart);
 const cartDetail = ref<CartDetail>();
 
 watch(detailCartResult, (result) => {
-  if (result)
+  if (result) {
     cartDetail.value = {
       ...result.cart,
       lines: result.cart.lines.edges.map((line) => {
@@ -257,6 +304,13 @@ watch(detailCartResult, (result) => {
         };
       }),
     };
+
+    const productIds = result.cart.lines.edges.map(
+      (line) => line.node.merchandise.product.id
+    );
+
+    getComplimentaryProducts(productIds);
+  }
 });
 
 watch(triggerRefetch, () => {
