@@ -157,17 +157,31 @@
                     </p>
                   </div>
                 </div>
-                <div>
-                  <!-- <div v-if="recommendation.variants.length">Has variants</div> -->
-                  {{ recommendation.variants }}
+                <div :class="isAddingToCart ? 'opacity-50 cursor-wait' : ''">
                   <Button
+                    v-if="recommendation.variants.length === 1"
                     variant="solid"
                     color="green-500"
                     size="sm"
-                    @click="addToCart(recommendation.id)"
+                    @click="addToCart(recommendation.variants[0])"
                   >
-                    Voeg toe
+                    <div class="flex justify-between items-center gap-2">
+                      <span>Voeg toe</span>
+                      <IconPlus class="h-4 w-4 inline-block" />
+                    </div>
                   </Button>
+                  <NuxtLink
+                    @click="slideoverIsOpen = false"
+                    :to="'/products/' + recommendation.handle"
+                    v-if="recommendation.variants.length > 1"
+                  >
+                    <Button variant="solid" color="green-500" size="sm">
+                      <div class="flex justify-between items-center gap-2">
+                        <span>Kies variant</span>
+                        <IconArrowRight class="h-4 w-4 inline-block" />
+                      </div>
+                    </Button>
+                  </NuxtLink>
                 </div>
               </div>
             </div>
@@ -195,7 +209,7 @@ const { triggerRefetch } = storeToRefs(store);
 const { getComplimentaryProducts, complimentaryProducts } =
   useComplimentaryProducts();
 
-const { addToCart } = useAddOrUpdateCart();
+const { addToCart, isAddingToCart } = useAddOrUpdateCart();
 
 const { showWarning, setWarning, warningDescription, warningTitle } =
   useWarning();
