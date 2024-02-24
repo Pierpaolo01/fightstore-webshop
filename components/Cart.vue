@@ -131,57 +131,61 @@
           </div>
           <div v-if="complimentaryProducts.length">
             <h3 class="mb-4">Aanraders</h3>
-            <div
-              v-for="recommendation in complimentaryProducts"
-              :key="recommendation.id"
-            >
-              <div class="flex justify-between">
-                <div class="flex space-x-2" :disabled="true">
-                  <img
-                    :src="recommendation.featuredImage?.url"
-                    alt="line"
-                    class="h-16 w-16 object-contain"
-                  />
-                  <div>
-                    <p class="font-bold">
-                      {{ recommendation.title }}
-                    </p>
-                    <p
-                      class="text-sm font-semibold text-black/70 font-currency"
-                    >
-                      <span class="font-bold text-black"> prijs: </span>
-                      {{ recommendation.priceRange.minVariantPrice.amount }}
-                      {{
-                        recommendation.priceRange.minVariantPrice.currencyCode
-                      }}
-                    </p>
-                  </div>
-                </div>
-                <div :class="isAddingToCart ? 'opacity-50 cursor-wait' : ''">
-                  <Button
-                    v-if="recommendation.variants.length === 1"
-                    variant="solid"
-                    color="green-500"
-                    size="sm"
-                    @click="addToCart(recommendation.variants[0])"
-                  >
-                    <div class="flex justify-between items-center gap-2">
-                      <span>Voeg toe</span>
-                      <IconPlus class="h-4 w-4 inline-block" />
+            <div class="space-y-6 tablet:space-y-0">
+              <div
+                v-for="recommendation in complimentaryProducts"
+                :key="recommendation.id"
+              >
+                <div
+                  class="flex flex-col tablet:flex-row justify-between space-y-4 tablet:space-y-0"
+                >
+                  <div class="flex space-x-2" :disabled="true">
+                    <img
+                      :src="recommendation.featuredImage?.url"
+                      alt="line"
+                      class="h-16 w-16 object-contain"
+                    />
+                    <div>
+                      <p class="font-bold">
+                        {{ recommendation.title }}
+                      </p>
+                      <p
+                        class="text-sm font-semibold text-black/70 font-currency"
+                      >
+                        <span class="font-bold text-black"> prijs: </span>
+                        {{ recommendation.priceRange.minVariantPrice.amount }}
+                        {{
+                          recommendation.priceRange.minVariantPrice.currencyCode
+                        }}
+                      </p>
                     </div>
-                  </Button>
-                  <NuxtLink
-                    @click="slideoverIsOpen = false"
-                    :to="'/products/' + recommendation.handle"
-                    v-if="recommendation.variants.length > 1"
-                  >
-                    <Button variant="solid" color="green-500" size="sm">
+                  </div>
+                  <div :class="isAddingToCart ? 'opacity-50 cursor-wait' : ''">
+                    <Button
+                      v-if="recommendation.variants.length === 1"
+                      variant="solid"
+                      color="green-500"
+                      size="sm"
+                      @click="addToCart(recommendation.variants[0])"
+                    >
                       <div class="flex justify-between items-center gap-2">
-                        <span>Kies variant</span>
-                        <IconArrowRight class="h-4 w-4 inline-block" />
+                        <span>Voeg toe</span>
+                        <IconPlus class="h-4 w-4 inline-block" />
                       </div>
                     </Button>
-                  </NuxtLink>
+                    <NuxtLink
+                      @click="slideoverIsOpen = false"
+                      :to="'/products/' + recommendation.handle"
+                      v-if="recommendation.variants.length > 1"
+                    >
+                      <Button variant="solid" color="green-500" size="sm">
+                        <div class="flex justify-between items-center gap-2">
+                          <span>Kies variant</span>
+                          <IconArrowRight class="h-4 w-4 inline-block" />
+                        </div>
+                      </Button>
+                    </NuxtLink>
+                  </div>
                 </div>
               </div>
             </div>
