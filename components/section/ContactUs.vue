@@ -38,7 +38,7 @@
         <h3 class="mb-4">Bezoek ons:</h3>
         <div class="flex flex-col laptop:flex-row gap-4 gap-y-12">
           <div class="w-full">
-            <h5 class="block text-gray-700 font-bold mb-2">Almere</h5>
+            <h5 class="block text-gray-700 font-bold mb-2">Hilversum</h5>
             <p class="text-sm mb-4 font-semibold leading-relaxed">
               Schoutenstraat 8, 1211 BM Hilversum
             </p>
@@ -52,7 +52,7 @@
             ></iframe>
           </div>
           <div class="w-full">
-            <h5 class="block text-gray-700 font-bold mb-2">Hilversum</h5>
+            <h5 class="block text-gray-700 font-bold mb-2">Almere</h5>
             <p class="text-sm mb-4 font-semibold leading-relaxed">
               Bottelaarpassage 4, 1315 ES Almere
             </p>
