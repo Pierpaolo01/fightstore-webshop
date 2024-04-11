@@ -269,7 +269,7 @@ const activeFilters = ref<any[]>([]);
 
 const route = useRoute();
 
-const { result, refetch } = useQuery(CollectionQuery, {
+const { result, refetch, loading } = useQuery(CollectionQuery, {
   handle: route.params.handle,
   filters: [] as any[],
   before: undefined as string | undefined,
@@ -350,6 +350,40 @@ watch(
   activeFilters,
   () => {
     debounceRefetch();
+  },
+  { deep: true }
+);
+
+watch(
+  productSearch,
+  (search) => {
+    if (search) {
+      refetch({
+        handle: route.params.handle,
+        filters: activeFilters.value.map((filter) => {
+          delete filter.id;
+          return filter;
+        }),
+        before: undefined,
+        after: undefined,
+        first: 250,
+        last: undefined,
+        ...productSorting.value,
+      });
+      return;
+    }
+    refetch({
+      handle: route.params.handle,
+      filters: activeFilters.value.map((filter) => {
+        delete filter.id;
+        return filter;
+      }),
+      before: undefined,
+      after: undefined,
+      first: 30,
+      last: undefined,
+      ...productSorting.value,
+    });
   },
   { deep: true }
 );
