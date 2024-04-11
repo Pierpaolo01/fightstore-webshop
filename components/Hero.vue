@@ -67,7 +67,7 @@
                 handschoenen
               </h1>
 
-              <NuxtLink to="/collections/handschoenen">
+              <NuxtLink to="/collections/kickbokshandschoenen">
                 <Button label="Naar handschoenen" />
               </NuxtLink>
             </div>
