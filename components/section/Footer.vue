@@ -79,6 +79,17 @@
                     >
                   </p>
                 </li>
+                <li>
+                  <p class="hover:underline">
+                    KVK:
+                    <a
+                      class="font-currency"
+                      href="mailto:info@fightstore036.nl"
+                    >
+                      76606546
+                    </a>
+                  </p>
+                </li>
               </ul>
             </div>
           </div>
