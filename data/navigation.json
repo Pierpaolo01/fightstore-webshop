@@ -39,6 +39,10 @@
             "handle": "/collections/bitjes"
           },
           {
+            "title": "Enkelbeschermers",
+            "handle": "/collections/enkelbeschermers"
+          },
+          {
             "title": "Tok / Kruisbeschermers",
             "handle": "/collections/tok-kruisbeschermers"
           },
@@ -132,6 +136,10 @@
           {
             "title": "Bitjes",
             "handle": "/collections/bitjes"
+          },
+          {
+            "title": "Enkelbeschermers",
+            "handle": "/collections/enkelbeschermers"
           },
           {
             "title": "Tok / Kruisbeschermers",
