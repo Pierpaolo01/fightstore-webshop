@@ -44,7 +44,11 @@ export default defineNuxtConfig({
     "vue3-carousel-nuxt",
     "@pinia/nuxt",
     "nuxt-lodash",
+    "@nuxtjs/sitemap", // Always declare sitemap module at the end of the modules array
   ],
+  sitemap: {
+    sources: ['/api/sitemap'],
+  },
   runtimeConfig: {
     public: {
       EMAILJS_PUBLIC_KEY: process.env.EMAILJS_PUBLIC_KEY ?? "",
